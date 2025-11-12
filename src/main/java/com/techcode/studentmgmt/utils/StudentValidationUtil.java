@@ -1,12 +1,12 @@
-package com.techcode.SpringSecurityApp.utils;
+package com.techcode.studentmgmt.utils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.techcode.SpringSecurityApp.dto.requestdto.StudentRequest;
-import com.techcode.SpringSecurityApp.repository.StudentRepository;
+import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
+import com.techcode.studentmgmt.repository.StudentRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

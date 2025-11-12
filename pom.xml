@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.techcode</groupId>
-	<artifactId>SpringSecurityApp</artifactId>
+	<artifactId>studentmgmt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringSecurityApp</name>
+	<name>studentmgmt</name>
 	<description>SpringSecurityApp is a Spring Boot–based application built to
 		demonstrate authentication and authorization using Spring Security, JWT
 		(JSON Web Token), and OAuth 2.0. The goal of this application is to
@@ -71,12 +71,7 @@
 
 
 		<!-- Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<!-- or latest version -->
-			<scope>provided</scope>
-		</dependency>
+
 
 		<!-- BCrypt Encryption -->
 		<dependency>

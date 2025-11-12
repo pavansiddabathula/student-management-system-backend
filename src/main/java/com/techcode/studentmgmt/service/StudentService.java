@@ -1,4 +1,4 @@
-package com.techcode.SpringSecurityApp.service;
+package com.techcode.studentmgmt.service;
 
 import java.util.List;
 import java.util.Map;
@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.techcode.SpringSecurityApp.dto.requestdto.StudentRequest;
-import com.techcode.SpringSecurityApp.dto.rsponsedto.StudentResponse;
-import com.techcode.SpringSecurityApp.entity.StudentInfo;
-import com.techcode.SpringSecurityApp.modelmappers.StudentMapper;
-import com.techcode.SpringSecurityApp.repository.StudentRepository;
-import com.techcode.SpringSecurityApp.utils.StudentValidationUtil;
+import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
+import com.techcode.studentmgmt.dto.rsponsedto.StudentResponse;
+import com.techcode.studentmgmt.entity.StudentInfo;
+import com.techcode.studentmgmt.modelmappers.StudentMapper;
+import com.techcode.studentmgmt.repository.StudentRepository;
+import com.techcode.studentmgmt.utils.StudentValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

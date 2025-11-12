@@ -1,8 +1,8 @@
-package com.techcode.SpringSecurityApp.modelmappers;
+package com.techcode.studentmgmt.modelmappers;
 
-import com.techcode.SpringSecurityApp.dto.requestdto.StudentRequest;
-import com.techcode.SpringSecurityApp.dto.rsponsedto.StudentResponse;
-import com.techcode.SpringSecurityApp.entity.StudentInfo;
+import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
+import com.techcode.studentmgmt.dto.rsponsedto.StudentResponse;
+import com.techcode.studentmgmt.entity.StudentInfo;
 
 import lombok.extern.slf4j.Slf4j;
 

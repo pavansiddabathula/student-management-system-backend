@@ -1,4 +1,4 @@
-package com.techcode.SpringSecurityApp.dto.rsponsedto;
+package com.techcode.studentmgmt.dto.rsponsedto;
 
 
 import lombok.Builder;

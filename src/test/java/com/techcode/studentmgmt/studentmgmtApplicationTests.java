@@ -1,10 +1,10 @@
-package com.techcode.SpringSecurityApp;
+package com.techcode.studentmgmt;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringSecurityAppApplicationTests {
+class studentmgmtApplicationTests {
 
 	@Test
 	void contextLoads() {

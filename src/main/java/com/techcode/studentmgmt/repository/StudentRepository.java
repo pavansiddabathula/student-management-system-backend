@@ -1,4 +1,4 @@
-package com.techcode.SpringSecurityApp.repository;
+package com.techcode.studentmgmt.repository;
 
 
 
@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.techcode.SpringSecurityApp.entity.StudentInfo;
+import com.techcode.studentmgmt.entity.StudentInfo;
 @Repository
 public interface StudentRepository extends JpaRepository<StudentInfo, Long> {
 	

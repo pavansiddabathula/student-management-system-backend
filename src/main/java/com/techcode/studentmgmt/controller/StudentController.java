@@ -1,4 +1,4 @@
-package com.techcode.SpringSecurityApp.controller;
+package com.techcode.studentmgmt.controller;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techcode.SpringSecurityApp.dto.requestdto.StudentRequest;
-import com.techcode.SpringSecurityApp.dto.rsponsedto.StudentResponse;
-import com.techcode.SpringSecurityApp.service.StudentService;
+import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
+import com.techcode.studentmgmt.dto.rsponsedto.StudentResponse;
+import com.techcode.studentmgmt.service.StudentService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

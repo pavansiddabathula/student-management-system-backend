@@ -1,4 +1,4 @@
-package com.techcode.SpringSecurityApp.dto.requestdto;
+package com.techcode.studentmgmt.dto.requestdto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

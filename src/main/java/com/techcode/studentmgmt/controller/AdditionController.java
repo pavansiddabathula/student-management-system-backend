@@ -1,4 +1,4 @@
-package com.techcode.SpringSecurityApp.controller;
+package com.techcode.studentmgmt.controller;
 
 
 

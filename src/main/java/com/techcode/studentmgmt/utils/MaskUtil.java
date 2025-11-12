@@ -1,4 +1,4 @@
-package com.techcode.SpringSecurityApp.utils;
+package com.techcode.studentmgmt.utils;
 
 public final class MaskUtil {
 
