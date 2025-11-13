@@ -202,7 +202,8 @@ Request Body Example:
   "confirmPassword": "NewPass@123",
   "phoneNumber": "9876509999"
 }
----
+
+
 6️ Delete Student by Roll Number
 
 Method: DELETE
