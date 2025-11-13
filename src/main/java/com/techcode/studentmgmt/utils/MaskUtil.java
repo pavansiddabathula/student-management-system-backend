@@ -5,7 +5,6 @@ public final class MaskUtil {
     private MaskUtil() {
         // private constructor to prevent instantiation
     }
-
     public static String maskPhone(String phone) {
         if (phone == null || phone.length() < 4) {
             return "****";

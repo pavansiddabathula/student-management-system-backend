@@ -1,7 +1,5 @@
 package com.techcode.studentmgmt.repository;
 
-
-
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,6 +15,8 @@ public interface StudentRepository extends JpaRepository<StudentInfo, Long> {
 
     boolean existsByEmail(String email);
     boolean existsByUsername(String username);
+    boolean existsByRollNumber(String rollNumber);
+
     void deleteByRollNumber(String rollNumber);
 	
   

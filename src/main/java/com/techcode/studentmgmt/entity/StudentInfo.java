@@ -1,4 +1,3 @@
-
 package com.techcode.studentmgmt.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

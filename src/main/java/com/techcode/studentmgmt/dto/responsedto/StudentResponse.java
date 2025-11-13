@@ -1,19 +1,21 @@
-package com.techcode.studentmgmt.dto.rsponsedto;
+package com.techcode.studentmgmt.dto.responsedto;
 
+import lombok.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import lombok.Builder;
-import lombok.Data;
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class StudentResponse {
-
-    private Long id;
+	private String status;
+    private Long id;            
     private String rollNumber;
     private String firstName;
     private String lastName;
     private String email;
-    private String branch;
     private String username;
+    private String branch;
     private String phoneNumber;
 }

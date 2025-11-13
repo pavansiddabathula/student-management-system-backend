@@ -1,114 +1,122 @@
 package com.techcode.studentmgmt.service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
-import com.techcode.studentmgmt.dto.rsponsedto.StudentResponse;
+import com.techcode.studentmgmt.dto.responsedto.StudentResponse;
 import com.techcode.studentmgmt.entity.StudentInfo;
+import com.techcode.studentmgmt.enums.ErrorCode;
+import com.techcode.studentmgmt.exceptions.BusinessException;
 import com.techcode.studentmgmt.modelmappers.StudentMapper;
 import com.techcode.studentmgmt.repository.StudentRepository;
+import com.techcode.studentmgmt.utils.ResponseBuilder;
 import com.techcode.studentmgmt.utils.StudentValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
+@Slf4j
 public class StudentService {
 
     private final StudentRepository studentRepository;
     private final StudentValidationUtil validationUtil;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    //Register a new student.
-    public StudentResponse registerStudent(StudentRequest studentRequest) {
-        log.info("StudentService :: Registering new student: {}", studentRequest.getUsername());
+    /** Register a new student */
+    public ResponseEntity<?> registerStudent(StudentRequest request) {
+        log.info("StudentService::registerStudent called with request: {}", request);
+        validationUtil.validateAll(request, null);
 
-        //Validate request (insert → currentStudentId = null)
-        Map<String, String> errors = validationUtil.validateBusinessRules(studentRequest, null);
-        if (!errors.isEmpty()) {
-            log.warn("Validation failed during registration: {}", errors);
-            throw new IllegalArgumentException(errors.toString());
-        }
+        request.setPassword(encoder.encode(request.getPassword()));
+        StudentInfo student = StudentMapper.toEntity(request);
+        student = studentRepository.save(student);
 
-        // Encode password
-        studentRequest.setPassword(encoder.encode(studentRequest.getPassword()));
-
-        //Convert DTO → Entity
-        StudentInfo studentEntity = StudentMapper.toEntity(studentRequest);
-
-        // Save to DB
-        studentEntity = studentRepository.save(studentEntity);
-        log.info("Student saved successfully: {}", studentEntity);
-
-        //Convert Entity → Response DTO
-        return StudentMapper.toResponse(studentEntity);
+        StudentResponse response = StudentMapper.toResponse(student);
+        log.info("StudentService::registerStudent success for studentId: {}", response.getId());
+        return ResponseBuilder.success("Student registered successfully", response);
     }
 
-    //Fetch a student by username.
-    public StudentResponse getStudentByUsername(String username) {
-        log.info("StudentService :: Fetching student by username: {}", username);
-        StudentInfo student = studentRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("Student not found"));
-        return StudentMapper.toResponse(student);
-    }
-
-    //Get all students.
-    public List<StudentResponse> getAllStudents() {
-        log.info("StudentService :: Fetching all students...");
-        return studentRepository.findAll()
+    /** Get all students */
+    public ResponseEntity<?> getAllStudents() {
+        log.info("StudentService::getAllStudents called");
+        List<StudentResponse> students = studentRepository.findAll()
                 .stream()
                 .map(StudentMapper::toResponse)
                 .collect(Collectors.toList());
+        log.info("StudentService::getAllStudents completed. Count: {}", students.size());
+        return ResponseBuilder.success("All students fetched successfully", students);
     }
 
-    //Delete student by roll number.
-     
-    public void deleteStudentByRollNumber(String rollNumber) {
-        log.info("Deleting student with rollNumber: {}", rollNumber);
+    /** Get student by roll number */
+    public ResponseEntity<?> getStudentByRollNumber(String rollNumber) {
+        log.info("StudentService::getStudentByRollNumber called with rollNumber: {}", rollNumber);
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
-                .orElseThrow(() -> new RuntimeException("Student not found"));
-
-        studentRepository.delete(student);
-        log.info("Student deleted successfully: {}", rollNumber);
+                .orElseThrow(() -> {
+                    log.warn("StudentService::No student found with rollNumber: {}", rollNumber);
+                    return new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
+                });
+        StudentResponse response = StudentMapper.toResponse(student);
+        log.info("StudentService::getStudentByRollNumber success for rollNumber: {}", rollNumber);
+        return ResponseBuilder.success("Student fetched successfully", response);
     }
 
-    public StudentResponse updateStudentByRollNumber(String rollNumber, StudentRequest request) {
-        log.info("Updating student with rollNumber: {} {}", rollNumber,request);
+    /** Get student by username */
+    public ResponseEntity<?> getStudentByUsername(String username) {
+        log.info("StudentService::getStudentByUsername called with username: {}", username);
+        StudentInfo student = studentRepository.findByUsername(username)
+                .orElseThrow(() -> {
+                    log.warn("StudentService::No student found with username: {}", username);
+                    return new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
+                });
+        StudentResponse response = StudentMapper.toResponse(student);
+        log.info("StudentService::getStudentByUsername success for username: {}", username);
+        return ResponseBuilder.success("Student fetched successfully", response);
+    }
 
-        String trimmedRollNumber = rollNumber.trim();
-        StudentInfo student = studentRepository.findByRollNumber(trimmedRollNumber)
-                .orElseThrow(() -> new RuntimeException("Student not found with rollNumber: " + trimmedRollNumber));
+    /** Delete student */
+    public ResponseEntity<?> deleteStudentByRollNumber(String rollNumber) {
+        log.info("StudentService::deleteStudentByRollNumber called with rollNumber: {}", rollNumber);
+        StudentInfo student = studentRepository.findByRollNumber(rollNumber)
+                .orElseThrow(() -> {
+                    log.warn("StudentService::No student found for deletion with rollNumber: {}", rollNumber);
+                    return new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
+                });
+        studentRepository.delete(student);
+        log.info("StudentService::deleteStudentByRollNumber success for rollNumber: {}", rollNumber);
+        return ResponseBuilder.success("Student deleted successfully");
+    }
 
-        // Validate request
-        Map<String, String> errors = validationUtil.validateBusinessRules(request, student.getId());
-        if (!errors.isEmpty()) {
-            log.warn("Validation failed during update: {}", errors);
-            throw new IllegalArgumentException(errors.toString());
-        }
+    /** Update student */
+    public ResponseEntity<?> updateStudentByRollNumber(String rollNumber, StudentRequest request) {
+        log.info("StudentService::updateStudentByRollNumber called with rollNumber: {}", rollNumber);
+        StudentInfo student = studentRepository.findByRollNumber(rollNumber)
+                .orElseThrow(() -> {
+                    log.warn("StudentService::No student found for update with rollNumber: {}", rollNumber);
+                    return new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
+                });
 
-        // Update fields
+        validationUtil.validateAll(request, student.getId());
         student.setFirstName(request.getFirstName());
         student.setLastName(request.getLastName());
         student.setEmail(request.getEmail());
-        student.setBranch(request.getBranch());
         student.setUsername(request.getUsername());
+        student.setBranch(request.getBranch());
         student.setPhoneNumber(request.getPhoneNumber());
 
-        // Update password only if provided
         if (request.getPassword() != null && !request.getPassword().isEmpty()) {
             student.setPassword(encoder.encode(request.getPassword()));
         }
 
-        StudentInfo updatedStudent = studentRepository.save(student);
-        log.info("Student updated successfully: {}", updatedStudent);
-
-        return StudentMapper.toResponse(updatedStudent);
+        StudentInfo updated = studentRepository.save(student);
+        StudentResponse response = StudentMapper.toResponse(updated);
+        log.info("StudentService::updateStudentByRollNumber success for rollNumber: {}", rollNumber);
+        return ResponseBuilder.success("Student updated successfully", response);
     }
 }
