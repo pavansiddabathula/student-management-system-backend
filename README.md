@@ -190,6 +190,7 @@ URL Example:
 http://localhost:8080/api/students/21CSE04582
 
 Request Body Example:
+
 ```json
 {
   "firstName": "Anjali",
@@ -209,7 +210,6 @@ Method: DELETE
 URL Example:
 http://localhost:8080/api/students/21CSE04582
 
----
 
 ### 🧾 How to Run
 
