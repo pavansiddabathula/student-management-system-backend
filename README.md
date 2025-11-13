@@ -162,7 +162,52 @@ com.techcode.studentmgmt.modelmappers
   "timestamp": "2025-11-12T10:15:35"
 }
 ```
+2️ Get All Students
 
+Method: GET
+
+URL: http://localhost:8080/api/students
+
+3️ Get Student by Username
+
+Method: GET
+
+URL Example:
+http://localhost:8080/api/students/username/anjali_r
+
+4️ Get Student by Roll Number
+
+Method: GET
+
+URL Example:
+http://localhost:8080/api/students/roll/21CSE04582
+
+5️ Update Student by Roll Number
+
+Method: PUT
+
+URL Example:
+http://localhost:8080/api/students/21CSE04582
+
+Request Body Example:
+
+{
+  "firstName": "Anjali",
+  "lastName": "Reddy",
+  "email": "anjali.updated@example.com",
+  "branch": "CSE",
+  "username": "anjali_r",
+  "password": "NewPass@123",
+  "confirmPassword": "NewPass@123",
+  "phoneNumber": "9876509999"
+}
+
+6️ Delete Student by Roll Number
+
+Method: DELETE
+
+URL Example:
+http://localhost:8080/api/students/21CSE04582
 ---
 
 ### 🧾 How to Run
