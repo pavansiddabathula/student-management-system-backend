@@ -72,11 +72,7 @@
 
 		<!-- Lombok -->
 
-		<dependency>
-			<groupId>jakarta.validation</groupId>
-			<artifactId>jakarta.validation-api</artifactId>
-		
-		</dependency>
+
 		<!-- BCrypt Encryption -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
