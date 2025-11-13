@@ -202,7 +202,7 @@ Request Body Example:
   "confirmPassword": "NewPass@123",
   "phoneNumber": "9876509999"
 }
-
+ ```
 
 6️ Delete Student by Roll Number
 
@@ -211,8 +211,7 @@ Method: DELETE
 URL Example:
 http://localhost:8080/api/students/21CSE04582
 
-
-### 🧾 How to Run
+### 📈 How to Run
 
 1. Clone the repository  
    ```bash
