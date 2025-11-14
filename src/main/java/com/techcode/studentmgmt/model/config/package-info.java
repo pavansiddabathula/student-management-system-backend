@@ -1,0 +1,1 @@
+package com.techcode.studentmgmt.model.config;
