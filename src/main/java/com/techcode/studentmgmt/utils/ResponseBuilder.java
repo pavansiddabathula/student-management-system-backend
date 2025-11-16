@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.techcode.studentmgmt.constants.SuccessMessageConstants;
 import com.techcode.studentmgmt.dto.responsedto.SuccessResponse;
 
 public class ResponseBuilder {
@@ -14,7 +15,7 @@ public class ResponseBuilder {
     public static ResponseEntity<SuccessResponse> success(String message) {
         return ResponseEntity.ok(
             SuccessResponse.builder()
-                .status("SUCCESS")
+                .status(SuccessMessageConstants.SUCCESS)
                 .message(message)
                 .timestamp(LocalDateTime.now())
                 .build()
@@ -24,7 +25,7 @@ public class ResponseBuilder {
     public static ResponseEntity<SuccessResponse> success(String message, Object data) {
         return ResponseEntity.ok(
             SuccessResponse.builder()
-                .status("SUCCESS")
+                .status(SuccessMessageConstants.SUCCESS)
                 .message(message)
                 .data(data)
                 .timestamp(LocalDateTime.now())
@@ -36,7 +37,7 @@ public class ResponseBuilder {
         return ResponseEntity.status(status)
             .body(
                 SuccessResponse.builder()
-                    .status("SUCCESS")
+                    .status(SuccessMessageConstants.SUCCESS)
                     .message(message)
                     .data(data)
                     .timestamp(LocalDateTime.now())

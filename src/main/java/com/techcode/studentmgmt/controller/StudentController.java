@@ -4,7 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
-import com.techcode.studentmgmt.service.StudentService;
+import com.techcode.studentmgmt.service.StudentServiceImpl;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,43 +16,44 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class StudentController {
 
-    private final StudentService studentService;
+	private final StudentServiceImpl studentServiceimpl;
+ 
 
     @PostMapping("/register")
     public ResponseEntity<?> registerStudent(@RequestBody StudentRequest request) {
         log.info("StudentController::registerStudent called");
-        return studentService.registerStudent(request);
+        return studentServiceimpl.registerStudent(request);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<?> getAllStudents() {
         log.info("StudentController::getAllStudents called");
-        return studentService.getAllStudents();
+        return studentServiceimpl.getAllStudents();
     }
 
     @GetMapping("/username/{username}")
     public ResponseEntity<?> getStudentByUsername(@PathVariable String username) {
         log.info("StudentController::getStudentByUsername called");
-        return studentService.getStudentByUsername(username);
+        return studentServiceimpl.getStudentByUsername(username);
     }
 
     @GetMapping("/roll/{rollNumber}")
     public ResponseEntity<?> getStudentByRollNumber(@PathVariable String rollNumber) {
         log.info("StudentController::getStudentByRollNumber called");
-        return studentService.getStudentByRollNumber(rollNumber);
+        return studentServiceimpl.getStudentByRollNumber(rollNumber);
     }
 
-    @DeleteMapping("/{rollNumber}")
+    @DeleteMapping("/delete/{rollNumber}")
     public ResponseEntity<?> deleteStudent(@PathVariable String rollNumber) {
         log.info("StudentController::deleteStudent called");
-        return studentService.deleteStudentByRollNumber(rollNumber);
+        return studentServiceimpl.deleteStudentByRollNumber(rollNumber);
     }
 
-    @PutMapping("/{rollNumber}")
+    @PutMapping("/update/{rollNumber}")
     public ResponseEntity<?> updateStudent(
             @PathVariable String rollNumber,
             @RequestBody StudentRequest request) {
         log.info("StudentController::updateStudent called");
-        return studentService.updateStudentByRollNumber(rollNumber, request);
+        return studentServiceimpl.updateStudentByRollNumber(rollNumber, request);
     }
 }

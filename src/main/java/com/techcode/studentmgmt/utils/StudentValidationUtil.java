@@ -5,16 +5,17 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
-
 import org.springframework.stereotype.Component;
 
+import com.techcode.studentmgmt.constants.ErrorMessageConstants;
+import com.techcode.studentmgmt.constants.ResponseKeys;
 import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
 import com.techcode.studentmgmt.entity.StudentInfo;
 import com.techcode.studentmgmt.exceptions.ValidationException;
 import com.techcode.studentmgmt.repository.StudentRepository;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,25 +47,25 @@ public class StudentValidationUtil {
         // 2️⃣ Business validation (duplicates)
         Optional<StudentInfo> existingByUsername = studentRepository.findByUsername(request.getUsername());
         if (existingByUsername.isPresent() && (currentStudentId == null || !existingByUsername.get().getId().equals(currentStudentId))) {
-            errors.put("username", "Username already exists");
+            errors.put(ResponseKeys.USERNAME,ErrorMessageConstants.USERNAME_ALREADY_EXISTS);
             log.warn("Business validation failed - username already exists: {}", request.getUsername());
         }
 
         Optional<StudentInfo> existingByEmail = studentRepository.findByEmail(request.getEmail());
         if (existingByEmail.isPresent() && (currentStudentId == null || !existingByEmail.get().getId().equals(currentStudentId))) {
-            errors.put("email", "Email already exists");
+            errors.put(ResponseKeys.EMAIL,ErrorMessageConstants.EMAIL_ALREADY_EXISTS);
             log.warn("Business validation failed - email already exists: {}", request.getEmail());
         }
         Optional<StudentInfo> existingByRollNumber = studentRepository.findByRollNumber(request.getRollNumber());
         if (existingByRollNumber.isPresent() && (currentStudentId == null || !existingByRollNumber.get().getId().equals(currentStudentId))) {
-			errors.put("rollNumber", "Roll Number already exists");
+			errors.put(ResponseKeys.ROLL_NUMBER, ErrorMessageConstants.ROLLNUMBER_ALREADY_EXISTS);
 			log.warn("Business validation failed - roll number already exists: {}", request.getRollNumber());
 		}
 
         // 3️⃣ Password match check
         if (request.getPassword() != null && request.getConfirmPassword() != null &&
                 !request.getPassword().equals(request.getConfirmPassword())) {
-            errors.put("confirmPassword", "Password and Confirm Password do not match");
+            errors.put(ResponseKeys.CONFIRM_PASSWORD, ErrorMessageConstants.PASSWORD_MISMATCH);
             log.warn("Password mismatch: password != confirmPassword");
         }
 
