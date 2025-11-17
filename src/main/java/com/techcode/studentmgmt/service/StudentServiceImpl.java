@@ -151,7 +151,6 @@ public class StudentServiceImpl implements StudentService {
                 });
 
         validationUtil.validateAll(request, student.getId());
-
         student.setFirstName(request.getFirstName());
         student.setLastName(request.getLastName());
         student.setEmail(request.getEmail());
