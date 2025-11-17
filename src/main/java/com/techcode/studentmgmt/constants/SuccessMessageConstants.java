@@ -2,25 +2,29 @@ package com.techcode.studentmgmt.constants;
 
 public class SuccessMessageConstants {
 
-    // Common
+
     public static final String SUCCESS = "SUCCESS";
 
-    // Student-related messages
+    // Create
     public static final String STUDENT_REGISTER_SUCCESS =
-            "Student registered successfully.";
+            "Student registered successfully with roll number %s.";
 
-    public static final String STUDENT_UPDATE_SUCCESS =
-            "Student updated successfully.";
-
-    public static final String STUDENT_DELETE_SUCCESS =
-            "Student deleted successfully.";
-
+    // Fetch
     public static final String STUDENT_FETCH_SUCCESS =
-            "Student details fetched successfully.";
+            "Student details fetched successfully for roll number %s.";
 
     public static final String STUDENTS_FETCH_SUCCESS =
-            "All student records fetched successfully.";
+            "Total %d student record(s) fetched successfully.";
 
     public static final String STUDENTS_EMPTY =
-            "Request successful, but no student records found.";
+            "No student records found.";
+
+    // Update
+    public static final String STUDENT_UPDATE_SUCCESS =
+            "Student details updated successfully for roll number %s.";
+
+    // Delete
+    public static final String STUDENT_DELETE_SUCCESS =
+            "Student with roll number %s deleted successfully.";
+
 }

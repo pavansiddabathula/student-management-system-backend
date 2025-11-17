@@ -3,6 +3,7 @@ package com.techcode.studentmgmt.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,24 +31,27 @@ public class StudentServiceImpl implements StudentService {
     private final StudentValidationUtil validationUtil;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    /** Register a new student */
+    /** REGISTER student */
     @Override
     public ResponseEntity<?> registerStudent(StudentRequest request) {
-        log.info("StudentServiceImpl::registerStudent called with request: {}", request);
+        log.info("StudentServiceImpl::registerStudent request: {}", request);
 
         validationUtil.validateAll(request, null);
 
         request.setPassword(encoder.encode(request.getPassword()));
-        StudentInfo student = StudentMapper.toEntity(request);
-        student = studentRepository.save(student);
+        StudentInfo saved = studentRepository.save(StudentMapper.toEntity(request));
+        StudentResponse response = StudentMapper.toResponse(saved);
 
-        StudentResponse response = StudentMapper.toResponse(student);
-        log.info("StudentServiceImpl::registerStudent success for studentId: {}", response.getId());
+        log.info("Student registered successfully, rollNumber={}", response.getRollNumber());
 
-        return ResponseBuilder.success(SuccessMessageConstants.STUDENT_REGISTER_SUCCESS, response);
+        return ResponseBuilder.success(
+                String.format(SuccessMessageConstants.STUDENT_REGISTER_SUCCESS, response.getRollNumber()),
+                response,
+                HttpStatus.CREATED
+        );
     }
 
-    /** Get all students */
+    /** GET all students */
     @Override
     public ResponseEntity<?> getAllStudents() {
         log.info("StudentServiceImpl::getAllStudents called");
@@ -57,74 +61,92 @@ public class StudentServiceImpl implements StudentService {
                 .map(StudentMapper::toResponse)
                 .collect(Collectors.toList());
 
-        log.info("StudentServiceImpl::getAllStudents completed. Count: {}", students.size());
+        log.info("Total student records found: {}", students.size());
 
         if (students.isEmpty()) {
-            return ResponseBuilder.success(SuccessMessageConstants.STUDENTS_EMPTY, students);
+            return ResponseBuilder.success(
+                    SuccessMessageConstants.STUDENTS_EMPTY,
+                    students,
+                    HttpStatus.OK
+            );
         }
 
-        return ResponseBuilder.success(SuccessMessageConstants.STUDENTS_FETCH_SUCCESS, students);
+        return ResponseBuilder.success(
+                String.format(SuccessMessageConstants.STUDENTS_FETCH_SUCCESS, students.size()),
+                students,
+                HttpStatus.OK
+        );
     }
 
-    /** Get student by roll number */
+    /** GET student by roll number */
     @Override
     public ResponseEntity<?> getStudentByRollNumber(String rollNumber) {
-        log.info("StudentServiceImpl::getStudentByRollNumber called with rollNumber: {}", rollNumber);
+        log.info("Fetching student by rollNumber: {}", rollNumber);
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
                 .orElseThrow(() -> {
-                    log.warn("StudentServiceImpl::No student found with rollNumber: {}", rollNumber);
+                    log.warn("Student not found with rollNumber: {}", rollNumber);
                     return new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
                 });
 
         StudentResponse response = StudentMapper.toResponse(student);
-        log.info("StudentServiceImpl::getStudentByRollNumber success for rollNumber: {}", rollNumber);
 
-        return ResponseBuilder.success(SuccessMessageConstants.STUDENT_FETCH_SUCCESS, response);
+        return ResponseBuilder.success(
+                String.format(SuccessMessageConstants.STUDENT_FETCH_SUCCESS, rollNumber),
+                response,
+                HttpStatus.OK
+        );
     }
 
-    /** Get student by username */
+    /** GET student by username */
     @Override
     public ResponseEntity<?> getStudentByUsername(String username) {
-        log.info("StudentServiceImpl::getStudentByUsername called with username: {}", username);
+        log.info("Fetching student by username: {}", username);
 
         StudentInfo student = studentRepository.findByUsername(username)
                 .orElseThrow(() -> {
-                    log.warn("StudentServiceImpl::No student found with username: {}", username);
+                    log.warn("Student not found with username: {}", username);
                     return new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
                 });
 
         StudentResponse response = StudentMapper.toResponse(student);
-        log.info("StudentServiceImpl::getStudentByUsername success for username: {}", username);
 
-        return ResponseBuilder.success(SuccessMessageConstants.STUDENT_FETCH_SUCCESS, response);
+        return ResponseBuilder.success(
+                "Student details fetched successfully for username " + username + ".",
+                response,
+                HttpStatus.OK
+        );
     }
 
-    /** Delete student */
+    /** DELETE student */
     @Override
     public ResponseEntity<?> deleteStudentByRollNumber(String rollNumber) {
-        log.info("StudentServiceImpl::deleteStudentByRollNumber called with rollNumber: {}", rollNumber);
+        log.info("Deleting student with rollNumber: {}", rollNumber);
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
                 .orElseThrow(() -> {
-                    log.warn("StudentServiceImpl::No student found for deletion with rollNumber: {}", rollNumber);
+                    log.warn("Student not found for delete, rollNumber: {}", rollNumber);
                     return new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
                 });
 
         studentRepository.delete(student);
-        log.info("StudentServiceImpl::deleteStudentByRollNumber success for rollNumber: {}", rollNumber);
+        log.info("Student deleted: rollNumber={}", rollNumber);
 
-        return ResponseBuilder.success(SuccessMessageConstants.STUDENT_DELETE_SUCCESS);
+        return ResponseBuilder.success(
+                String.format(SuccessMessageConstants.STUDENT_DELETE_SUCCESS, rollNumber),
+                null,
+                HttpStatus.OK
+        );
     }
 
-    /** Update student */
+    /** UPDATE student */
     @Override
     public ResponseEntity<?> updateStudentByRollNumber(String rollNumber, StudentRequest request) {
-        log.info("StudentServiceImpl::updateStudentByRollNumber called with rollNumber: {}", rollNumber);
+        log.info("Updating student with rollNumber: {}", rollNumber);
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
                 .orElseThrow(() -> {
-                    log.warn("StudentServiceImpl::No student found for update with rollNumber: {}", rollNumber);
+                    log.warn("Student not found for update, rollNumber: {}", rollNumber);
                     return new BusinessException(ErrorCode.STUDENT_NOT_FOUND);
                 });
 
@@ -144,8 +166,12 @@ public class StudentServiceImpl implements StudentService {
         StudentInfo updated = studentRepository.save(student);
         StudentResponse response = StudentMapper.toResponse(updated);
 
-        log.info("StudentServiceImpl::updateStudentByRollNumber success for rollNumber: {}", rollNumber);
+        log.info("Student updated successfully, rollNumber={}", rollNumber);
 
-        return ResponseBuilder.success(SuccessMessageConstants.STUDENT_UPDATE_SUCCESS, response);
+        return ResponseBuilder.success(
+                String.format(SuccessMessageConstants.STUDENT_UPDATE_SUCCESS, rollNumber),
+                response,
+                HttpStatus.OK
+        );
     }
 }
