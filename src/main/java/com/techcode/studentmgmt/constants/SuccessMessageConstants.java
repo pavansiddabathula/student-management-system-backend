@@ -8,14 +8,13 @@ public class SuccessMessageConstants {
     // Create
     public static final String STUDENT_REGISTER_SUCCESS =
             "Student registered successfully with roll number %s.";
-
     // Fetch
     public static final String STUDENT_FETCH_SUCCESS =
             "Student details fetched successfully for roll number %s.";
-
+    // FetchAll
     public static final String STUDENTS_FETCH_SUCCESS =
             "Total %d student record(s) fetched successfully.";
-
+     //not found
     public static final String STUDENTS_EMPTY =
             "No student records found.";
 
@@ -26,5 +25,7 @@ public class SuccessMessageConstants {
     // Delete
     public static final String STUDENT_DELETE_SUCCESS =
             "Student with roll number %s deleted successfully.";
+    //failure
+    public static final String FAILUR_STRING = "Failure";
 
 }
