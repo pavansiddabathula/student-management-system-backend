@@ -1,5 +1,4 @@
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\package-info.java
-E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\constants\ErrorMessageConstants.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\constants\ResponseKeys.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\constants\SuccessMessageConstants.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\controller\AdditionController.java
@@ -12,9 +11,9 @@ E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgm
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\entity\StudentInfo.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\enums\ErrorCode.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\exceptions\BusinessException.java
+E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\exceptions\DatabaseException.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\exceptions\GlobalExceptionHandler.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\exceptions\ValidationException.java
-E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\model\config\package-info.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\modelmappers\StudentMapper.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\pojo\package-info.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\repository\StudentRepository.java
@@ -22,5 +21,3 @@ E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgm
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\service\StudentServiceImpl.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\studentmgmtApplication.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\utils\MaskUtil.java
-E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\utils\ResponseBuilder.java
-E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\utils\StudentValidationUtil.java

@@ -4,13 +4,17 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.hibernate.exception.JDBCConnectionException;
+import org.hibernate.exception.SQLGrammarException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaSystemException;
+import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.techcode.studentmgmt.constants.ErrorMessageConstants;
-import com.techcode.studentmgmt.constants.ResponseKeys;
+import com.techcode.studentmgmt.dto.responsedto.ErrorResponse;
 import com.techcode.studentmgmt.enums.ErrorCode;
 
 import lombok.extern.slf4j.Slf4j;
@@ -18,63 +22,87 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
-        log.warn("Validation exception caught: {}", ex.getMessage());
 
-        Map<String, String> fieldErrors = new LinkedHashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach(err -> {
-            fieldErrors.put(err.getField(), err.getDefaultMessage());
-            log.warn("Validation error - Field: {}, Message: {}", err.getField(), err.getDefaultMessage());
-        });
+	/*
+	 * 1. DTO Validation Errors (@Valid)
+	 */
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<?> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
 
-        Map<String, Object> response = new LinkedHashMap<>();
-        response.put(ResponseKeys.STATUS, "FAILURE");
-        response.put(ResponseKeys.ERROR_CODE, ErrorCode.VALIDATION_ERROR.getCode());
-        response.put(ResponseKeys.ERROR_MESSAGE, ErrorCode.VALIDATION_ERROR.getMessage());
-        response.put(ResponseKeys.FIELD_ERRORS, fieldErrors);
-        response.put(ResponseKeys.TIMESTAMP, LocalDateTime.now());
+		log.warn("Validation exception caught: {}", ex.getMessage());
 
-        return ResponseEntity.status(ErrorCode.VALIDATION_ERROR.getStatus()).body(response);
-    }
+		Map<String, String> fieldErrors = new LinkedHashMap<>();
+		ex.getBindingResult().getFieldErrors().forEach(err -> {
+			fieldErrors.put(err.getField(), err.getDefaultMessage());
+		});
 
-    @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<?> handleValidationException(ValidationException ex) {
-        log.warn("Business validation exception: {}", ex.getErrors());
+		ErrorResponse response = ErrorResponse.builder().status("FAILURE")
+				.errorCode(ErrorCode.VALIDATION_ERROR.getCode()).errorMessage(ErrorCode.VALIDATION_ERROR.getMessage())
+				.fieldErrors(fieldErrors).timestamp(LocalDateTime.now()).build();
 
-        Map<String, Object> response = new LinkedHashMap<>();
-        response.put(ResponseKeys.STATUS,ErrorMessageConstants.FAILUR_STRING);	
-        response.put(ResponseKeys.ERROR_CODE, ErrorCode.VALIDATION_ERROR.getCode());
-        response.put(ResponseKeys.ERROR_MESSAGE, ErrorCode.VALIDATION_ERROR.getMessage());
-        response.put(ResponseKeys.FIELD_ERRORS, ex.getErrors());
-        response.put(ResponseKeys.TIMESTAMP, LocalDateTime.now());
+		return ResponseEntity.status(ErrorCode.VALIDATION_ERROR.getStatus()).body(response);
+	}
 
-        return ResponseEntity.status(ErrorCode.VALIDATION_ERROR.getStatus()).body(response);
-    }
+	/*
+	 * 2. Business Validation Errors (duplicate checks)
+	 */
+	@ExceptionHandler(ValidationException.class)
+	public ResponseEntity<?> handleValidationException(ValidationException ex) {
 
-    @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<?> handleBusinessException(BusinessException ex) {
-        log.warn("Business exception caught: {}", ex.getErrorCode());
+		log.warn("Business validation exception: {}", ex.getErrors());
 
-        Map<String, Object> response = new LinkedHashMap<>();
-        response.put(ResponseKeys.STATUS,ErrorMessageConstants.FAILUR_STRING);
-        response.put(ResponseKeys.ERROR_CODE, ex.getErrorCode().getCode());
-        response.put(ResponseKeys.ERROR_MESSAGE, ex.getErrorCode().getMessage());
-        response.put(ResponseKeys.TIMESTAMP, LocalDateTime.now());
+		ErrorResponse response = ErrorResponse.builder().status("FAILURE")
+				.errorCode(ErrorCode.VALIDATION_ERROR.getCode()).errorMessage("Validation failed")
+				.fieldErrors(ex.getErrors()).timestamp(LocalDateTime.now()).build();
 
-        return ResponseEntity.status(ex.getErrorCode().getStatus()).body(response);
-    }
+		return ResponseEntity.status(ErrorCode.VALIDATION_ERROR.getStatus()).body(response);
+	}
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleGlobalException(Exception ex) {
-        log.error("Unexpected exception caught: ", ex);
+	/*
+	 * 3. BusinessException (dynamic messages)
+	 */
+	@ExceptionHandler(BusinessException.class)
+	public ResponseEntity<?> handleBusinessException(BusinessException ex) {
 
-        Map<String, Object> response = new LinkedHashMap<>();
-        response.put(ResponseKeys.STATUS, ErrorMessageConstants.FAILUR_STRING);
-        response.put(ResponseKeys.ERROR_CODE, ErrorCode.INTERNAL_SERVER_ERROR.getCode());
-        response.put(ResponseKeys.ERROR_MESSAGE, ErrorCode.INTERNAL_SERVER_ERROR.getMessage());
-        response.put(ResponseKeys.TIMESTAMP, LocalDateTime.now());
+		log.warn("Business exception caught: {}", ex.getErrorCode());
 
-        return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getStatus()).body(response);
-    }
+		ErrorResponse response = ErrorResponse.builder().status("FAILURE").errorCode(ex.getErrorCode().getCode())
+				.errorMessage(ex.getFormattedMessage()).timestamp(LocalDateTime.now()).build();
+
+		return ResponseEntity.status(ex.getErrorCode().getStatus()).body(response);
+	}
+
+	/*
+	 * -- 4. Spring Database Exception (DB down, query failure)
+	 * ----------------------------------------------------
+	 */
+
+
+	@ExceptionHandler({ CannotCreateTransactionException.class, SQLGrammarException.class,
+			JDBCConnectionException.class, JpaSystemException.class, DataAccessException.class })
+	public ResponseEntity<?> handleDBErrors(Exception ex) {
+
+		log.error("Database error: {}", ex.getMessage());
+
+		ErrorResponse response = ErrorResponse.builder().status("FAILURE").errorCode(ErrorCode.DATABASE_ERROR.getCode())
+				.errorMessage(ErrorCode.DATABASE_ERROR.getMessage()).timestamp(LocalDateTime.now()).build();
+
+		return ResponseEntity.status(ErrorCode.DATABASE_ERROR.getStatus()).body(response);
+	}
+
+	/*
+	 * 5. Generic / Unexpected Exceptions
+	 */
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<?> handleGlobalException(Exception ex) {
+
+		log.error("Unexpected exception caught: ", ex);
+
+		ErrorResponse response = ErrorResponse.builder().status("FAILURE")
+				.errorCode(ErrorCode.INTERNAL_SERVER_ERROR.getCode())
+				.errorMessage(ErrorCode.INTERNAL_SERVER_ERROR.getMessage()).timestamp(LocalDateTime.now()).build();
+
+		return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getStatus()).body(response);
+	}
+
 }
