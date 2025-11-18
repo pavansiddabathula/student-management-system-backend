@@ -14,8 +14,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.techcode.studentmgmt.constants.ErrorCodeEnums;
 import com.techcode.studentmgmt.dto.responsedto.ErrorResponse;
-import com.techcode.studentmgmt.enums.ErrorCode;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,10 +37,10 @@ public class GlobalExceptionHandler {
 		});
 
 		ErrorResponse response = ErrorResponse.builder().status("FAILURE")
-				.errorCode(ErrorCode.VALIDATION_ERROR.getCode()).errorMessage(ErrorCode.VALIDATION_ERROR.getMessage())
+				.errorCode(ErrorCodeEnums.VALIDATION_ERROR.getCode()).errorMessage(ErrorCodeEnums.VALIDATION_ERROR.getMessage())
 				.fieldErrors(fieldErrors).timestamp(LocalDateTime.now()).build();
 
-		return ResponseEntity.status(ErrorCode.VALIDATION_ERROR.getStatus()).body(response);
+		return ResponseEntity.status(ErrorCodeEnums.VALIDATION_ERROR.getStatus()).body(response);
 	}
 
 	/*
@@ -52,10 +52,10 @@ public class GlobalExceptionHandler {
 		log.warn("Business validation exception: {}", ex.getErrors());
 
 		ErrorResponse response = ErrorResponse.builder().status("FAILURE")
-				.errorCode(ErrorCode.VALIDATION_ERROR.getCode()).errorMessage("Validation failed")
+				.errorCode(ErrorCodeEnums.VALIDATION_ERROR.getCode()).errorMessage("Validation failed")
 				.fieldErrors(ex.getErrors()).timestamp(LocalDateTime.now()).build();
 
-		return ResponseEntity.status(ErrorCode.VALIDATION_ERROR.getStatus()).body(response);
+		return ResponseEntity.status(ErrorCodeEnums.VALIDATION_ERROR.getStatus()).body(response);
 	}
 
 	/*
@@ -84,10 +84,10 @@ public class GlobalExceptionHandler {
 
 		log.error("Database error: {}", ex.getMessage());
 
-		ErrorResponse response = ErrorResponse.builder().status("FAILURE").errorCode(ErrorCode.DATABASE_ERROR.getCode())
-				.errorMessage(ErrorCode.DATABASE_ERROR.getMessage()).timestamp(LocalDateTime.now()).build();
+		ErrorResponse response = ErrorResponse.builder().status("FAILURE").errorCode(ErrorCodeEnums.DATABASE_ERROR.getCode())
+				.errorMessage(ErrorCodeEnums.DATABASE_ERROR.getMessage()).timestamp(LocalDateTime.now()).build();
 
-		return ResponseEntity.status(ErrorCode.DATABASE_ERROR.getStatus()).body(response);
+		return ResponseEntity.status(ErrorCodeEnums.DATABASE_ERROR.getStatus()).body(response);
 	}
 
 	/*
@@ -99,10 +99,10 @@ public class GlobalExceptionHandler {
 		log.error("Unexpected exception caught: ", ex);
 
 		ErrorResponse response = ErrorResponse.builder().status("FAILURE")
-				.errorCode(ErrorCode.INTERNAL_SERVER_ERROR.getCode())
-				.errorMessage(ErrorCode.INTERNAL_SERVER_ERROR.getMessage()).timestamp(LocalDateTime.now()).build();
+				.errorCode(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getCode())
+				.errorMessage(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getMessage()).timestamp(LocalDateTime.now()).build();
 
-		return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getStatus()).body(response);
+		return ResponseEntity.status(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getStatus()).body(response);
 	}
 
 }

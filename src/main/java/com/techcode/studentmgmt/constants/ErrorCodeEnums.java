@@ -1,4 +1,4 @@
-package com.techcode.studentmgmt.enums;
+package com.techcode.studentmgmt.constants;
 
 import org.springframework.http.HttpStatus;
 
@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public enum ErrorCode {
+public enum ErrorCodeEnums {
 
     VALIDATION_ERROR("E001", "Validation failed", HttpStatus.BAD_REQUEST),
 
@@ -25,7 +25,7 @@ public enum ErrorCode {
     private final String message;
     private final HttpStatus status;
 
-    ErrorCode(String code, String message, HttpStatus status) {
+    ErrorCodeEnums(String code, String message, HttpStatus status) {
         this.code = code;
         this.message = message;
         this.status = status;

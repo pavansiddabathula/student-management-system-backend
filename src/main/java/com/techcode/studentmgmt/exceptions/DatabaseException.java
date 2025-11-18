@@ -9,11 +9,11 @@ public class DatabaseException extends RuntimeException {
 
    
 	private static final long serialVersionUID = 1L;
-	private final ErrorCode errorCode;
+	private final ErrorCodeEnums errorCode;
 
     public DatabaseException() {
-        super(ErrorCode.DATABASE_ERROR.getMessage());
-        this.errorCode = ErrorCode.DATABASE_ERROR;
+        super(ErrorCodeEnums.DATABASE_ERROR.getMessage());
+        this.errorCode = ErrorCodeEnums.DATABASE_ERROR;
     }
 
 }
