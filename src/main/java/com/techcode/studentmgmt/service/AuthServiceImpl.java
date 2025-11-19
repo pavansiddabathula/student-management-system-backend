@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.techcode.studentmgmt.auth.AuthRequest;
-import com.techcode.studentmgmt.auth.AuthResponse;
+import com.techcode.studentmgmt.dto.requestdto.AuthRequest;
+import com.techcode.studentmgmt.dto.responsedto.AuthResponse;
 import com.techcode.studentmgmt.entity.AdminInfo;
 import com.techcode.studentmgmt.entity.StudentInfo;
 import com.techcode.studentmgmt.repository.AdminRepository;

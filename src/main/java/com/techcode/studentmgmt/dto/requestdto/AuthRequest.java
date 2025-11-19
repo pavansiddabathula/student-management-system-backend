@@ -1,4 +1,4 @@
-package com.techcode.studentmgmt.auth;
+package com.techcode.studentmgmt.dto.requestdto;
 
 import lombok.Data;
 

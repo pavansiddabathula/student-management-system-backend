@@ -1,4 +1,4 @@
-package com.techcode.studentmgmt.auth;
+package com.techcode.studentmgmt.dto.responsedto;
 
 import java.time.Instant;
 import java.util.List;

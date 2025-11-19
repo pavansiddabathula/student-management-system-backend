@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techcode.studentmgmt.auth.AuthRequest;
-import com.techcode.studentmgmt.auth.AuthResponse;
+import com.techcode.studentmgmt.dto.requestdto.AuthRequest;
+import com.techcode.studentmgmt.dto.responsedto.AuthResponse;
 import com.techcode.studentmgmt.service.AuthService;
 
 import lombok.RequiredArgsConstructor;

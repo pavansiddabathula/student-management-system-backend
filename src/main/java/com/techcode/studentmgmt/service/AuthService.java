@@ -1,7 +1,8 @@
 package com.techcode.studentmgmt.service;
 
-import com.techcode.studentmgmt.auth.AuthRequest;
-import com.techcode.studentmgmt.auth.AuthResponse;
+import com.techcode.studentmgmt.dto.requestdto.AuthRequest;
+import com.techcode.studentmgmt.dto.responsedto.AuthResponse;
+
 import org.springframework.http.ResponseEntity;
 
 public interface AuthService {
