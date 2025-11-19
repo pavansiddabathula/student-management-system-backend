@@ -27,5 +27,26 @@ public class SuccessMessageConstants {
             "Student with roll number %s deleted successfully.";
     //failure
     public static final String FAILUR_STRING = "Failure";
+    
+    
+ // Admin Success Messages
+    public static final String ADMIN_CREATED =
+            "Admin account created successfully with Admin ID %s.";
+
+    public static final String ADMIN_FETCH_SUCCESS =
+            "Admin details fetched successfully for Admin ID %s.";
+
+    public static final String ADMIN_LIST_FETCHED =
+            "Total %d admin record(s) fetched successfully.";
+
+    public static final String ADMIN_UPDATE_SUCCESS =
+            "Admin details updated successfully for Admin ID %s.";
+
+    public static final String ADMIN_DELETE_SUCCESS =
+            "Admin with Admin ID %s deleted successfully.";
+
+    public static final String ADMIN_PASSWORD_RESET =
+            "Password reset successfully for Admin ID %s.";
+
 
 }
