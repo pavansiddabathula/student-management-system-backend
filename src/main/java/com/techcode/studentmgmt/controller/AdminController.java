@@ -1,0 +1,79 @@
+package com.techcode.studentmgmt.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import com.techcode.studentmgmt.dto.requestdto.AdminPasswordResetRequest;
+import com.techcode.studentmgmt.dto.requestdto.AdminRequest;
+import com.techcode.studentmgmt.service.AdminService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@RequestMapping("/admin")
+@RequiredArgsConstructor
+@Slf4j
+public class AdminController {
+
+    private final AdminService adminService;
+
+    /** Create admin */
+    @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> createAdmin(@RequestBody AdminRequest request) {
+        log.info("AdminController::createAdmin {}", request.getEmail());
+        return adminService.createAdmin(request);
+    }
+
+    /** Get all admins */
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getAllAdmins() {
+        log.info("AdminController::getAllAdmins");
+        return adminService.getAllAdmins();
+    }
+
+    /** Get admin by AdminId */
+    @GetMapping("/{adminId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getAdmin(@PathVariable String adminId) {
+        log.info("AdminController::getAdmin {}", adminId);
+        return adminService.getAdminById(adminId);
+    }
+
+    /** Get admin by name */
+    @GetMapping("/name/{name}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getAdminByName(@PathVariable String name) {
+        log.info("AdminController::getAdminByName {}", name);
+        return adminService.getAdminByName(name);
+    }
+
+    /** Update admin */
+    @PutMapping("/{adminId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> updateAdmin(
+            @PathVariable String adminId,
+            @RequestBody AdminRequest request) {
+        log.info("AdminController::updateAdmin {}", adminId);
+        return adminService.updateAdminById(adminId, request);
+    }
+
+    /** Delete admin */
+    @DeleteMapping("/{adminId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> deleteAdmin(@PathVariable String adminId) {
+        log.info("AdminController::deleteAdmin {}", adminId);
+        return adminService.deleteAdminById(adminId);
+    }
+
+    /** Reset admin password */
+    @PostMapping("/reset-password/{adminId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> resetPassword(@PathVariable String adminId,AdminPasswordResetRequest request) {
+        log.info("AdminController::resetPassword {}", adminId);
+        return adminService.resetAdminPassword(adminId,request);
+    }
+}

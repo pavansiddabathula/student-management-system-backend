@@ -12,10 +12,8 @@ public class StudentResponse {
 	private String status;
     private Long id;            
     private String rollNumber;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private String email;
-    private String username;
     private String branch;
     private String phoneNumber;
 }
