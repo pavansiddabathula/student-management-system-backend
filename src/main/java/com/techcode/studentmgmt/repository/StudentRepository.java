@@ -9,12 +9,12 @@ import com.techcode.studentmgmt.entity.StudentInfo;
 @Repository
 public interface StudentRepository extends JpaRepository<StudentInfo, Long> {
 	
-    Optional<StudentInfo> findByUsername(String username);
     Optional<StudentInfo> findByRollNumber(String rollNumber);
     Optional<StudentInfo> findByEmail(String email);
+    
+    Optional<StudentInfo> findByfullName(String fullName);
 
     boolean existsByEmail(String email);
-    boolean existsByUsername(String username);
     boolean existsByRollNumber(String rollNumber);
 
     void deleteByRollNumber(String rollNumber);
