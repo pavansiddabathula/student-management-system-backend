@@ -1,10 +1,11 @@
 package com.techcode.studentmgmt.repository;
 
-import com.techcode.studentmgmt.entity.AdminInfo;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.techcode.studentmgmt.entity.AdminInfo;
 
 public interface AdminRepository extends JpaRepository<AdminInfo, Long> {
 

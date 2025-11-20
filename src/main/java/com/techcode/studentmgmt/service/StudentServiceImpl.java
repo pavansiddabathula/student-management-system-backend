@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -64,13 +65,14 @@ public class StudentServiceImpl implements StudentService {
         StudentResponse response = StudentMapper.toResponse(saved);
 
         // Email notification
+        /*
         emailUtil.sendPasswordMail(
                 saved.getEmail(),
                 saved.getFullName(),
                 saved.getRollNumber(),
                 tempPassword,
                 "STUDENT"
-        );
+        );*/
 
         return success(
                 String.format(SuccessMessageConstants.STUDENT_REGISTER_SUCCESS, response.getRollNumber()),
@@ -81,6 +83,7 @@ public class StudentServiceImpl implements StudentService {
 
     /* GET ALL STUDENTS */
     @Override
+    @Cacheable(value = "studentList")
     public ResponseEntity<?> getAllStudents() {
 
         List<StudentResponse> students = studentRepository.findAll()
@@ -100,6 +103,7 @@ public class StudentServiceImpl implements StudentService {
 
     /* GET BY ROLL NUMBER */
     @Override
+    @Cacheable(value = "studentByRoll", key = "#rollNumber")
     public ResponseEntity<?> getStudentByRollNumber(String rollNumber) {
 
         log.info("Fetching student by roll number {}", rollNumber);
@@ -261,9 +265,7 @@ public class StudentServiceImpl implements StudentService {
                 "PASSWORD-UPDATE"
         );
 
-        return success(
-                "Password updated successfully for roll number " + rollNumber,
-                null
+        return success(String.format(SuccessMessageConstants.STUDENT_PASSWORD_RESET,student.getRollNumber()),HttpStatus.ACCEPTED
         );
     }
 

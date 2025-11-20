@@ -1,9 +1,9 @@
 package com.techcode.studentmgmt.utils;
 
 
-import org.springframework.stereotype.Component;
-
 import java.security.SecureRandom;
+
+import org.springframework.stereotype.Component;
 
 @Component
 public class PasswordGeneratorUtil {

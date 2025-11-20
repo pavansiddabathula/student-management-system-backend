@@ -4,7 +4,8 @@ public class SuccessMessageConstants {
 
 
     public static final String SUCCESS = "SUCCESS";
-
+//Student success messages
+    
     // Create
     public static final String STUDENT_REGISTER_SUCCESS =
             "Student registered successfully with roll number %s.";
@@ -28,23 +29,30 @@ public class SuccessMessageConstants {
     //failure
     public static final String FAILUR_STRING = "Failure";
     
+    //password reset
+    public static final String STUDENT_PASSWORD_RESET =
+            "Password reset successfully for student roll number %s.";
+    
     
  // Admin Success Messages
+    
+    
+    //Create
     public static final String ADMIN_CREATED =
             "Admin account created successfully with Admin ID %s.";
-
+    //Fetch
     public static final String ADMIN_FETCH_SUCCESS =
             "Admin details fetched successfully for Admin ID %s.";
-
+    //fetchAll
     public static final String ADMIN_LIST_FETCHED =
             "Total %d admin record(s) fetched successfully.";
-
+    //update
     public static final String ADMIN_UPDATE_SUCCESS =
             "Admin details updated successfully for Admin ID %s.";
-
+   //Delete
     public static final String ADMIN_DELETE_SUCCESS =
             "Admin with Admin ID %s deleted successfully.";
-
+    //password reset
     public static final String ADMIN_PASSWORD_RESET =
             "Password reset successfully for Admin ID %s.";
 

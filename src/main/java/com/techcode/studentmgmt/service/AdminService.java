@@ -1,8 +1,9 @@
 package com.techcode.studentmgmt.service;
 
+import org.springframework.http.ResponseEntity;
+
 import com.techcode.studentmgmt.dto.requestdto.AdminPasswordResetRequest;
 import com.techcode.studentmgmt.dto.requestdto.AdminRequest;
-import org.springframework.http.ResponseEntity;
 
 public interface AdminService {
 

@@ -1,13 +1,15 @@
 package com.techcode.studentmgmt.secuirty;
 
-import com.techcode.studentmgmt.entity.StudentInfo;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.techcode.studentmgmt.entity.StudentInfo;
+
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {

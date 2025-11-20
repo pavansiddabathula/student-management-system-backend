@@ -36,9 +36,12 @@ public class GlobalExceptionHandler {
 			fieldErrors.put(err.getField(), err.getDefaultMessage());
 		});
 
-		ErrorResponse response = ErrorResponse.builder().status("FAILURE")
-				.errorCode(ErrorCodeEnums.VALIDATION_ERROR.getCode()).errorMessage(ErrorCodeEnums.VALIDATION_ERROR.getMessage())
-				.fieldErrors(fieldErrors).timestamp(LocalDateTime.now()).build();
+		ErrorResponse response = ErrorResponse.builder()
+				.status("FAILURE")
+				.errorCode(ErrorCodeEnums.VALIDATION_ERROR.getCode())
+				.errorMessage(ErrorCodeEnums.VALIDATION_ERROR.getMessage())
+				.fieldErrors(fieldErrors)
+				.timestamp(LocalDateTime.now()).build();
 
 		return ResponseEntity.status(ErrorCodeEnums.VALIDATION_ERROR.getStatus()).body(response);
 	}

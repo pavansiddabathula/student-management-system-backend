@@ -1,8 +1,9 @@
 package com.techcode.studentmgmt.dto.responsedto;
 
-import com.techcode.studentmgmt.entity.AdminInfo;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
