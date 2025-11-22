@@ -7,8 +7,10 @@ import java.util.Map;
 import org.hibernate.exception.JDBCConnectionException;
 import org.hibernate.exception.SQLGrammarException;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.orm.jpa.JpaSystemException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -92,6 +94,22 @@ public class GlobalExceptionHandler {
 
 		return ResponseEntity.status(ErrorCodeEnums.DATABASE_ERROR.getStatus()).body(response);
 	}
+	
+	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<?> handleAccessDenied(AccessDeniedException ex) {
+
+	    log.warn("Access denied exception intercepted: {}", ex.getMessage());
+
+	    ErrorResponse response = ErrorResponse.builder()
+	            .status("FAILURE")
+	            .errorCode(ErrorCodeEnums.ACCESS_DENIED.getCode())
+	            .errorMessage(ErrorCodeEnums.ACCESS_DENIED.getMessage())
+	            .timestamp(LocalDateTime.now())
+	            .build();
+
+	    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+	}
+
 
 	/*
 	 * 5. Generic / Unexpected Exceptions
