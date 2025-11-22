@@ -24,6 +24,8 @@ public class AdminMapper {
     // Convert AdminInfo Entity → AdminResponse DTO
     public static AdminResponse toResponse(AdminInfo admin) {
         return AdminResponse.builder()
+        		.status("SUCCESS")
+        		.id(admin.getId())
                 .adminId(admin.getAdminId())
                 .name(admin.getName())
                 .email(admin.getEmail())

@@ -58,13 +58,13 @@ public class AdminServiceImpl implements AdminService {
 
         adminRepo.save(admin);
 
-    /*    emailUtil.sendPasswordMail(
+       emailUtil.sendPasswordMail(
                 admin.getEmail(),
                 admin.getName(),
                 admin.getAdminId(),
                 tempPwd,
                 "ADMIN"
-        );*/
+        );
 
         return buildSuccess(
                 String.format(SuccessMessageConstants.ADMIN_CREATED, adminId),

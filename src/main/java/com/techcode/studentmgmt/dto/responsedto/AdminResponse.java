@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AdminResponse {
 
-    private String status;       // SUCCESS
+    private String status;    // SUCCESS or FAILURE
     private Long id;             // Primary Key
     private String adminId;      // Unique 6-char ID
     private String name;

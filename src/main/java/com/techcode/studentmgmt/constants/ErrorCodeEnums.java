@@ -19,7 +19,10 @@ public enum ErrorCodeEnums {
     ADMIN_EMAIL_EXISTS("E004", "Email '%s' already exists.", HttpStatus.BAD_REQUEST),
 
     ADMIN_PHONE_EXISTS("E005", "Phone number '%s' already exists.", HttpStatus.BAD_REQUEST),
-
+    
+    UNAUTHORIZED("E401", "Token is missing or invalid. Please login again.", HttpStatus.UNAUTHORIZED),
+    ACCESS_DENIED("E403", "You do not have permission to access this resource.", HttpStatus.FORBIDDEN),
+   
     INTERNAL_SERVER_ERROR("E500", "Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR),
 
     DATABASE_ERROR("E503", "Database is currently not available. Please try again.", HttpStatus.SERVICE_UNAVAILABLE);

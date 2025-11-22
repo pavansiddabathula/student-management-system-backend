@@ -79,7 +79,7 @@ public class StudentController {
     }
 
     // Student resets his own password
-    @PostMapping("/reset-password/{rollNumber}")
+    @PutMapping("/reset-password/{rollNumber}")
     @PreAuthorize("hasRole('STUDENT')")
     public ResponseEntity<?> resetStudentPassword(
             @PathVariable String rollNumber,

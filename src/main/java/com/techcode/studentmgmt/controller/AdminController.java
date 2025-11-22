@@ -27,7 +27,7 @@ public class AdminController {
     private final AdminService adminService;
 
     /** Create admin */
-    @PostMapping
+    @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createAdmin(@RequestBody AdminRequest request) {
         log.info("AdminController::createAdmin {}", request.getEmail());
@@ -59,7 +59,7 @@ public class AdminController {
     }
 
     /** Update admin */
-    @PutMapping("/{adminId}")
+    @PutMapping("update/{adminId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updateAdmin(
             @PathVariable String adminId,
@@ -69,7 +69,7 @@ public class AdminController {
     }
 
     /** Delete admin */
-    @DeleteMapping("/{adminId}")
+    @DeleteMapping("delete/{adminId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteAdmin(@PathVariable String adminId) {
         log.info("AdminController::deleteAdmin {}", adminId);

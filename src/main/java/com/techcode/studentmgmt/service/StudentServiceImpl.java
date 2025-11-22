@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.techcode.studentmgmt.constants.ErrorCodeEnums;
@@ -40,7 +40,8 @@ public class StudentServiceImpl implements StudentService {
     private final Validator validator;
     private final PasswordGeneratorUtil passwordGen;
     private final EmailUtil emailUtil;
-    private final BCryptPasswordEncoder encoder;
+    private final PasswordEncoder encoder;
+
 
     /* REGISTER STUDENT (Admin creates student) */
     @Override
@@ -65,14 +66,14 @@ public class StudentServiceImpl implements StudentService {
         StudentResponse response = StudentMapper.toResponse(saved);
 
         // Email notification
-        /*
+        
         emailUtil.sendPasswordMail(
                 saved.getEmail(),
                 saved.getFullName(),
                 saved.getRollNumber(),
                 tempPassword,
                 "STUDENT"
-        );*/
+        );
 
         return success(
                 String.format(SuccessMessageConstants.STUDENT_REGISTER_SUCCESS, response.getRollNumber()),

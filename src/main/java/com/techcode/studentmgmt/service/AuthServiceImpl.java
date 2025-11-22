@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.techcode.studentmgmt.dto.requestdto.AdminLoginRequest;
 import com.techcode.studentmgmt.dto.requestdto.AuthRequest;
 import com.techcode.studentmgmt.dto.responsedto.AuthResponse;
 import com.techcode.studentmgmt.entity.AdminInfo;
@@ -26,19 +27,19 @@ public class AuthServiceImpl implements AuthService {
     private final AdminRepository adminRepo;
     private final StudentRepository studentRepo;
     private final JwtUtil jwtUtil;
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder encoder ;
+
 
     /* ADMIN LOGIN */
     @Override
-    public ResponseEntity<AuthResponse> adminLogin(AuthRequest request) {
+    public ResponseEntity<?> adminLogin(AdminLoginRequest request) {
 
-        AdminInfo admin = adminRepo.findByAdminId(request.getRollNumber())
+        AdminInfo admin = adminRepo.findByAdminId(request.getAdminid())
                 .orElseThrow(() -> new RuntimeException("Admin not found"));
 
         if (!encoder.matches(request.getPassword(), admin.getPassword())) {
             throw new RuntimeException("Invalid admin password");
         }
-
         return ResponseEntity.ok(generateAdminToken(admin));
     }
 
