@@ -2,6 +2,7 @@ package com.techcode.studentmgmt.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,16 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentController {
 
     private final StudentService studentService;
+    
+    @GetMapping("/profile")
+    @PreAuthorize("hasRole('STUDENT')")
+    public ResponseEntity<?> getMyProfile() {
+
+        String identifier = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return studentService.getProfile(identifier);
+    }
+
 
     // Create a new student
     @PostMapping("/create")
@@ -79,11 +90,12 @@ public class StudentController {
     }
 
     // Student resets his own password
-    @PutMapping("/reset-password/{rollNumber}")
+    @PutMapping("/reset-password")
     @PreAuthorize("hasRole('STUDENT')")
     public ResponseEntity<?> resetStudentPassword(
-            @PathVariable String rollNumber,
+      
             @RequestBody StudentPasswordResetRequest request) {
+        String rollNumber = SecurityContextHolder.getContext().getAuthentication().getName();
 
         log.info("StudentController::resetStudentPassword called");
         return studentService.resetPasswordByRollNumber(rollNumber, request);

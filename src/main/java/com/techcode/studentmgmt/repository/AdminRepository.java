@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.techcode.studentmgmt.entity.AdminInfo;
 
@@ -20,4 +21,8 @@ public interface AdminRepository extends JpaRepository<AdminInfo, Long> {
 
     // Check if phone number already exists
     Optional<AdminInfo> findByPhoneNumber(String phoneNumber);
+    
+    @Query(value = "SELECT admin_id FROM admin_info ORDER BY id DESC LIMIT 1", nativeQuery = true)
+    String findLatestAdminId();
+
 }

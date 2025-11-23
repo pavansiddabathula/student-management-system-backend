@@ -270,4 +270,19 @@ public class StudentServiceImpl implements StudentService {
         );
     }
 
+	@Override
+	public ResponseEntity<?> getProfile(String identifier) {
+		log.info("StudentServiceImpl::getProfile called for {}", identifier);
+
+		StudentInfo student = studentRepository.findByRollNumber(identifier)
+				.orElseThrow(() ->
+						new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, identifier)
+				);
+
+		return success(
+				String.format(SuccessMessageConstants.STUDENT_FETCH_SUCCESS, identifier),
+				StudentMapper.toResponse(student)
+		);
+	}
+
 }

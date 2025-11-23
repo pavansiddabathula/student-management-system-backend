@@ -48,8 +48,9 @@ public class AdminServiceImpl implements AdminService {
         log.info("AdminServiceImpl::createAdmin {}", request.getEmail());
 
         validateAdmin(request, null);
+        String lastAdminId = adminRepo.findLatestAdminId();
 
-        String adminId = adminIdGen.generateAdminId();
+        String adminId = adminIdGen.generateAdminId(lastAdminId);
         String tempPwd = passwordGen.generatePassword(10);
 
         AdminInfo admin = AdminMapper.toEntity(request);

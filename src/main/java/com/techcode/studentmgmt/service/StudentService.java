@@ -20,6 +20,8 @@ public interface StudentService {
     ResponseEntity<?> updateStudentByRollNumber(String rollNumber, StudentRequest request);
 
 	ResponseEntity<?> resetPasswordByRollNumber(String rollNumber,StudentPasswordResetRequest request);
+
+	ResponseEntity<?> getProfile(String identifier);
     
     
 }
