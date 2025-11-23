@@ -29,6 +29,7 @@ com\techcode\studentmgmt\entity\StudentInfo$StudentInfoBuilder.class
 com\techcode\studentmgmt\constants\ErrorCodeEnums.class
 com\techcode\studentmgmt\secuirty\JwtFilter.class
 com\techcode\studentmgmt\studentmgmtApplication.class
+com\techcode\studentmgmt\config\ObjectMapperConfig.class
 com\techcode\studentmgmt\repository\StudentRepository.class
 com\techcode\studentmgmt\service\AdminService.class
 com\techcode\studentmgmt\dto\responsedto\AuthResponse.class

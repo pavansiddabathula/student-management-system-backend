@@ -30,7 +30,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**", "/api/students/register").permitAll()
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**", "/api/students/register","/admin/create").permitAll()
 						.requestMatchers("/api/admin/**").hasRole("ADMIN").requestMatchers("/api/student/**")
 						.hasRole("STUDENT").anyRequest().authenticated())
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(customAuthenticationEntryPoint)
@@ -50,8 +50,4 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 
-/*	@Bean
-	public BCryptPasswordEncoder encoder() {
-		return new BCryptPasswordEncoder(8);
-	}*/
 }

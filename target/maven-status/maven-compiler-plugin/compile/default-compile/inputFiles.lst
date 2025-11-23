@@ -1,6 +1,7 @@
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\ApiTimingFilter.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\AsyncConfig.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\CacheConfig.java
+E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\ObjectMapperConfig.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\SecurityConfig.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\constants\ErrorCodeEnums.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\constants\ResponseKeys.java
