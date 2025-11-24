@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     /** Get all admins */
-    @GetMapping
+    @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAllAdmins() {
         log.info("AdminController::getAllAdmins");
@@ -43,7 +43,7 @@ public class AdminController {
     }
 
     /** Get admin by AdminId */
-    @GetMapping("/{adminId}")
+    @GetMapping("/adminId/{adminId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAdmin(@PathVariable String adminId) {
         log.info("AdminController::getAdmin {}", adminId);

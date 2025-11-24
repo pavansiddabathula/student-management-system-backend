@@ -28,17 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentController {
 
     private final StudentService studentService;
-    
-    @GetMapping("/profile")
-    @PreAuthorize("hasRole('STUDENT')")
-    public ResponseEntity<?> getMyProfile() {
-
-        String identifier = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        return studentService.getProfile(identifier);
-    }
-
-
+  
     // Create a new student
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
@@ -70,6 +60,16 @@ public class StudentController {
         log.info("StudentController::getStudentByRollNumber called");
         return studentService.getStudentByRollNumber(rollNumber);
     }
+    
+    // Get own profile
+    @GetMapping("/profile")
+    @PreAuthorize("hasRole('STUDENT')")
+    public ResponseEntity<?> getMyProfile() {
+
+        String identifier = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return studentService.getProfile(identifier);
+    }
 
     // Delete student
     @DeleteMapping("/delete/{rollNumber}")
@@ -81,7 +81,7 @@ public class StudentController {
 
     // Update student
     @PutMapping("/update/{rollNumber}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN','STUDENT')")
     public ResponseEntity<?> updateStudent(
             @PathVariable String rollNumber,
             @RequestBody StudentRequest request) {
@@ -96,6 +96,9 @@ public class StudentController {
       
             @RequestBody StudentPasswordResetRequest request) {
         String rollNumber = SecurityContextHolder.getContext().getAuthentication().getName();
+        //i want to print the  logs the content which is security context holder
+        String securityContextInfo = SecurityContextHolder.getContext().getAuthentication().toString();
+        log.info("Security Context Info: " + securityContextInfo);
 
         log.info("StudentController::resetStudentPassword called");
         return studentService.resetPasswordByRollNumber(rollNumber, request);

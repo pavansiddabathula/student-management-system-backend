@@ -21,11 +21,29 @@ public enum ErrorCodeEnums {
     ADMIN_PHONE_EXISTS("E005", "Phone number '%s' already exists.", HttpStatus.BAD_REQUEST),
     
     UNAUTHORIZED("E401", "Token is missing or invalid. Please login again.", HttpStatus.UNAUTHORIZED),
+    
     ACCESS_DENIED("E403", "You do not have permission to access this resource.", HttpStatus.FORBIDDEN),
    
     INTERNAL_SERVER_ERROR("E500", "Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR),
 
-    DATABASE_ERROR("E503", "Database is currently not available. Please try again.", HttpStatus.SERVICE_UNAVAILABLE);
+    DATABASE_ERROR("E503", "Database is currently not available. Please try again.", HttpStatus.SERVICE_UNAVAILABLE),
+    
+	INVALID_ADMIN_PASSWORD("E006", "Invalid password for admin ID '%s'.", HttpStatus.UNAUTHORIZED),
+	
+	INVALID_STUDENT_PASSWORD("E007", "Invalid password for roll number '%s'.", HttpStatus.UNAUTHORIZED),
+	
+	INVALID_OTP("E006", "Invalid or expired OTP for identifier '%s'.", HttpStatus.BAD_REQUEST),
+
+	OTP_NOT_GENERATED("E007", "OTP was not generated or has expired for identifier '%s'.", HttpStatus.BAD_REQUEST),
+
+	EMAIL_MISMATCH("E008", "Email '%s' does not match registered email for identifier '%s'.", HttpStatus.BAD_REQUEST),
+
+	PASSWORDS_DO_NOT_MATCH("E009", "New password and confirm password do not match.", HttpStatus.BAD_REQUEST),
+
+	WEAK_PASSWORD("E010", "Password must meet required security conditions.", HttpStatus.BAD_REQUEST),
+	OTP_NOT_VERIFIED("E011", "OTP not verified for identifier '%s'.", HttpStatus.BAD_REQUEST);
+
+
 
     private final String code;
     private final String message;
