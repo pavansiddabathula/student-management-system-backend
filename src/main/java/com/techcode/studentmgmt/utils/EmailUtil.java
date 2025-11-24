@@ -2,9 +2,12 @@ package com.techcode.studentmgmt.utils;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,6 +41,38 @@ public class EmailUtil {
         mailSender.send(msg);
 
         log.info("Email sent successfully to {}", to);
+    }
+    
+    public void sendOtpMail(String toEmail, String fullName, String otp) {
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+
+            helper.setTo(toEmail);
+            helper.setSubject("Password Reset OTP - Student Portal");
+
+            String body =
+                    "<html>" +
+                    "<body>" +
+                    "<h3>Hello " + fullName + ",</h3>" +
+                    "<p>Your OTP to reset your password is:</p>" +
+                    "<h2 style='color:#007bff; font-size: 28px;'>" + otp + "</h2>" +
+                    "<p>This OTP is valid for <b>5 minutes</b>. Do not share it with anyone.</p>" +
+                    "<br/>" +
+                    "<p>Regards,</p>" +
+                    "<p><b>Student Portal Team</b></p>" +
+                    "</body>" +
+                    "</html>";
+
+            helper.setText(body, true);
+
+            mailSender.send(mimeMessage);
+            log.info("OTP mail sent successfully to {}", toEmail);
+        }
+        catch (MessagingException e) {
+            log.error("Failed to send OTP Email to {}", toEmail, e);
+            throw new RuntimeException("Failed to send OTP email. Please try again.");
+        }
     }
 }
 

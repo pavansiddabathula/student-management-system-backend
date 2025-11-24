@@ -15,9 +15,10 @@ import io.jsonwebtoken.security.Keys;
 public class JwtUtil {
 
     private final Key key = Keys.hmacShaKeyFor("REPLACE_THIS_WITH_YOUR_256_BIT_SECRET_KEY_XYZ1234567".getBytes());
-    private final long expiry = 1000 * 60 * 30; // 30 minutes
+    private static final long expiry = 1000 * 60 * 60 * 7; // 7 hours
+
     
-    private final long jwtExpirationMs = 1000 * 60 * 15; // 15 minutes
+    private final long jwtExpirationMs = 7 * 60 * 60 * 1000; // 7 hours
 
 
     public String generateToken(String rollNumber, Map<String, Object> claims) {

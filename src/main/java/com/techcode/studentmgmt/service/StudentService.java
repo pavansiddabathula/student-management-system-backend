@@ -22,6 +22,9 @@ public interface StudentService {
 	ResponseEntity<?> resetPasswordByRollNumber(String rollNumber,StudentPasswordResetRequest request);
 
 	ResponseEntity<?> getProfile(String identifier);
+	
+	
+
     
     
 }

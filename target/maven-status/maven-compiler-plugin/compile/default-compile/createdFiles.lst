@@ -10,6 +10,7 @@ com\techcode\studentmgmt\dto\requestdto\AdminLoginRequest.class
 com\techcode\studentmgmt\secuirty\JwtUtil.class
 com\techcode\studentmgmt\secuirty\StudentCustomUserDetails.class
 com\techcode\studentmgmt\dto\responsedto\AdminResponse.class
+com\techcode\studentmgmt\dto\requestdto\OtpVerifyRequest.class
 com\techcode\studentmgmt\secuirty\CustomAccessDeniedHandler.class
 com\techcode\studentmgmt\service\AuthServiceImpl.class
 com\techcode\studentmgmt\dto\responsedto\SuccessResponse$SuccessResponseBuilder.class
@@ -29,6 +30,7 @@ com\techcode\studentmgmt\entity\StudentInfo$StudentInfoBuilder.class
 com\techcode\studentmgmt\constants\ErrorCodeEnums.class
 com\techcode\studentmgmt\secuirty\JwtFilter.class
 com\techcode\studentmgmt\studentmgmtApplication.class
+com\techcode\studentmgmt\dto\requestdto\SetPasswordRequest.class
 com\techcode\studentmgmt\config\ObjectMapperConfig.class
 com\techcode\studentmgmt\repository\StudentRepository.class
 com\techcode\studentmgmt\service\AdminService.class
@@ -53,9 +55,11 @@ com\techcode\studentmgmt\secuirty\CustomUserDetails.class
 com\techcode\studentmgmt\dto\requestdto\StudentPasswordResetRequest.class
 com\techcode\studentmgmt\dto\requestdto\AdminRequest.class
 com\techcode\studentmgmt\pojo\package-info.class
+com\techcode\studentmgmt\dto\requestdto\ForgotPasswordRequest.class
 com\techcode\studentmgmt\config\AsyncConfig.class
 com\techcode\studentmgmt\dto\responsedto\AuthResponse$AuthResponseBuilder.class
 com\techcode\studentmgmt\dto\requestdto\StudentRequest.class
 com\techcode\studentmgmt\utils\EmailUtil.class
 com\techcode\studentmgmt\secuirty\CustomAuthenticationEntryPoint.class
+com\techcode\studentmgmt\service\OtpService.class
 com\techcode\studentmgmt\utils\PasswordGeneratorUtil.class

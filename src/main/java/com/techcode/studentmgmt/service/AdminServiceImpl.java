@@ -48,8 +48,8 @@ public class AdminServiceImpl implements AdminService {
         log.info("AdminServiceImpl::createAdmin {}", request.getEmail());
 
         validateAdmin(request, null);
-        String lastAdminId = adminRepo.findLatestAdminId();
 
+        String lastAdminId = adminRepo.findLatestAdminId();
         String adminId = adminIdGen.generateAdminId(lastAdminId);
         String tempPwd = passwordGen.generatePassword(10);
 
@@ -59,7 +59,7 @@ public class AdminServiceImpl implements AdminService {
 
         adminRepo.save(admin);
 
-       emailUtil.sendPasswordMail(
+        emailUtil.sendPasswordMail(
                 admin.getEmail(),
                 admin.getName(),
                 admin.getAdminId(),
@@ -68,7 +68,7 @@ public class AdminServiceImpl implements AdminService {
         );
 
         return buildSuccess(
-                String.format(SuccessMessageConstants.ADMIN_CREATED, adminId),
+                SuccessMessageConstants.ADMIN_CREATED.format(adminId),
                 AdminMapper.toResponse(admin),
                 HttpStatus.CREATED
         );
@@ -86,8 +86,9 @@ public class AdminServiceImpl implements AdminService {
                 .toList();
 
         return buildSuccess(
-                String.format(SuccessMessageConstants.ADMIN_LIST_FETCHED, admins.size()),
-                admins, HttpStatus.OK
+                SuccessMessageConstants.ADMIN_LIST_FETCHED.format(admins.size()),
+                admins,
+                HttpStatus.OK
         );
     }
 
@@ -98,13 +99,12 @@ public class AdminServiceImpl implements AdminService {
         log.info("AdminServiceImpl::getAdminById {}", adminId);
 
         AdminInfo admin = adminRepo.findByAdminId(adminId)
-                .orElseThrow(() -> new BusinessException(
-                        ErrorCodeEnums.ADMIN_NOT_FOUND, adminId
-                ));
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND, adminId));
 
         return buildSuccess(
-                String.format(SuccessMessageConstants.ADMIN_FETCH_SUCCESS, adminId),
-                AdminMapper.toResponse(admin),HttpStatus.OK
+                SuccessMessageConstants.ADMIN_FETCH_SUCCESS.format(adminId),
+                AdminMapper.toResponse(admin),
+                HttpStatus.OK
         );
     }
 
@@ -124,7 +124,10 @@ public class AdminServiceImpl implements AdminService {
                 .map(AdminMapper::toResponse)
                 .toList();
 
-        return buildSuccess("Found " + list.size() + " admin(s)", list);
+        return buildSuccess(
+                SuccessMessageConstants.ADMIN_LIST_FETCHED.format(list.size()),
+                list
+        );
     }
 
     // Update admin
@@ -134,9 +137,7 @@ public class AdminServiceImpl implements AdminService {
         log.info("AdminServiceImpl::updateAdminById {}", adminId);
 
         AdminInfo admin = adminRepo.findByAdminId(adminId)
-                .orElseThrow(() -> new BusinessException(
-                        ErrorCodeEnums.ADMIN_NOT_FOUND, adminId
-                ));
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND, adminId));
 
         validateAdmin(request, admin.getId());
 
@@ -147,7 +148,7 @@ public class AdminServiceImpl implements AdminService {
         AdminInfo updated = adminRepo.save(admin);
 
         return buildSuccess(
-                String.format(SuccessMessageConstants.ADMIN_UPDATE_SUCCESS, adminId),
+                SuccessMessageConstants.ADMIN_UPDATE_SUCCESS.format(adminId),
                 AdminMapper.toResponse(updated)
         );
     }
@@ -159,27 +160,24 @@ public class AdminServiceImpl implements AdminService {
         log.info("AdminServiceImpl::deleteAdminById {}", adminId);
 
         AdminInfo admin = adminRepo.findByAdminId(adminId)
-                .orElseThrow(() -> new BusinessException(
-                        ErrorCodeEnums.ADMIN_NOT_FOUND, adminId
-                ));
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND, adminId));
 
         adminRepo.delete(admin);
 
         return buildSuccess(
-                String.format(SuccessMessageConstants.ADMIN_DELETE_SUCCESS, adminId),
+                SuccessMessageConstants.ADMIN_DELETE_SUCCESS.format(adminId),
                 HttpStatus.OK
         );
     }
 
-    // Reset admin password
+    // Reset password
     @Override
     public ResponseEntity<?> resetAdminPassword(String adminId, AdminPasswordResetRequest req) {
 
         log.info("AdminServiceImpl::resetAdminPassword {}", adminId);
 
         AdminInfo admin = adminRepo.findByAdminId(adminId)
-                .orElseThrow(() -> new BusinessException(
-                        ErrorCodeEnums.ADMIN_NOT_FOUND, adminId));
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND, adminId));
 
         Map<String, String> errors = new LinkedHashMap<>();
 
@@ -211,59 +209,51 @@ public class AdminServiceImpl implements AdminService {
         );
 
         return buildSuccess(
-                "Password updated successfully for Admin ID " + adminId,
+                SuccessMessageConstants.ADMIN_PASSWORD_RESET.format(adminId),
                 HttpStatus.OK
         );
     }
 
-
-    // Build success response
+    // Success wrapper
     private ResponseEntity<?> buildSuccess(String message, Object data, HttpStatus status) {
-        return ResponseEntity.status(status).body(
-                SuccessResponse.builder()
+        return ResponseEntity.status(status)
+                .body(SuccessResponse.builder()
                         .status("SUCCESS")
                         .message(message)
                         .data(data)
                         .timestamp(LocalDateTime.now())
-                        .build()
-        );
+                        .build());
     }
 
     private ResponseEntity<?> buildSuccess(String message, Object data) {
         return buildSuccess(message, data, HttpStatus.OK);
     }
 
-    
-    /* VALIDATION LOGIC */
+    private ResponseEntity<?> buildSuccess(String message, HttpStatus status) {
+        return buildSuccess(message, null, status);
+    }
+
+    // Validation
     private void validateAdmin(AdminRequest req, Long currentAdminId) {
 
         Map<String, String> errors = new LinkedHashMap<>();
 
-        // Validate request fields using annotations
         validator.validate(req).forEach(v ->
                 errors.put(v.getPropertyPath().toString(), v.getMessage())
         );
 
-        // Check duplicate email
         adminRepo.findByEmail(req.getEmail())
                 .filter(a -> !a.getId().equals(currentAdminId))
-                .ifPresent(a ->
-                        errors.put("email",
-                                String.format("Email '%s' already exists.", req.getEmail()))
-                );
+                .ifPresent(a -> errors.put("email",
+                        String.format("Email '%s' already exists.", req.getEmail())));
 
-        // Check duplicate phone number
         adminRepo.findByPhoneNumber(req.getPhoneNumber())
                 .filter(a -> !a.getId().equals(currentAdminId))
-                .ifPresent(a ->
-                        errors.put("phoneNumber",
-                                String.format("Phone number '%s' already exists.", req.getPhoneNumber()))
-                );
+                .ifPresent(a -> errors.put("phoneNumber",
+                        String.format("Phone number '%s' already exists.", req.getPhoneNumber())));
 
-        // Throw error if found
         if (!errors.isEmpty()) {
             throw new ValidationException(errors);
         }
     }
-
 }

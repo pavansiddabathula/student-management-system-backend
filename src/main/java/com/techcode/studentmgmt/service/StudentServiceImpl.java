@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import com.techcode.studentmgmt.constants.ErrorCodeEnums;
 import com.techcode.studentmgmt.constants.ResponseKeys;
 import com.techcode.studentmgmt.constants.SuccessMessageConstants;
+import com.techcode.studentmgmt.dto.requestdto.ForgotPasswordRequest;
+import com.techcode.studentmgmt.dto.requestdto.OtpVerifyRequest;
+import com.techcode.studentmgmt.dto.requestdto.SetPasswordRequest;
 import com.techcode.studentmgmt.dto.requestdto.StudentPasswordResetRequest;
 import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
 import com.techcode.studentmgmt.dto.responsedto.StudentResponse;
@@ -41,32 +44,25 @@ public class StudentServiceImpl implements StudentService {
     private final PasswordGeneratorUtil passwordGen;
     private final EmailUtil emailUtil;
     private final PasswordEncoder encoder;
+  
 
-
-    /* REGISTER STUDENT (Admin creates student) */
+    // Register student
     @Override
     public ResponseEntity<?> registerStudent(StudentRequest request) {
 
-        log.info("StudentServiceImpl::registerStudent called for {}", request.getRollNumber());
+        log.info("registerStudent called for {}", request.getRollNumber());
 
-        // Validate
         validateStudent(request, null);
 
-        // Generate random password
         String tempPassword = passwordGen.generatePassword(10);
 
-        // Convert DTO → Entity
         StudentInfo entity = StudentMapper.toEntity(request);
         entity.setPassword(encoder.encode(tempPassword));
 
-        // Save student
         StudentInfo saved = studentRepository.save(entity);
 
-        // Convert back to response DTO
         StudentResponse response = StudentMapper.toResponse(saved);
 
-        // Email notification
-        
         emailUtil.sendPasswordMail(
                 saved.getEmail(),
                 saved.getFullName(),
@@ -76,16 +72,18 @@ public class StudentServiceImpl implements StudentService {
         );
 
         return success(
-                String.format(SuccessMessageConstants.STUDENT_REGISTER_SUCCESS, response.getRollNumber()),
+                SuccessMessageConstants.STUDENT_REGISTER_SUCCESS.format(response.getRollNumber()),
                 response,
                 HttpStatus.CREATED
         );
     }
 
-    /* GET ALL STUDENTS */
+    // Get all students
     @Override
     @Cacheable(value = "studentList")
     public ResponseEntity<?> getAllStudents() {
+
+        log.info("Fetching all student records");
 
         List<StudentResponse> students = studentRepository.findAll()
                 .stream()
@@ -93,83 +91,74 @@ public class StudentServiceImpl implements StudentService {
                 .collect(Collectors.toList());
 
         if (students.isEmpty()) {
-            return success(SuccessMessageConstants.STUDENTS_EMPTY, students);
+            return success(SuccessMessageConstants.STUDENTS_EMPTY.getMessage(), students);
         }
 
         return success(
-                String.format(SuccessMessageConstants.STUDENTS_FETCH_SUCCESS, students.size()),
+                SuccessMessageConstants.STUDENTS_FETCH_SUCCESS.format(students.size()),
                 students
         );
     }
 
-    /* GET BY ROLL NUMBER */
+    // Get by roll
     @Override
     @Cacheable(value = "studentByRoll", key = "#rollNumber")
     public ResponseEntity<?> getStudentByRollNumber(String rollNumber) {
 
-        log.info("Fetching student by roll number {}", rollNumber);
+        log.info("Fetching student by roll {}", rollNumber);
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
-                .orElseThrow(() ->
-                        new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber)
-                );
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber));
 
         return success(
-                String.format(SuccessMessageConstants.STUDENT_FETCH_SUCCESS, rollNumber),
+                SuccessMessageConstants.STUDENT_FETCH_SUCCESS.format(rollNumber),
                 StudentMapper.toResponse(student)
         );
     }
 
-    /* GET BY USERNAME */
+    // Get by name
     @Override
     public ResponseEntity<?> getStudentByName(String fullName) {
 
-        log.info("Fetching student by username {}", fullName);
+        log.info("Fetching student by name {}", fullName);
 
         StudentInfo student = studentRepository.findByfullName(fullName)
-                .orElseThrow(() ->
-                        new BusinessException(ErrorCodeEnums.STUDENT_NOY_FOUND_BYNAME, fullName)
-                );
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOY_FOUND_BYNAME, fullName));
 
         return success(
-                "Student details fetched successfully for username " + fullName,
+                SuccessMessageConstants.STUDENT_FETCH_SUCCESS.format(fullName),
                 StudentMapper.toResponse(student)
         );
     }
 
-    /* DELETE STUDENT */
+    // Delete by roll
     @Override
     public ResponseEntity<?> deleteStudentByRollNumber(String rollNumber) {
 
-        log.info("Deleting student with roll number {}", rollNumber);
+        log.info("Deleting student with roll {}", rollNumber);
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
-                .orElseThrow(() ->
-                        new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber)
-                );
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber));
 
         studentRepository.delete(student);
 
         return success(
-                String.format(SuccessMessageConstants.STUDENT_DELETE_SUCCESS, rollNumber),
+                SuccessMessageConstants.STUDENT_DELETE_SUCCESS.format(rollNumber),
                 null
         );
     }
 
-    /* UPDATE STUDENT (Admin updates student record) */
+    // Update
     @Override
     public ResponseEntity<?> updateStudentByRollNumber(String rollNumber, StudentRequest request) {
 
-        log.info("Updating student with roll number {}", rollNumber);
+        log.info("Updating student with roll {}", rollNumber);
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
-                .orElseThrow(() ->
-                        new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber)
-                );
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber));
 
         validateStudent(request, student.getId());
 
-  
         student.setFullName(request.getFullName());
         student.setEmail(request.getEmail());
         student.setBranch(request.getBranch());
@@ -178,64 +167,19 @@ public class StudentServiceImpl implements StudentService {
         StudentInfo updated = studentRepository.save(student);
 
         return success(
-                String.format(SuccessMessageConstants.STUDENT_UPDATE_SUCCESS, rollNumber),
+                SuccessMessageConstants.STUDENT_UPDATE_SUCCESS.format(rollNumber),
                 StudentMapper.toResponse(updated)
         );
     }
 
-    /* SUCCESS RESPONSE */
-    private ResponseEntity<?> success(String message, Object data, HttpStatus status) {
-        return ResponseEntity.status(status).body(
-                SuccessResponse.builder()
-                        .status("SUCCESS")
-                        .message(message)
-                        .data(data)
-                        .timestamp(LocalDateTime.now())
-                        .build()
-        );
-    }
-
-    private ResponseEntity<?> success(String message, Object data) {
-        return success(message, data, HttpStatus.OK);
-    }
-
-    /* VALIDATION LOGIC */
-    private void validateStudent(StudentRequest request, Long currentStudentId) {
-
-        Map<String, String> errors = new LinkedHashMap<>();
-
-        validator.validate(request).forEach(v ->
-                errors.put(v.getPropertyPath().toString(), v.getMessage())
-        );
-
-
-        studentRepository.findByEmail(request.getEmail())
-                .filter(s -> !s.getId().equals(currentStudentId))
-                .ifPresent(s ->
-                        errors.put(ResponseKeys.EMAIL,
-                            String.format("Email '%s' is already registered.", request.getEmail()))
-                );
-
-        studentRepository.findByRollNumber(request.getRollNumber())
-                .filter(s -> !s.getId().equals(currentStudentId))
-                .ifPresent(s ->
-                        errors.put(ResponseKeys.ROLL_NUMBER,
-                              String.format("Roll Number '%s' is already registered.", request.getRollNumber()))
-                );
-
-        if (!errors.isEmpty()) {
-            throw new ValidationException(errors);
-        }
-    }
-
+    // Reset Password
     @Override
     public ResponseEntity<?> resetPasswordByRollNumber(String rollNumber, StudentPasswordResetRequest req) {
 
-        log.info("StudentServiceImpl::resetPasswordByRollNumber {}", rollNumber);
+        log.info("Resetting password for {}", rollNumber);
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
-                .orElseThrow(() -> new BusinessException(
-                        ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber));
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber));
 
         Map<String, String> errors = new LinkedHashMap<>();
 
@@ -266,23 +210,73 @@ public class StudentServiceImpl implements StudentService {
                 "PASSWORD-UPDATE"
         );
 
-        return success(String.format(SuccessMessageConstants.STUDENT_PASSWORD_RESET,student.getRollNumber()),HttpStatus.ACCEPTED
+        return success(
+                SuccessMessageConstants.STUDENT_PASSWORD_RESET.format(student.getRollNumber()),
+                HttpStatus.ACCEPTED
         );
     }
 
-	@Override
-	public ResponseEntity<?> getProfile(String identifier) {
-		log.info("StudentServiceImpl::getProfile called for {}", identifier);
+    // Get Profile
+    @Override
+    public ResponseEntity<?> getProfile(String identifier) {
 
-		StudentInfo student = studentRepository.findByRollNumber(identifier)
-				.orElseThrow(() ->
-						new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, identifier)
-				);
+        log.info("Fetching profile for {}", identifier);
 
-		return success(
-				String.format(SuccessMessageConstants.STUDENT_FETCH_SUCCESS, identifier),
-				StudentMapper.toResponse(student)
-		);
-	}
+        StudentInfo student = studentRepository.findByRollNumber(identifier)
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, identifier));
 
+        return success(
+                SuccessMessageConstants.STUDENT_FETCH_SUCCESS.format(identifier),
+                StudentMapper.toResponse(student)
+        );
+    }
+
+
+    // Success response builder
+    private ResponseEntity<?> success(String message, Object data, HttpStatus status) {
+        return ResponseEntity.status(status).body(
+                SuccessResponse.builder()
+                        .status("SUCCESS")
+                        .message(message)
+                        .data(data)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
+    }
+
+    private ResponseEntity<?> success(String message, Object data) {
+        return success(message, data, HttpStatus.OK);
+    }
+
+    private ResponseEntity<?> success(String message, HttpStatus status) {
+        return success(message, null, status);
+    }
+
+    // Validation logic
+    private void validateStudent(StudentRequest request, Long currentId) {
+
+        Map<String, String> errors = new LinkedHashMap<>();
+
+        validator.validate(request).forEach(v ->
+                errors.put(v.getPropertyPath().toString(), v.getMessage())
+        );
+
+        studentRepository.findByEmail(request.getEmail())
+                .filter(s -> !s.getId().equals(currentId))
+                .ifPresent(s -> errors.put(ResponseKeys.EMAIL,
+                        String.format("Email '%s' is already registered.", request.getEmail()))
+                );
+
+        studentRepository.findByRollNumber(request.getRollNumber())
+                .filter(s -> !s.getId().equals(currentId))
+                .ifPresent(s -> errors.put(ResponseKeys.ROLL_NUMBER,
+                        String.format("Roll Number '%s' is already registered.", request.getRollNumber()))
+                );
+
+        if (!errors.isEmpty()) {
+            throw new ValidationException(errors);
+        }
+    }
+
+	
 }
