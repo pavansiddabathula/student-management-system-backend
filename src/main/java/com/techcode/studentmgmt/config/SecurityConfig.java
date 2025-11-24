@@ -30,7 +30,13 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**", "/api/students/register","/admin/create").permitAll()
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**",
+						"/api/students/register",
+						"/admin/create",
+						"/api/auth/forgot-password",
+                        "/api/auth/verify-otp",
+                        "/api/auth/set-password").permitAll()
+						
 						.requestMatchers("/api/admin/**").hasRole("ADMIN").requestMatchers("/api/student/**")
 						.hasRole("STUDENT").anyRequest().authenticated())
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(customAuthenticationEntryPoint)
