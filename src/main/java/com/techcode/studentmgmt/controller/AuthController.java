@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techcode.studentmgmt.dto.requestdto.AdminLoginRequest;
 import com.techcode.studentmgmt.dto.requestdto.AuthRequest;
+import com.techcode.studentmgmt.dto.requestdto.ForgotPasswordRequest;
+import com.techcode.studentmgmt.dto.requestdto.OtpVerifyRequest;
+import com.techcode.studentmgmt.dto.requestdto.SetPasswordRequest;
 import com.techcode.studentmgmt.dto.responsedto.AuthResponse;
 import com.techcode.studentmgmt.service.AuthService;
 
@@ -15,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("api/auth")
 @RequiredArgsConstructor
 @Slf4j
 public class AuthController {
@@ -36,5 +39,23 @@ public class AuthController {
     public ResponseEntity<AuthResponse> studentLogin(@RequestBody AuthRequest request) {
         log.info("Student login attempt: {}", request.getRollNumber());
         return authService.studentLogin(request);
+    }
+    
+    /** Forgot Password endpoint */
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+        return authService.forgotPassword(request);
+    }
+  
+    /** Verify OTP endpoint */
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> verifyOtp(@RequestBody OtpVerifyRequest request) {
+        return authService.verifyOtp(request);
+    }
+
+    /** Set New Password endpoint */
+    @PostMapping("/set-password")
+    public ResponseEntity<?> setPassword(@RequestBody SetPasswordRequest request) {
+        return authService.setPassword(request);
     }
 }
