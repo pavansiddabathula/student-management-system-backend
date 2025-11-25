@@ -30,6 +30,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(csrf -> csrf.disable())
+		//.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**",
 						"/api/students/register",
 						"/admin/create",
@@ -38,9 +39,10 @@ public class SecurityConfig {
                         "/api/auth/set-password").permitAll()
 						
 						.requestMatchers("/api/admin/**").hasRole("ADMIN").requestMatchers("/api/student/**")
-						.hasRole("STUDENT").anyRequest().authenticated())
+						.hasRole("STUDENT").anyRequest().permitAll())				
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(customAuthenticationEntryPoint)
-						.accessDeniedHandler(customAccessDeniedHandler))
+					.accessDeniedHandler(customAccessDeniedHandler))
+				
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();

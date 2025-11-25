@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -180,7 +182,7 @@ public class StudentServiceImpl implements StudentService {
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
                 .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber));
-
+          
         Map<String, String> errors = new LinkedHashMap<>();
 
         if (!encoder.matches(req.getOldPassword(), student.getPassword())) {
@@ -196,7 +198,8 @@ public class StudentServiceImpl implements StudentService {
         }
 
         if (!errors.isEmpty()) {
-            throw new ValidationException(errors);
+           throw new ValidationException(errors);
+        
         }
 
         student.setPassword(encoder.encode(req.getNewPassword()));
@@ -274,7 +277,8 @@ public class StudentServiceImpl implements StudentService {
                 );
 
         if (!errors.isEmpty()) {
-            throw new ValidationException(errors);
+            //throw new ValidationException(errors);
+        	throw new RuntimeException();
         }
     }
 

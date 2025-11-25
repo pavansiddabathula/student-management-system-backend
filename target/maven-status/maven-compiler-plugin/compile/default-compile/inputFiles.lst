@@ -1,6 +1,7 @@
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\ApiTimingFilter.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\AsyncConfig.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\CacheConfig.java
+E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\CorsConfig.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\ObjectMapperConfig.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\config\SecurityConfig.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\constants\ErrorCodeEnums.java
@@ -8,7 +9,6 @@ E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgm
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\constants\SuccessMessageConstants.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\controller\AdminController.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\controller\AuthController.java
-E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\controller\EmailTestController.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\controller\StudentController.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\dto\package-info.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\dto\requestdto\AdminLoginRequest.java
@@ -23,6 +23,7 @@ E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgm
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\dto\responsedto\AdminResponse.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\dto\responsedto\AuthResponse.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\dto\responsedto\ErrorResponse.java
+E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\dto\responsedto\OtpSuccessResponse.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\dto\responsedto\StudentResponse.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\dto\responsedto\SuccessResponse.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\entity\AdminInfo.java

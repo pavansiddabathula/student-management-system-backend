@@ -1,5 +1,6 @@
 package com.techcode.studentmgmt.controller;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("api/auth")
+@CrossOrigin(origins = "http://localhost:4001") 
 @RequiredArgsConstructor
 @Slf4j
 public class AuthController {

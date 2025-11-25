@@ -5,6 +5,7 @@ com\techcode\studentmgmt\dto\responsedto\SuccessResponse.class
 com\techcode\studentmgmt\config\ApiTimingFilter.class
 com\techcode\studentmgmt\dto\requestdto\AdminPasswordResetRequest.class
 com\techcode\studentmgmt\dto\responsedto\ErrorResponse.class
+com\techcode\studentmgmt\config\CorsConfig$1.class
 com\techcode\studentmgmt\controller\StudentController.class
 com\techcode\studentmgmt\dto\requestdto\AdminLoginRequest.class
 com\techcode\studentmgmt\secuirty\JwtUtil.class
@@ -20,7 +21,6 @@ com\techcode\studentmgmt\service\StudentServiceImpl.class
 com\techcode\studentmgmt\controller\AdminController.class
 com\techcode\studentmgmt\controller\AuthController.class
 com\techcode\studentmgmt\service\AdminServiceImpl.class
-com\techcode\studentmgmt\controller\EmailTestController.class
 com\techcode\studentmgmt\repository\AdminRepository.class
 com\techcode\studentmgmt\dto\responsedto\AdminResponse$AdminResponseBuilder.class
 com\techcode\studentmgmt\dto\responsedto\StudentResponse$StudentResponseBuilder.class
@@ -31,6 +31,7 @@ com\techcode\studentmgmt\constants\ErrorCodeEnums.class
 com\techcode\studentmgmt\secuirty\JwtFilter.class
 com\techcode\studentmgmt\studentmgmtApplication.class
 com\techcode\studentmgmt\dto\requestdto\SetPasswordRequest.class
+com\techcode\studentmgmt\config\CorsConfig.class
 com\techcode\studentmgmt\config\ObjectMapperConfig.class
 com\techcode\studentmgmt\repository\StudentRepository.class
 com\techcode\studentmgmt\service\AdminService.class
@@ -42,8 +43,10 @@ com\techcode\studentmgmt\utils\MaskUtil.class
 com\techcode\studentmgmt\exceptions\BusinessException.class
 com\techcode\studentmgmt\secuirty\AdminCustomUserDetails.class
 com\techcode\studentmgmt\constants\SuccessMessageConstants.class
+com\techcode\studentmgmt\dto\responsedto\OtpSuccessResponse.class
 com\techcode\studentmgmt\config\SecurityConfig.class
 com\techcode\studentmgmt\exceptions\GlobalExceptionHandler.class
+com\techcode\studentmgmt\dto\responsedto\OtpSuccessResponse$OtpSuccessResponseBuilder.class
 com\techcode\studentmgmt\exceptions\ValidationException.class
 com\techcode\studentmgmt\modelmappers\AdminMapper.class
 com\techcode\studentmgmt\constants\ResponseKeys.class

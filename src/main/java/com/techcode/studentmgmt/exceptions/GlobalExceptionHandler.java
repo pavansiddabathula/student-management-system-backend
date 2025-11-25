@@ -23,11 +23,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestControllerAdvice
 @Slf4j
+
 public class GlobalExceptionHandler {
 
-	/*
-	 * 1. DTO Validation Errors (@Valid)
-	 */
+	// Handle validation errors for invalid request fields
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<?> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
 
@@ -48,9 +47,7 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(ErrorCodeEnums.VALIDATION_ERROR.getStatus()).body(response);
 	}
 
-	/*
-	 * 2. Business Validation Errors (duplicate checks)
-	 */
+	// Handle custom validation exceptions (business rule validations)
 	@ExceptionHandler(ValidationException.class)
 	public ResponseEntity<?> handleValidationException(ValidationException ex) {
 
@@ -63,26 +60,19 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(ErrorCodeEnums.VALIDATION_ERROR.getStatus()).body(response);
 	}
 
-	/*
-	 * 3. BusinessException (dynamic messages)
-	 */
+	// Handle business logic exceptions with dynamic messages
 	@ExceptionHandler(BusinessException.class)
 	public ResponseEntity<?> handleBusinessException(BusinessException ex) {
 
 		log.warn("Business exception caught: {}", ex.getErrorCode());
 
 		ErrorResponse response = ErrorResponse.builder().status("FAILURE").errorCode(ex.getErrorCode().getCode())
-				.errorMessage(ex.getFormattedMessage()).timestamp(LocalDateTime.now()).build();
+				.errorMessage(ex.getMessage()).timestamp(LocalDateTime.now()).build();
 
 		return ResponseEntity.status(ex.getErrorCode().getStatus()).body(response);
 	}
 
-	/*
-	 * -- 4. Spring Database Exception (DB down, query failure)
-	 * ----------------------------------------------------
-	 */
-
-
+	// Handle database-related failures (DB down, wrong queries, connectivity errors)
 	@ExceptionHandler({ CannotCreateTransactionException.class, SQLGrammarException.class,
 			JDBCConnectionException.class, JpaSystemException.class, DataAccessException.class })
 	public ResponseEntity<?> handleDBErrors(Exception ex) {
@@ -95,6 +85,7 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(ErrorCodeEnums.DATABASE_ERROR.getStatus()).body(response);
 	}
 	
+	// Handle database-related failures (DB down, wrong queries, connectivity errors)
 	@ExceptionHandler(AccessDeniedException.class)
 	public ResponseEntity<?> handleAccessDenied(AccessDeniedException ex) {
 
@@ -111,10 +102,8 @@ public class GlobalExceptionHandler {
 	}
 
 
-	/*
-	 * 5. Generic / Unexpected Exceptions
-	 */
-	@ExceptionHandler(Exception.class)
+	// Handle database-related failures (DB down, wrong queries, connectivity errors)
+	/*@ExceptionHandler(Exception.class)
 	public ResponseEntity<?> handleGlobalException(Exception ex) {
 
 		log.error("Unexpected exception caught: ", ex);
@@ -124,6 +113,7 @@ public class GlobalExceptionHandler {
 				.errorMessage(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getMessage()).timestamp(LocalDateTime.now()).build();
 
 		return ResponseEntity.status(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getStatus()).body(response);
-	}
+	
+	}*/
 
 }
