@@ -2,6 +2,7 @@ package com.techcode.studentmgmt.service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,16 +14,17 @@ import org.springframework.stereotype.Service;
 import com.techcode.studentmgmt.constants.ErrorCodeEnums;
 import com.techcode.studentmgmt.constants.SuccessMessageConstants;
 import com.techcode.studentmgmt.dto.requestdto.AdminLoginRequest;
-import com.techcode.studentmgmt.dto.requestdto.AuthRequest;
 import com.techcode.studentmgmt.dto.requestdto.ForgotPasswordRequest;
 import com.techcode.studentmgmt.dto.requestdto.OtpVerifyRequest;
 import com.techcode.studentmgmt.dto.requestdto.SetPasswordRequest;
+import com.techcode.studentmgmt.dto.requestdto.StudentLoginRequest;
 import com.techcode.studentmgmt.dto.responsedto.AuthResponse;
 import com.techcode.studentmgmt.dto.responsedto.OtpSuccessResponse;
 import com.techcode.studentmgmt.dto.responsedto.SuccessResponse;
 import com.techcode.studentmgmt.entity.AdminInfo;
 import com.techcode.studentmgmt.entity.StudentInfo;
 import com.techcode.studentmgmt.exceptions.BusinessException;
+import com.techcode.studentmgmt.exceptions.ValidationException;
 import com.techcode.studentmgmt.repository.AdminRepository;
 import com.techcode.studentmgmt.repository.StudentRepository;
 import com.techcode.studentmgmt.secuirty.JwtUtil;
@@ -48,6 +50,8 @@ public class AuthServiceImpl implements AuthService {
 	public ResponseEntity<?> adminLogin(AdminLoginRequest request) {
 
 		log.info("Admin login attempt for ID: {}", request.getAdminid());
+		
+		validateAdminLogin(request);
 
 		AdminInfo admin = adminRepo.findByAdminId(request.getAdminid()).orElseThrow(() -> {
 			log.error("Admin not found for ID: {}", request.getAdminid());
@@ -65,9 +69,11 @@ public class AuthServiceImpl implements AuthService {
 
 	// Student login
 	@Override
-	public ResponseEntity<AuthResponse> studentLogin(AuthRequest request) {
+	public ResponseEntity<?> studentLogin(StudentLoginRequest request) {
 
 		log.info("Student login attempt for roll: {}", request.getRollNumber());
+		validateStudentLogin(request);
+	
 
 		StudentInfo student = studentRepo.findByRollNumber(request.getRollNumber()).orElseThrow(() -> {
 			log.error("Student not found for roll number: {}", request.getRollNumber());
@@ -81,6 +87,7 @@ public class AuthServiceImpl implements AuthService {
 
 		log.info("Student login successful for roll: {}", request.getRollNumber());
 		return ResponseEntity.ok(generateStudentToken(student));
+		//return success(null,generateStudentToken(student),HttpStatus.CREATED);
 	}
 
 	// Generate Admin JWT
@@ -205,4 +212,44 @@ public class AuthServiceImpl implements AuthService {
 	private ResponseEntity<?> success(String message, HttpStatus status) {
 		return success(message, null, status);
 	}
+	
+	public void validateAdminLogin(AdminLoginRequest request) {
+
+	    Map<String, String> errors = new LinkedHashMap<>();
+
+	    // Admin ID business rules
+	    if (!request.getAdminid().matches("^[A-Za-z0-9]{6}$")) {
+	        errors.put("adminid", "Admin ID must be exactly 6 alphanumeric characters");
+	    }
+
+	    // Password business rules
+	    if (request.getPassword().trim().length() < 8) {
+	        errors.put("password", "Password must be at least 8 characters long");
+	    }
+
+	    if (!errors.isEmpty()) {
+	        throw new ValidationException(errors);
+	    }
+	}
+	
+	public void validateStudentLogin(StudentLoginRequest request) {
+
+	    Map<String, String> errors = new LinkedHashMap<>();
+
+	    // Roll Number must be 10 characters
+	    if (request.getRollNumber() == null || request.getRollNumber().length() != 10) {
+	        errors.put("rollNumber", "Roll Number must be exactly 10 characters");
+	    }
+
+	    // Password minimum 8 characters
+	    if (request.getPassword() == null || request.getPassword().trim().length() < 8) {
+	        errors.put("password", "Password must be at least 8 characters long");
+	    }
+
+	    if (!errors.isEmpty()) {
+	        throw new ValidationException(errors);
+	    }
+	}
+
+
 }

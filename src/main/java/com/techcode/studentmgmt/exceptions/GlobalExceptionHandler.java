@@ -102,7 +102,7 @@ public class GlobalExceptionHandler {
 	}
 
 
-	// Handle database-related failures (DB down, wrong queries, connectivity errors)
+	// Handle Unexpected exceptions
 	/*@ExceptionHandler(Exception.class)
 	public ResponseEntity<?> handleGlobalException(Exception ex) {
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techcode.studentmgmt.dto.requestdto.AdminLoginRequest;
-import com.techcode.studentmgmt.dto.requestdto.AuthRequest;
+import com.techcode.studentmgmt.dto.requestdto.StudentLoginRequest;
 import com.techcode.studentmgmt.dto.requestdto.ForgotPasswordRequest;
 import com.techcode.studentmgmt.dto.requestdto.OtpVerifyRequest;
 import com.techcode.studentmgmt.dto.requestdto.SetPasswordRequest;
@@ -38,7 +38,7 @@ public class AuthController {
     
     /** Student login endpoint */
     @PostMapping("/student/login")
-    public ResponseEntity<AuthResponse> studentLogin(@RequestBody AuthRequest request) {
+    public ResponseEntity<?> studentLogin(@RequestBody StudentLoginRequest request) {
         log.info("Student login attempt: {}", request.getRollNumber());
         return authService.studentLogin(request);
     }

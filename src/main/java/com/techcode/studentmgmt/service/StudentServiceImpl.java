@@ -277,8 +277,8 @@ public class StudentServiceImpl implements StudentService {
                 );
 
         if (!errors.isEmpty()) {
-            //throw new ValidationException(errors);
-        	throw new RuntimeException();
+            throw new ValidationException(errors);
+        	//throw new RuntimeException();
         }
     }
 
