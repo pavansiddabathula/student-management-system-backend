@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techcode.studentmgmt.dto.requestdto.StudentPasswordResetRequest;
 import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
 import com.techcode.studentmgmt.service.StudentService;
+import com.techcode.studentmgmt.utils.EmailUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentController {
 
     private final StudentService studentService;
+    private final EmailUtil emailUtil;
   
+    
     // Create a new student
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
@@ -36,7 +39,7 @@ public class StudentController {
         log.info("StudentController::registerStudent called");
         return studentService.registerStudent(request);
     }
-
+    
     // Get all students (Only ADMIN)
     @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
@@ -81,7 +84,7 @@ public class StudentController {
 
     // Update student
     @PutMapping("/update/{rollNumber}")
-    @PreAuthorize("hasRole('ADMIN','STUDENT')")
+    @PreAuthorize("hasAnyRole('STUDENT','ADMIN')")
     public ResponseEntity<?> updateStudent(
             @PathVariable String rollNumber,
             @RequestBody StudentRequest request) {
@@ -102,5 +105,13 @@ public class StudentController {
 
         log.info("StudentController::resetStudentPassword called");
         return studentService.resetPasswordByRollNumber(rollNumber, request);
+    }
+    
+    
+    @GetMapping("/alll")
+    public void mailtesting() {
+        log.info("StudentController::getAllStudents called");
+        //emailUtil.sendPasswordMail( "jayaramsiddabathula@gmail.com","Sulaga gopi kishore ","ADM004","q*c*%XM9s3","ADMIN");
+        emailUtil.sendPasswordChangeAlert("pavansiddabathula@gmail.com","Saikumar", "21481A05K6", "STUDENT");
     }
 }

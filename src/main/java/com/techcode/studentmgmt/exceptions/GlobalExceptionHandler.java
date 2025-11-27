@@ -113,7 +113,7 @@ public class GlobalExceptionHandler {
 				.errorMessage(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getMessage()).timestamp(LocalDateTime.now()).build();
 
 		return ResponseEntity.status(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getStatus()).body(response);
-	
+
 	}*/
 
 }

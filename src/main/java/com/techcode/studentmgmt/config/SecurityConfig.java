@@ -38,8 +38,8 @@ public class SecurityConfig {
                         "/api/auth/verify-otp",
                         "/api/auth/set-password").permitAll()
 						
-						.requestMatchers("/api/admin/**").hasRole("ADMIN").requestMatchers("/api/student/**")
-						.hasRole("STUDENT").anyRequest().permitAll())				
+						.requestMatchers("/api/admin/**").hasRole("ADMIN")
+						.requestMatchers("/api/students/**").hasAnyRole("STUDENT","ADMIN").anyRequest().permitAll())				
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(customAuthenticationEntryPoint)
 					.accessDeniedHandler(customAccessDeniedHandler))
 				

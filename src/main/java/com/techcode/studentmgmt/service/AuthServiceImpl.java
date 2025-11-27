@@ -134,23 +134,48 @@ public class AuthServiceImpl implements AuthService {
 	        throw new BusinessException(ErrorCodeEnums.OTP_NOT_VERIFIED, req.getIdentifier());
 	    }
 
-	    // validate password match logic here...
+	    String email = null;
+	    String userName = null;    // fullName
+	    String userId = null;      // rollNumber or adminId
+	    String role = null;
 
 	    boolean isAdmin = req.getIdentifier().startsWith("ADM");
 
+	    // ADMIN PASSWORD UPDATE
 	    if (isAdmin) {
+
 	        AdminInfo admin = adminRepo.findByAdminId(req.getIdentifier())
 	                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND, req.getIdentifier()));
+
 	        admin.setPassword(encoder.encode(req.getNewPassword()));
 	        adminRepo.save(admin);
+
+	        // Set mail details
+	        email = admin.getEmail();
+	        userName = admin.getName();
+	        userId = admin.getAdminId();
+	        role = "ADMIN";
+
 	    } else {
+
+	        // STUDENT PASSWORD UPDATE
 	        StudentInfo student = studentRepo.findByRollNumber(req.getIdentifier())
 	                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, req.getIdentifier()));
+
 	        student.setPassword(encoder.encode(req.getNewPassword()));
 	        studentRepo.save(student);
+
+	        // Set mail details
+	        email = student.getEmail();
+	        userName = student.getFullName();
+	        userId = student.getRollNumber();
+	        role = "STUDENT";
 	    }
 
-	    otpService.clearVerification(req.getIdentifier());  // remove verification flag
+	    otpService.clearVerification(req.getIdentifier());
+
+	    // correct order: (email, fullName, userId, role)
+	    emailUtil.sendPasswordChangeAlert(email, userName, userId, role);
 
 	    return success(
 	            SuccessMessageConstants.PASSWORD_UPDATE_SUCCESS.format(req.getIdentifier()),

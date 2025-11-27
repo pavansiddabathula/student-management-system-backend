@@ -74,7 +74,7 @@ public class StudentServiceImpl implements StudentService {
         );
 
         return success(
-                SuccessMessageConstants.STUDENT_REGISTER_SUCCESS.format(response.getRollNumber()),
+                SuccessMessageConstants.STUDENT_REGISTER_SUCCESS.format(response.getRollNumber(),response.getEmail()),
                 response,
                 HttpStatus.CREATED
         );
@@ -82,7 +82,7 @@ public class StudentServiceImpl implements StudentService {
 
     // Get all students
     @Override
-    @Cacheable(value = "studentList")
+    //@Cacheable(value = "studentList")
     public ResponseEntity<?> getAllStudents() {
 
         log.info("Fetching all student records");
@@ -91,7 +91,7 @@ public class StudentServiceImpl implements StudentService {
                 .stream()
                 .map(StudentMapper::toResponse)
                 .collect(Collectors.toList());
-
+        log.info("Fetching all student records {}" ,students);
         if (students.isEmpty()) {
             return success(SuccessMessageConstants.STUDENTS_EMPTY.getMessage(), students);
         }
@@ -107,7 +107,7 @@ public class StudentServiceImpl implements StudentService {
     @Cacheable(value = "studentByRoll", key = "#rollNumber")
     public ResponseEntity<?> getStudentByRollNumber(String rollNumber) {
 
-        log.info("Fetching student by roll {}", rollNumber);
+       log.info("Fetching student by roll {}", rollNumber);
 
         StudentInfo student = studentRepository.findByRollNumber(rollNumber)
                 .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, rollNumber));
@@ -146,7 +146,7 @@ public class StudentServiceImpl implements StudentService {
 
         return success(
                 SuccessMessageConstants.STUDENT_DELETE_SUCCESS.format(rollNumber),
-                null
+                HttpStatus.CREATED
         );
     }
 
@@ -269,16 +269,17 @@ public class StudentServiceImpl implements StudentService {
                 .ifPresent(s -> errors.put(ResponseKeys.EMAIL,
                         String.format("Email '%s' is already registered.", request.getEmail()))
                 );
-
         studentRepository.findByRollNumber(request.getRollNumber())
                 .filter(s -> !s.getId().equals(currentId))
                 .ifPresent(s -> errors.put(ResponseKeys.ROLL_NUMBER,
                         String.format("Roll Number '%s' is already registered.", request.getRollNumber()))
                 );
-
         if (!errors.isEmpty()) {
-            throw new ValidationException(errors);
+        	
+           throw new ValidationException(errors);
+        	
         	//throw new RuntimeException();
+            
         }
     }
 

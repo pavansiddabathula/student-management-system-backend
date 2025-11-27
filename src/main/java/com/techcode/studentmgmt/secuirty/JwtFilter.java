@@ -2,8 +2,6 @@ package com.techcode.studentmgmt.secuirty;
 
 import java.io.IOException;
 
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,64 +19,70 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
     private final CustomUserDetailsService userDetailsService;
-    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
-    private final CustomAccessDeniedHandler customAccessDeniedHandler;
-    
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    FilterChain chain)
+                                    FilterChain filterChain)
             throws ServletException, IOException {
 
-    	try {
-    	    String header = request.getHeader("Authorization");
-    	    String token = null;
-    	    String identifier = null;
+        String header = request.getHeader("Authorization");
 
-    	    if (header != null && header.startsWith("Bearer ")) {
-    	        token = header.substring(7);
-    	        identifier = jwtUtil.extractUsername(token);
-    	    }
+        // 1️ Missing Authorization header
+        if (header == null || !header.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-    	    if (identifier != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-    	        UserDetails userDetails = userDetailsService.loadUserByUsername(identifier);
+        String token = header.substring(7);
 
-    	        if (jwtUtil.validateToken(token)) {
-    	            UsernamePasswordAuthenticationToken authToken =
-    	                    new UsernamePasswordAuthenticationToken(
-    	                            userDetails, null, userDetails.getAuthorities());
+        // 2️ Empty token case (Bearer <space>)
+        if (token == null || token.trim().isEmpty()) {
+            log.warn("⚠️ Empty token received");
+            request.setAttribute("INVALID_TOKEN", true);
+            SecurityContextHolder.clearContext();
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-    	            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-    	            SecurityContextHolder.getContext().setAuthentication(authToken);
-    	        }
-    	    }
+        try {
+            // 3️ Extract username
+            String username = jwtUtil.extractUsername(token);
 
-    	    chain.doFilter(request, response);
+            // 4️ Authenticate if not already authenticated
+            if (username != null &&
+                SecurityContextHolder.getContext().getAuthentication() == null) {
 
-    	} catch (ExpiredJwtException ex) {
-    	    log.error("⏳ JWT Expired: {}", ex.getMessage());
-    	    customAuthenticationEntryPoint.commence(
-    	            request, response, new BadCredentialsException("TOKEN_EXPIRED")
-    	    );
-    	    return;
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-    	} catch (AccessDeniedException ex) {
-    	    log.error("⛔ Access Denied inside JWT filter: {}", ex.getMessage());
-    	    customAccessDeniedHandler.handle(request, response, ex);
-    	    
+                if (jwtUtil.validateToken(token)) {
 
-    	} catch (JwtException ex) {
-    	    log.error("❌ Invalid JWT: {}", ex.getMessage());
-    	    customAuthenticationEntryPoint.commence(
-    	            request, response, new BadCredentialsException("INVALID_TOKEN")
-    	    );
-    	    return;
-    	}
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(
+                                    userDetails, null, userDetails.getAuthorities());
+
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
+            }
+
+        } catch (ExpiredJwtException ex) {
+            log.error(" Token expired");
+            request.setAttribute("TOKEN_EXPIRED", true);
+            SecurityContextHolder.clearContext();
+
+        } catch (JwtException ex) {
+            log.error(" Invalid JWT: {}", ex.getMessage());
+            request.setAttribute("INVALID_TOKEN", true);
+            SecurityContextHolder.clearContext();
+        }
+
+        filterChain.doFilter(request, response);
     }
 }

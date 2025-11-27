@@ -1,5 +1,4 @@
 com\techcode\studentmgmt\service\AuthService.class
-com\techcode\studentmgmt\dto\requestdto\AuthRequest.class
 com\techcode\studentmgmt\entity\AdminInfo.class
 com\techcode\studentmgmt\dto\responsedto\SuccessResponse.class
 com\techcode\studentmgmt\config\ApiTimingFilter.class
@@ -36,6 +35,7 @@ com\techcode\studentmgmt\config\ObjectMapperConfig.class
 com\techcode\studentmgmt\repository\StudentRepository.class
 com\techcode\studentmgmt\service\AdminService.class
 com\techcode\studentmgmt\dto\responsedto\AuthResponse.class
+com\techcode\studentmgmt\dto\requestdto\StudentLoginRequest.class
 com\techcode\studentmgmt\secuirty\CustomUserDetailsService.class
 com\techcode\studentmgmt\dto\package-info.class
 com\techcode\studentmgmt\dto\responsedto\StudentResponse.class

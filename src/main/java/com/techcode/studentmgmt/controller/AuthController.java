@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techcode.studentmgmt.dto.requestdto.AdminLoginRequest;
-import com.techcode.studentmgmt.dto.requestdto.StudentLoginRequest;
 import com.techcode.studentmgmt.dto.requestdto.ForgotPasswordRequest;
 import com.techcode.studentmgmt.dto.requestdto.OtpVerifyRequest;
 import com.techcode.studentmgmt.dto.requestdto.SetPasswordRequest;
-import com.techcode.studentmgmt.dto.responsedto.AuthResponse;
+import com.techcode.studentmgmt.dto.requestdto.StudentLoginRequest;
 import com.techcode.studentmgmt.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,14 +26,13 @@ public class AuthController {
 
     private final AuthService authService;
     
-    
     /** Admin login endpoint */
     @PostMapping("/admin/login")
     public ResponseEntity<?> adminLogin(@RequestBody AdminLoginRequest request) {
         log.info("Admin login attempt: {}", request.getAdminid());
         return authService.adminLogin(request);
     }
-
+    
     
     /** Student login endpoint */
     @PostMapping("/student/login")

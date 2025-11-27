@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum SuccessMessageConstants {
 
-    STUDENT_REGISTER_SUCCESS("Student registered successfully with roll number %s."),
+	STUDENT_REGISTER_SUCCESS("Student registered successfully (Roll No: %s). Login details sent to %s."),
     STUDENT_FETCH_SUCCESS("Student details fetched successfully for roll number %s."),
     STUDENTS_FETCH_SUCCESS("Total %d student record(s) fetched successfully."),
     STUDENTS_EMPTY("No student records found."),
@@ -34,5 +34,6 @@ public enum SuccessMessageConstants {
     public String format(Object... args) {
         return String.format(this.message, args);
     }
+   
 }
 
