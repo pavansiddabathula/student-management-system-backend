@@ -57,7 +57,6 @@ com\techcode\studentmgmt\config\CacheConfig.class
 com\techcode\studentmgmt\secuirty\CustomUserDetails.class
 com\techcode\studentmgmt\dto\requestdto\StudentPasswordResetRequest.class
 com\techcode\studentmgmt\dto\requestdto\AdminRequest.class
-com\techcode\studentmgmt\pojo\package-info.class
 com\techcode\studentmgmt\dto\requestdto\ForgotPasswordRequest.class
 com\techcode\studentmgmt\config\AsyncConfig.class
 com\techcode\studentmgmt\dto\responsedto\AuthResponse$AuthResponseBuilder.class

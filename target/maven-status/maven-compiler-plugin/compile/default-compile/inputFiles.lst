@@ -34,7 +34,6 @@ E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgm
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\exceptions\ValidationException.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\modelmappers\AdminMapper.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\modelmappers\StudentMapper.java
-E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\pojo\package-info.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\repository\AdminRepository.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\repository\StudentRepository.java
 E:\Spring-Workspace\student-management-jpa\src\main\java\com\techcode\studentmgmt\secuirty\AdminCustomUserDetails.java

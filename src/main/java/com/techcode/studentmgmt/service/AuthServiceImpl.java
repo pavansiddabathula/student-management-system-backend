@@ -117,21 +117,33 @@ public class AuthServiceImpl implements AuthService {
 	// Verify OTP
 	@Override
 	public ResponseEntity<?> verifyOtp(OtpVerifyRequest req) {
-
-		if (!otpService.validateOtp(req.getIdentifier(), req.getOtp())) {
-			throw new BusinessException(ErrorCodeEnums.INVALID_OTP, req.getIdentifier());
+	     String identifier = req.getIdentifier();
+		if (!otpService.validateOtp(identifier, req.getOtp())) {
+			throw new BusinessException(ErrorCodeEnums.INVALID_OTP,identifier);
 		}
-		return success(SuccessMessageConstants.OTP_VERIFIED_SUCCESS.format(req.getIdentifier()), null, HttpStatus.OK);
+		
+		return ResponseEntity.status(HttpStatus.OK)
+		        .body(
+		            OtpSuccessResponse.builder()
+		                .status("SUCCESS")
+		                .identifier(identifier)
+		                .message(SuccessMessageConstants.OTP_VERIFIED_SUCCESS.format(identifier))
+		                .returnurl("http://localhost:3000/set-password")
+		                .expiryTime(LocalDateTime.now().plusMinutes(5))
+		                .timestamp(LocalDateTime.now())
+		                .build());
+
 	}
 
 	// Set Password
 	@Override
 	public ResponseEntity<?> setPassword(SetPasswordRequest req) {
+	    
+     String identifier = req.getIdentifier();
+	    log.info("AuthServiceImpl::setPassword {}", identifier);
 
-	    log.info("AuthServiceImpl::setPassword {}", req.getIdentifier());
-
-	    if (!otpService.isOtpVerified(req.getIdentifier())) {
-	        throw new BusinessException(ErrorCodeEnums.OTP_NOT_VERIFIED, req.getIdentifier());
+	    if (!otpService.isOtpVerified(identifier)) {
+	        throw new BusinessException(ErrorCodeEnums.OTP_NOT_VERIFIED, identifier);
 	    }
 
 	    String email = null;
@@ -139,13 +151,13 @@ public class AuthServiceImpl implements AuthService {
 	    String userId = null;      // rollNumber or adminId
 	    String role = null;
 
-	    boolean isAdmin = req.getIdentifier().startsWith("ADM");
+	    boolean isAdmin = identifier.startsWith("ADM");
 
 	    // ADMIN PASSWORD UPDATE
 	    if (isAdmin) {
 
-	        AdminInfo admin = adminRepo.findByAdminId(req.getIdentifier())
-	                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND, req.getIdentifier()));
+	        AdminInfo admin = adminRepo.findByAdminId(identifier)
+	                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND,identifier));
 
 	        admin.setPassword(encoder.encode(req.getNewPassword()));
 	        adminRepo.save(admin);
@@ -159,8 +171,8 @@ public class AuthServiceImpl implements AuthService {
 	    } else {
 
 	        // STUDENT PASSWORD UPDATE
-	        StudentInfo student = studentRepo.findByRollNumber(req.getIdentifier())
-	                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, req.getIdentifier()));
+	        StudentInfo student = studentRepo.findByRollNumber(identifier)
+	                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND,identifier));
 
 	        student.setPassword(encoder.encode(req.getNewPassword()));
 	        studentRepo.save(student);
@@ -172,13 +184,13 @@ public class AuthServiceImpl implements AuthService {
 	        role = "STUDENT";
 	    }
 
-	    otpService.clearVerification(req.getIdentifier());
+	    otpService.clearVerification(identifier);
 
 	    // correct order: (email, fullName, userId, role)
 	    emailUtil.sendPasswordChangeAlert(email, userName, userId, role);
 
 	    return success(
-	            SuccessMessageConstants.PASSWORD_UPDATE_SUCCESS.format(req.getIdentifier()),
+	            SuccessMessageConstants.PASSWORD_UPDATE_SUCCESS.format(identifier),
 	            null,
 	            HttpStatus.ACCEPTED
 	    );
@@ -189,15 +201,17 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public ResponseEntity<?> forgotPassword(ForgotPasswordRequest req) {
 
-		log.info("Processing forgot password for {}", req.getIdentifier());
+		
 		String email;
 		String fullName;
 
 		boolean isAdmin = req.getIdentifier().startsWith("ADM");
+		
+		log.info("Processing forgot password for {}",req.getIdentifier());
 
 		if (isAdmin) {
 			AdminInfo admin = adminRepo.findByAdminId(req.getIdentifier())
-					.orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND, req.getIdentifier()));
+					.orElseThrow(() -> new BusinessException(ErrorCodeEnums.ADMIN_NOT_FOUND,req.getIdentifier()));
 			email = admin.getEmail();
 			fullName = admin.getName();
 		} else {
@@ -216,6 +230,7 @@ public class AuthServiceImpl implements AuthService {
 		                .status("SUCCESS")
 		                .identifier(req.getIdentifier())
 		                .message(SuccessMessageConstants.OTP_SENT_SUCCESS.format(email))
+		                .returnurl("http://localhost:3000/verify-otp")
 		                .expiryTime(LocalDateTime.now().plusMinutes(5))
 		                .timestamp(LocalDateTime.now())
 		                .build());

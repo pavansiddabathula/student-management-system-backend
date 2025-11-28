@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class ForgotPasswordRequest {
-    private String identifier; // Roll or Admin ID
+    // Roll or Admin ID
+	private String identifier;
     private String email;
     
 }

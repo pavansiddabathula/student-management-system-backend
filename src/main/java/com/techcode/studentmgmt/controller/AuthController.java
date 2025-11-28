@@ -1,5 +1,6 @@
 package com.techcode.studentmgmt.controller;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("api/auth")
-@CrossOrigin(origins = "http://localhost:4001") 
+@CrossOrigin(origins = "http://localhost:3000") 
 @RequiredArgsConstructor
 @Slf4j
 public class AuthController {
@@ -44,18 +45,23 @@ public class AuthController {
     /** Forgot Password endpoint */
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+        
         return authService.forgotPassword(request);
     }
   
     /** Verify OTP endpoint */
     @PostMapping("/verify-otp")
     public ResponseEntity<?> verifyOtp(@RequestBody OtpVerifyRequest request) {
+    	
+    	 String identifier = request.getIdentifier();
+    	 log.info("authcontroller :: {}",identifier );
         return authService.verifyOtp(request);
     }
 
     /** Set New Password endpoint */
     @PostMapping("/set-password")
     public ResponseEntity<?> setPassword(@RequestBody SetPasswordRequest request) {
+    	 log.info("authcontroller :: {}",request.getIdentifier() );
         return authService.setPassword(request);
     }
 }
