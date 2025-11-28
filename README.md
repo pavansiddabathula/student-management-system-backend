@@ -1,254 +1,272 @@
+📘 Student Management System – Spring Boot RESTful Microservice (Advanced & Secure)
+===================================================================================
 
-# 📘 Student Management System – Spring Boot RESTful Microservice
+### 🔍 Overview
 
-### 🔍 Overview  
-The **Student Management System** is a backend RESTful microservice built using **Spring Boot**, designed to manage student details efficiently.  
-It supports **secure registration, update, retrieval, and deletion** of student records while maintaining clean architecture, validations, centralized exception handling, and proper success/error responses.
+The **Student Management System** is a secure, production-ready backend RESTful microservice built using **Spring Boot**.Along with traditional CRUD operations, this enhanced version includes:
 
-This project is built following **industry-level coding standards** — modular design, DTO pattern, proper logging, and future-ready structure (JWT/OAuth2 integration planned).
+*   **Admin & Student Authentication**
+    
+*   **JWT-based Authorization**
+    
+*   **Role-based Access Control**
+    
+*   **OTP-based Forgot Password Flow**
+    
+*   **Email Notifications**
+    
+*   **Industry-level validation & error handling**
+    
 
----
+Admins can manage both **students and admins**, while students can access **only their own account**.
 
-### 🧱 Architecture & Design
+This project demonstrates **real-world, industry-standard backend engineering**.
 
-#### ⚙️ Architecture Layers
-```
-Controller  →  Service  →  Repository  →  Database
-```
+🧱 Architecture & Design
+========================
 
-- **Controller Layer** — Handles HTTP requests and responses.  
-- **Service Layer** — Contains business logic and validation checks.  
-- **Repository Layer** — Interacts with the MySQL database using Spring Data JPA.  
-- **DTOs (Data Transfer Objects)** — Used for clean separation between API models and database entities.  
-- **Global Exception Handler** — Manages validation and application errors in a centralized way.  
+### ⚙️ Architecture Layers
 
-#### 🧩 Design Practices
-- **Loose coupling** via interfaces and dependency injection.  
-- **Separation of concerns** using DTOs and Mappers.  
-- **Constants** for error messages and response codes (no hardcoding).  
-- **Logging** with `Slf4j` for clear debugging and traceability.  
-- **Scalable microservice-ready structure** — easy to extend for JWT or OAuth2 security.
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Controller  →  Service  →  Security  →  Repository  →  Database   `
 
----
+### 🧩 Key Components
 
-### 🚀 Core Functionalities
+*   **Controller Layer** — Handles REST endpoints.
+    
+*   **Service Layer** — Contains business & validation logic.
+    
+*   **Security Layer** — JWT filters, authentication, role-based authorization.
+    
+*   **Repository Layer** — Database communication (Spring Data JPA).
+    
+*   **DTOs** — Clean data transfer objects for request & response.
+    
+*   **Global Exception Handler** — Centralized error responses.
+    
 
-#### 1️⃣ Register Student (POST `/api/students/register`)
-- Accepts student details as JSON (`StudentRequestDTO`).
-- Performs:
-  - Field-level validation (`@NotBlank`, `@Email`, `@Pattern`).
-  - Business validations (duplicate username/email).
-  - Password encryption using `BCryptPasswordEncoder`.
-- On success → returns structured success response (`StudentResponseDTO`).
-- On failure → returns custom error response with code, message, and timestamp.
+### 🧩 Design Principles
 
-#### 2️⃣ Get All Students (GET `/api/students`)
-- Returns all student records in a clean, formatted list.  
-- Converts entity to response DTO (no sensitive data like passwords).
+*   Loose coupling with interfaces
+    
+*   DTOs + Mappers to prevent exposing entities
+    
+*   Reusable constants for error codes/messages
+    
+*   Clean and meaningful log messages
+    
+*   High-level modular structure
+    
+*   Ready for microservice scaling
+    
 
-#### 3️⃣ Get Student by Username (GET `/api/students/{username}`)
-- Fetches a single student using username.  
-- If not found → returns standardized error response with message.
+🔐 Security (NEW FEATURE)
+=========================
 
-#### 4️⃣ Update Student (PUT `/api/students/{rollNumber}`)
-- Updates existing student info (like email, phone, branch).  
-- Performs both field validation and business validation.  
-- Returns updated response DTO on success.
+### ✔ JWT Authentication
 
-#### 5️⃣ Delete Student (DELETE `/api/students/{rollNumber}`)
-- Deletes student by roll number.  
-- Validates before deletion (if student doesn’t exist → custom error).  
-- Returns confirmation message in success response.
+Both Admin and Student login return a **JWT token**.
 
----
+Token contains:
 
-### 🧰 Tech Stack
+*   User identifier (adminid / rollNumber)
+    
+*   Roles (ADMIN / STUDENT)
+    
+*   Issued & expiry time
+    
 
-| Layer | Technology |
-|-------|-------------|
-| Backend | **Spring Boot (v3.x)** |
-| ORM | **Spring Data JPA** |
-| Database | **MySQL** |
-| Validation | **Jakarta Validation API** |
-| Password Security | **BCryptPasswordEncoder** |
-| Exception Handling | **@ControllerAdvice**, Custom ErrorResponse |
-| Logging | **Slf4j (Lombok)** |
-| Testing | **Postman (API Testing)** |
-| Build Tool | **Maven** |
-| Version Control | **Git & SourceTree (Bitbucket/GitHub)** |
+### ✔ Role-Based Authorization
 
----
+RolePermissions**ADMIN**Manage both admins and students**STUDENT**Access only own profile, password reset, update own info
 
-### 🧩 Engineering Practices
+Protected endpoints require:
 
-✅ Proper project structure with packages like:  
-```
-com.techcode.studentmgmt.controller  
-com.techcode.studentmgmt.service  
-com.techcode.studentmgmt.repository  
-com.techcode.studentmgmt.entity  
-com.techcode.studentmgmt.dto.requestdto  
-com.techcode.studentmgmt.dto.responsedto  
-com.techcode.studentmgmt.exception  
-com.techcode.studentmgmt.constants  
-com.techcode.studentmgmt.modelmappers  
-```
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`Authorization: Bearer` 
 
-✅ **Centralized Exception Handling** → clean API errors  
-✅ **Meaningful HTTP status codes** (200, 201, 400, 404, 500)  
-✅ **Clean code** using OOP principles  
-✅ **Unit testing-ready design**  
-✅ **Industry-level commit messages** and version control practices  
+✉️ Email Features (NEW)
+=======================
 
----
+Automatically sends emails for:
 
-### 🧠 Key Highlights
+*   Account creation (student/admin)
+    
+*   Credentials (username + temporary password)
+    
+*   OTP for forgot password
+    
+*   Password reset confirmation
+    
 
-- Implemented **end-to-end REST API** with robust validation.
-- Added **Global Exception Handler** for all runtime and validation errors.
-- Used **DTOs + Mapper classes** to keep data flow clean and secure.
-- Added **logging** for all critical points — service calls, validation, and DB operations.
-- Properly handled **success and failure responses** using a unified structure.
-- Tested APIs using **Postman** with clear request/response formats.
+All emails use industry-level templates.
 
----
+🔁 OTP-Based Password Reset (NEW)
+=================================
 
-### 🔒 Security & Future Enhancements
+### Step 1: Request OTP
 
-- Integrate **Spring Security + JWT Authentication** for login and token-based authorization.  
-- Add **OAuth 2.0** support for social login (Google/GitHub).  
-- Extend the system to a **microservice ecosystem** (User-Service, Student-Service, Auth-Service).  
-- Deploy on **AWS EC2**, host DB on **AWS RDS**, and integrate **Redis Cache** for performance.  
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   POST /api/auth/forgot-password   `
 
----
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "identifier" : "21481A05K6",    "email":"student@gmail.com"  }   `
 
-### 🧪 Sample Request (POST /api/students/register)
+### Step 2: Verify OTP
 
-**Request Body:**
-```json
-{
-  "rollNumber": "21CSE04582",
-  "firstName": "Anjali",
-  "lastName": "Reddy",
-  "email": "anjali.reddy@example.com",
-  "branch": "CSE",
-  "username": "anjali_r",
-  "password": "Ecap@123",
-  "confirmPassword": "Ecap@123",
-  "phoneNumber": "9876501234"
-}
-```
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   POST /api/auth/verify-otp   `
 
-**Success Response:**
-```json
-{
-  "status": "SUCCESS",
-  "message": "Student registered successfully",
-  "data": {
-    "rollNumber": "21CSE04582",
-    "username": "anjali_r",
-    "branch": "CSE"
-  },
-  "timestamp": "2025-11-12T10:15:30"
-}
-```
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "identifier": "21481A05K6",    "otp" : "417024"  }   `
 
-**Failure Response:**
-```json
-{
-  "status": "FAILURE",
-  "errorCode": "STUDENT_ALREADY_EXISTS",
-  "message": "Username 'anjali_r' is already taken.",
-  "timestamp": "2025-11-12T10:15:35"
-}
-```
-2️ Get All Students
+### Step 3: Set New Password
 
-Method: GET
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   POST /api/auth/set-password   `
 
-URL: http://localhost:8080/api/students
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "identifier" : "21481A05K6",    "newPassword":"Password@1234",    "confirmPassword":"Password@1234"  }   `
 
-3️ Get Student by Username
+🚀 Core Functionalities (Updated)
+=================================
 
-Method: GET
+1️⃣ Admin Login
+---------------
 
-URL Example:
-http://localhost:8080/api/students/username/anjali_r
+**POST /api/auth/admin/login**
 
-4️ Get Student by Roll Number
+Test Payloads:
 
-Method: GET
+Empty password → should fail
 
-URL Example:
-http://localhost:8080/api/students/roll/21CSE04582
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   { "adminid" : "ADM00", "password": "" }   `
 
-5️ Update Student by Roll Number
+Wrong password → fail
 
-Method: PUT
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   { "adminid" : "ADM001", "password": "7x5mjkgljgjlh" }   `
 
-URL Example:
-http://localhost:8080/api/students/21CSE04582
+Correct
 
-Request Body Example:
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   { "adminid" : "ADM001", "password": "7x5mxJRNO*" }   `
 
-```json
-{
-  "firstName": "Anjali",
-  "lastName": "Reddy",
-  "email": "anjali.updated@example.com",
-  "branch": "CSE",
-  "username": "anjali_r",
-  "password": "NewPass@123",
-  "confirmPassword": "NewPass@123",
-  "phoneNumber": "9876509999"
-}
- ```
+Returns JWT Token:
 
-6️ Delete Student by Roll Number
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   eyJhbGciOiJIUzI1NiJ9...   `
 
-Method: DELETE
+2️⃣ Student Login
+-----------------
 
-URL Example:
-http://localhost:8080/api/students/21CSE04582
+**POST /api/auth/student/login**
 
-### 📈 How to Run
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "rollNumber": "21481A05K6",    "password" : "Password@1234"  }   `
 
-1. Clone the repository  
-   ```bash
-   git clone https://github.com/pavansiddabathula/student-management-system-spring-jpa
-   ```
+3️⃣ Create Student (ADMIN)
+--------------------------
 
-2. Configure `application.properties`
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/studentdb
-   spring.datasource.username=root
-   spring.datasource.password=yourpassword
-   spring.jpa.hibernate.ddl-auto=update
-   spring.jpa.show-sql=true
-   ```
+**POST /api/students/create**
 
-3. Run the project  
-   ```bash
-   mvn spring-boot:run
-   ```
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "rollNumber": "21481A05K6",    "fullName": "Siddabathula Pavan Kumar",    "email": "jayaramsiddabathula37@gmail.com",    "phoneNumber": "9988776655",    "branch": "CSE"  }   `
 
-4. Test APIs using Postman — Base URL:  
-   ```
-   http://localhost:8080/api/students
-   ```
+On success → email sent with credentials.
 
----
+4️⃣ Get All Students (ADMIN)
+----------------------------
 
-### 📈 Results & Learnings
+**GET /api/students/all**
 
-- Learned **real-world backend project structuring**.  
-- Built **production-grade REST APIs** with **validation & exception handling**.  
-- Gained **debugging, logging, and version control** experience.  
-- Practiced **clean, modular, and scalable code design**.  
+5️⃣ Get Student by Username (ADMIN)
+-----------------------------------
 
----
+**GET /api/students/username/{fullName}**
 
-**GitHub Repo:** [pavansiddabathula/student-management-system-spring-jpa](https://github.com/pavansiddabathula/student-management-system-spring-jpa)
+6️⃣ Update Student (ADMIN)
+--------------------------
 
+**PUT /api/students/update/21481A05K6**
 
-for abve readme.md fiel write the mdofied thing in the above . 
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "rollNumber": "21481A05K6",    "fullName" : "Siddabathula Pavan Kumar",    "email": "pavansiddabathula@gmail.com",    "phoneNumber": "9988776655",    "branch": "CSE"  }   `
+
+7️⃣ Student Profile (STUDENT)
+-----------------------------
+
+**GET /api/students/profile**
+
+JWT required.
+
+8️⃣ Reset Password (Logged-in Student)
+--------------------------------------
+
+**PUT /api/students/reset-password**
+
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "oldPassword" : "oDms**owph",    "newPassword" : "ResetPassword@1234",    "confirmPassword":"ResetPassword@1234"  }   `
+
+🧪 Validation Testing (NEW)
+===========================
+
+### ❌ Failure Case – Empty Fields
+
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "rollNumber": "",    "fullName": "",    "email": "",    "phoneNumber": "",    "branch": ""  }   `
+
+### ❌ Failure Case – Wrong formats
+
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "rollNumber": "21481A05K2",    "fullName": "",    "email": "pavansiddabathula@gmail.com",    "phoneNumber": "998877665",    "branch": " "  }   `
+
+### ✔ Success Case
+
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "rollNumber": "21481A05K6",    "fullName": "Siddabathula Pavan Kumar",    "email": "jayaramsiddabathula37@gmail.com",    "phoneNumber": "9988776655",    "branch": "CSE"  }   `
+
+🧰 Tech Stack
+=============
+
+LayerTechnologyBackend**Spring Boot 3**Security**Spring Security + JWT**EmailJavaMailSenderORMSpring Data JPADatabaseMySQLCache (optional)RedisValidationJakarta ValidationLoggingSlf4jBuild ToolMaven
+
+🧩 Engineering Practices
+========================
+
+*   Clean, modular package structure
+    
+*   DTOs + Mappers
+    
+*   Strong field & business validations
+    
+*   Meaningful error messages
+    
+*   Centralized response format
+    
+*   Global exception handling
+    
+*   Layered architecture
+    
+*   Consistent logging
+    
+*   Industry-level naming conventions
+    
+
+📈 How to Run
+=============
+
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   git clone https://github.com/pavansiddabathula/student-management-system-spring-jpa   `
+
+Configure application.properties
+
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   spring.datasource.url=jdbc:mysql://localhost:3306/studentdb  spring.datasource.username=root  spring.datasource.password=yourpassword  spring.jpa.hibernate.ddl-auto=update  spring.jpa.show-sql=true   `
+
+Run:
+
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   mvn spring-boot:run   `
+
+Test APIs using Postman.
+
+📊 Results & Learnings
+======================
+
+*   Implemented complete **authentication & authorization system**
+    
+*   Built **secure user flows** using JWT
+    
+*   Added **email + OTP-based recovery system**
+    
+*   Learned clean backend design & enterprise validation
+    
+*   Improved debugging & logging skills
+    
+*   Gained experience with real-world user management
+    
+
+🔗 GitHub Repository
+====================
+
+👉 [https://github.com/pavansiddabathula/student-management-system-spring-jpa](https://github.com/pavansiddabathula/student-management-system-spring-jpa)
