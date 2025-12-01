@@ -220,6 +220,7 @@ public class AuthServiceImpl implements AuthService {
 			email = student.getEmail();
 			fullName = student.getFullName();
 		}
+		
 
 		String otp = otpService.generateOtp(req.getIdentifier());
 
@@ -237,9 +238,7 @@ public class AuthServiceImpl implements AuthService {
 
 	}
 
-	
-
-	// Success response builder
+	//success
 	private ResponseEntity<?> success(String message, Object data, HttpStatus status) {
 		return ResponseEntity.status(status).body(SuccessResponse.builder().status("SUCCESS").message(message)
 				.data(data).timestamp(LocalDateTime.now()).build());
