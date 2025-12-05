@@ -33,6 +33,11 @@ public class AuthController {
         log.info("Admin login attempt: {}", request.getAdminid());
         return authService.adminLogin(request);
     }
+    /*
+    public String propString () {
+    	 log.info(" alled this method after deploying in the aws");
+    	return "hello brother ";
+    }*/
     
     
     /** Student login endpoint */

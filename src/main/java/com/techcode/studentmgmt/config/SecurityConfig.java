@@ -32,7 +32,7 @@ public class SecurityConfig {
 		http.csrf(csrf -> csrf.disable())
 		//.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**",
-						"/api/students/register",
+						"/api/students/create",
 						"/admin/create",
 						"/api/auth/forgot-password",
                         "/api/auth/verify-otp",

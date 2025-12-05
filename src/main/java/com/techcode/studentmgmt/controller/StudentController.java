@@ -34,7 +34,7 @@ public class StudentController {
     
     // Create a new student
     @PostMapping("/create")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> registerStudent(@RequestBody StudentRequest request) {
         log.info("StudentController::registerStudent called");
         return studentService.registerStudent(request);
