@@ -26,15 +26,27 @@ public class JwtFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final CustomUserDetailsService userDetailsService;
 
+    
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
+        String path = request.getServletPath();
+
+        // Skip JWT validation for open/public endpoints
+        if (
+            path.startsWith("/api/auth") ||
+            path.equals("/api/students/create") ||
+            path.equals("/admin/create")
+        ) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String header = request.getHeader("Authorization");
 
-        // 1️ Missing Authorization header
         if (header == null || !header.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -42,27 +54,20 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String token = header.substring(7);
 
-        // 2️ Empty token case (Bearer <space>)
-        if (token == null || token.trim().isEmpty()) {
-            log.warn("⚠️ Empty token received");
-            request.setAttribute("INVALID_TOKEN", true);
+        if (token.trim().isEmpty()) {
+            log.warn("⚠ Empty JWT token received");
             SecurityContextHolder.clearContext();
             filterChain.doFilter(request, response);
             return;
         }
 
         try {
-            // 3️ Extract username
             String username = jwtUtil.extractUsername(token);
 
-            // 4️ Authenticate if not already authenticated
-            if (username != null &&
-                SecurityContextHolder.getContext().getAuthentication() == null) {
-
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
                 if (jwtUtil.validateToken(token)) {
-
                     UsernamePasswordAuthenticationToken authToken =
                             new UsernamePasswordAuthenticationToken(
                                     userDetails, null, userDetails.getAuthorities());
@@ -73,12 +78,12 @@ public class JwtFilter extends OncePerRequestFilter {
             }
 
         } catch (ExpiredJwtException ex) {
-            log.error(" Token expired");
+            log.error("❌ JWT expired");
             request.setAttribute("TOKEN_EXPIRED", true);
             SecurityContextHolder.clearContext();
 
         } catch (JwtException ex) {
-            log.error(" Invalid JWT: {}", ex.getMessage());
+            log.error("❌ Invalid JWT: {}", ex.getMessage());
             request.setAttribute("INVALID_TOKEN", true);
             SecurityContextHolder.clearContext();
         }

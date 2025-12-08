@@ -47,6 +47,11 @@ public class StudentCustomUserDetails implements UserDetails {
     @Override public boolean isEnabled() { return true; }
 
     public String getName() {
-        return student.getFullName();
+        return student.getFirstName() + " " + student.getLastName();
     }
+
+	private String getFirstName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

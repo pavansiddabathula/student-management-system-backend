@@ -110,7 +110,7 @@ public class AuthServiceImpl implements AuthService {
 
 		return AuthResponse.builder().access_token(token).token_type("Bearer").expires_in(expiry)
 				.issued_at(Instant.now()).roles(List.of("STUDENT"))
-				.user(Map.of("id", student.getId(), "email", student.getEmail(), "name", student.getFullName()))
+				.user(Map.of("id", student.getId(), "email", student.getEmail(), "name", student.getFirstName()))
 				.build();
 	}
 
@@ -179,7 +179,7 @@ public class AuthServiceImpl implements AuthService {
 
 	        // Set mail details
 	        email = student.getEmail();
-	        userName = student.getFullName();
+	        userName = student.getFirstName();
 	        userId = student.getRollNumber();
 	        role = "STUDENT";
 	    }
@@ -218,7 +218,7 @@ public class AuthServiceImpl implements AuthService {
 			StudentInfo student = studentRepo.findByRollNumber(req.getIdentifier())
 					.orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOT_FOUND, req.getIdentifier()));
 			email = student.getEmail();
-			fullName = student.getFullName();
+			fullName = student.getFirstName() + "" + student.getLastName();
 		}
 		
 

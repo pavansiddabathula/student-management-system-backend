@@ -13,7 +13,7 @@ public interface StudentService {
 
     ResponseEntity<?> getStudentByRollNumber(String rollNumber);
 
-    ResponseEntity<?> getStudentByName(String fullName);
+   // ResponseEntity<?> getStudentByName(String fullName);
 
     ResponseEntity<?> deleteStudentByRollNumber(String rollNumber);
 

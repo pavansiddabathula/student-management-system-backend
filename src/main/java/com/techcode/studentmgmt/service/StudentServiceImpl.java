@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +15,6 @@ import org.springframework.stereotype.Service;
 import com.techcode.studentmgmt.constants.ErrorCodeEnums;
 import com.techcode.studentmgmt.constants.ResponseKeys;
 import com.techcode.studentmgmt.constants.SuccessMessageConstants;
-import com.techcode.studentmgmt.dto.requestdto.ForgotPasswordRequest;
-import com.techcode.studentmgmt.dto.requestdto.OtpVerifyRequest;
-import com.techcode.studentmgmt.dto.requestdto.SetPasswordRequest;
 import com.techcode.studentmgmt.dto.requestdto.StudentPasswordResetRequest;
 import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
 import com.techcode.studentmgmt.dto.responsedto.StudentResponse;
@@ -46,6 +41,7 @@ public class StudentServiceImpl implements StudentService {
     private final PasswordGeneratorUtil passwordGen;
     private final EmailUtil emailUtil;
     private final PasswordEncoder encoder;
+    private final java.util.concurrent.Executor emailExecutor = java.util.concurrent.Executors.newFixedThreadPool(5);
   
 
     // Register student
@@ -65,13 +61,23 @@ public class StudentServiceImpl implements StudentService {
 
         StudentResponse response = StudentMapper.toResponse(saved);
 
-        emailUtil.sendPasswordMail(
+        /*emailUtil.sendPasswordMail(
                 saved.getEmail(),
-                saved.getFullName(),
+                saved.getFirstName() + " " + saved.getLastName(),
                 saved.getRollNumber(),
                 tempPassword,
                 "STUDENT"
-        );
+        );*/
+        
+        emailExecutor.execute(() -> {
+            emailUtil.sendPasswordMail(
+                saved.getEmail(),
+                saved.getFirstName() + " " + saved.getLastName(),
+                saved.getRollNumber(),
+                tempPassword,
+                "STUDENT"
+            );
+        });
 
         return success(
                 SuccessMessageConstants.STUDENT_REGISTER_SUCCESS.format(response.getRollNumber(),response.getEmail()),
@@ -119,6 +125,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     // Get by name
+    /*
     @Override
     public ResponseEntity<?> getStudentByName(String fullName) {
 
@@ -131,7 +138,7 @@ public class StudentServiceImpl implements StudentService {
                 SuccessMessageConstants.STUDENT_FETCH_SUCCESS.format(fullName),
                 StudentMapper.toResponse(student)
         );
-    }
+    }*/
 
     // Delete by roll
     @Override
@@ -161,7 +168,8 @@ public class StudentServiceImpl implements StudentService {
 
         validateStudent(request, student.getId());
 
-        student.setFullName(request.getFullName());
+        student.setFirstName(request.getFirstName());
+        student.setLastName(request.getLastName());
         student.setEmail(request.getEmail());
         student.setBranch(request.getBranch());
         student.setPhoneNumber(request.getPhoneNumber());
@@ -207,7 +215,7 @@ public class StudentServiceImpl implements StudentService {
 
         emailUtil.sendPasswordMail(
                 student.getEmail(),
-                student.getFullName(),
+                student.getFirstName() + " " + student.getLastName(),
                 student.getRollNumber(),
                 "ChangedPassword(Hidden)",
                 "PASSWORD-UPDATE"
