@@ -14,7 +14,8 @@ public class StudentMapper {
     
          return  StudentInfo.builder()
                 .rollNumber(request.getRollNumber())
-                .fullName(request.getFullName())
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
                 .email(request.getEmail())
                 .branch(request.getBranch())
                 .phoneNumber(request.getPhoneNumber())
@@ -27,7 +28,7 @@ public class StudentMapper {
         return   StudentResponse.builder()
        		    .id(entity.getId())
 				.rollNumber(entity.getRollNumber())
-				.fullName(entity.getFullName())
+				.fullName(entity.getFirstName() + " " + entity.getLastName())
 				.email(entity.getEmail())
 				.branch(entity.getBranch())
 				.phoneNumber(entity.getPhoneNumber())

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "student_info")
+@Table(
+    name = "student_info",
+    indexes = {
+        @Index(name = "idx_student_rollNumber", columnList = "rollNumber"),
+        @Index(name = "idx_student_email", columnList = "email"),
+        @Index(name = "idx_student_lastName", columnList = "lastName")
+    }
+)
 public class StudentInfo {
 
     @Id
@@ -26,8 +34,12 @@ public class StudentInfo {
     @Column(length = 10, unique = true, nullable = false)
     private String rollNumber;
 
-    @Column(length = 100, nullable = false)
-    private String fullName;
+    @Column(length = 50, nullable = false)
+    private String firstName;
+
+
+    @Column(length = 50, nullable = false)
+    private String lastName;
 
     @Column(length = 100, nullable = false, unique = true)
     private String email;

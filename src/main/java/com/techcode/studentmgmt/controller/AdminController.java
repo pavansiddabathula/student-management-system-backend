@@ -28,7 +28,7 @@ public class AdminController {
 
     /** Create admin */
     @PostMapping("/create")
-    @PreAuthorize("hasRole('ADMIN')")
+   // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createAdmin(@RequestBody AdminRequest request) {
         log.info("AdminController::createAdmin {}", request.getEmail());
         return adminService.createAdmin(request);

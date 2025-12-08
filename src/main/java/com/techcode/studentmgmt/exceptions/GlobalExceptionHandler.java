@@ -103,7 +103,7 @@ public class GlobalExceptionHandler {
 
 
 	// Handle Unexpected exceptions
-	/*@ExceptionHandler(Exception.class)
+	@ExceptionHandler(Exception.class)
 	public ResponseEntity<?> handleGlobalException(Exception ex) {
 
 		log.error("Unexpected exception caught: ", ex);
@@ -114,6 +114,6 @@ public class GlobalExceptionHandler {
 
 		return ResponseEntity.status(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getStatus()).body(response);
 
-	}*/
+	}
 
 }

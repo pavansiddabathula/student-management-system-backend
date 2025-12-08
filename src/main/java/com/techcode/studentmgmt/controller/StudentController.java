@@ -49,12 +49,13 @@ public class StudentController {
     }
 
     // Get student by full name (Only ADMIN)
+    /*
     @GetMapping("/username/{fullName}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getStudentByUsername(@PathVariable String fullName) {
         log.info("StudentController::getStudentByUsername called");
         return studentService.getStudentByName(fullName);
-    }
+    }*/
 
     // Get student by roll number
     @GetMapping("/roll/{rollNumber}")

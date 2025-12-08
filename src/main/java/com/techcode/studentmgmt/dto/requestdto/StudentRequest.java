@@ -19,9 +19,13 @@ public class StudentRequest {
     @Size(min = 10, max = 10, message = "Roll number must be exactly 10 characters")
     private String rollNumber;
 
-    @NotBlank(message = "Full name must not be empty")
-    private String fullName;
-
+    @NotBlank(message = "First name must not be empty")
+    private String firstName;
+    
+    @NotBlank(message = "Last name must not be empty")
+    private String lastName;
+    
+   
     @NotBlank(message = "Email must not be empty")
     @Email(message = "Invalid email format")
     private String email;
