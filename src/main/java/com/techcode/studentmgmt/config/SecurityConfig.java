@@ -29,24 +29,31 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http.csrf(csrf -> csrf.disable())
-		//.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**",
-						"/api/students/create",
-						"/admin/create",
-						"/api/auth/forgot-password",
-                        "/api/auth/verify-otp",
-                        "/api/auth/set-password").permitAll()
-						
-						.requestMatchers("/api/admin/**").hasRole("ADMIN")
-						.requestMatchers("/api/students/**").hasAnyRole("STUDENT","ADMIN").anyRequest().permitAll())				
-				.exceptionHandling(ex -> ex.authenticationEntryPoint(customAuthenticationEntryPoint)
-					.accessDeniedHandler(customAccessDeniedHandler))
-				
-				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+	    http
+        .cors()   // Enable CORS
+        .and()
+        .csrf().disable()
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers(
+                "/api/auth/**",
+                "/api/students/create",
+                "/api/admin/create",
+                "/api/auth/forgot-password",
+                "/api/auth/verify-otp",
+                "/api/auth/set-password"
+            ).permitAll()
+            .requestMatchers("/api/admin/**").hasRole("ADMIN")
+            .requestMatchers("/api/students/**").hasAnyRole("STUDENT", "ADMIN")
+            .anyRequest().authenticated()
+        )
+        .exceptionHandling(ex -> ex
+            .authenticationEntryPoint(customAuthenticationEntryPoint)
+            .accessDeniedHandler(customAccessDeniedHandler)
+        )
+        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
-		return http.build();
-	}
+    return http.build();
+}
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -55,7 +62,7 @@ public class SecurityConfig {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder(8);
 	}
 
 }
