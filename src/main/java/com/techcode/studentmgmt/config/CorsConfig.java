@@ -16,7 +16,9 @@ public class CorsConfig {
 	                registry.addMapping("/**")
 	                        .allowedOrigins(
 	                            "http://college-portal-frontend.s3-website.ap-south-1.amazonaws.com",
-	                            "http://localhost:3000"
+	                            "http://localhost:3000",
+	                            "https://d340lm6vz9i7bs.cloudfront.net",
+	                            "http://13.204.231.22"
 	                        )
 	                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 	                        .allowedHeaders("*")
