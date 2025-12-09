@@ -3,7 +3,7 @@ name: CI/CD - Build & Deploy JAR to EC2
 on:
   push:
     branches:
-      - integration   # change to main/master if you want
+      - main  # change to main/master if you want
 
 jobs:
   build-and-deploy:
