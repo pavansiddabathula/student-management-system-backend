@@ -82,3 +82,21 @@
 2025-12-09T17:02:29.048+05:30  INFO 6540 --- [studentmgmt] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
 2025-12-09T17:02:29.050+05:30  INFO 6540 --- [studentmgmt] [Thread-11] com.zaxxer.hikari.HikariDataSource       : TechCodeHikariPool - Shutdown initiated...
 2025-12-09T17:02:29.052+05:30  INFO 6540 --- [studentmgmt] [Thread-11] com.zaxxer.hikari.HikariDataSource       : TechCodeHikariPool - Shutdown completed.
+2025-12-09T17:02:29.102+05:30  INFO 6540 --- [studentmgmt] [restartedMain] c.t.studentmgmt.studentmgmtApplication   : Starting studentmgmtApplication using Java 17.0.12 with PID 6540 (F:\Spring-Workspace\student-management-jpa\target\classes started by pavansiddabathula in F:\Spring-Workspace\student-management-jpa)
+2025-12-09T17:02:29.102+05:30  INFO 6540 --- [studentmgmt] [restartedMain] c.t.studentmgmt.studentmgmtApplication   : The following 1 profile is active: "null"
+2025-12-09T17:02:29.218+05:30  INFO 6540 --- [studentmgmt] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-09T17:02:29.230+05:30  INFO 6540 --- [studentmgmt] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 2 JPA repository interfaces.
+2025-12-09T17:02:29.300+05:30  INFO 6540 --- [studentmgmt] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-09T17:02:29.300+05:30  INFO 6540 --- [studentmgmt] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-09T17:02:29.300+05:30  INFO 6540 --- [studentmgmt] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-12-09T17:02:29.311+05:30  INFO 6540 --- [studentmgmt] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-09T17:02:29.312+05:30  INFO 6540 --- [studentmgmt] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 209 ms
+2025-12-09T17:02:29.345+05:30  INFO 6540 --- [studentmgmt] [restartedMain] com.zaxxer.hikari.HikariDataSource       : TechCodeHikariPool - Starting...
+2025-12-09T17:02:29.349+05:30  INFO 6540 --- [studentmgmt] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@23f454ff
+2025-12-09T17:02:29.349+05:30  INFO 6540 --- [studentmgmt] [restartedMain] com.zaxxer.hikari.HikariDataSource       : TechCodeHikariPool - Start completed.
+2025-12-09T17:02:29.658+05:30  WARN 6540 --- [studentmgmt] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-09T17:02:29.671+05:30  INFO 6540 --- [studentmgmt] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-12-09T17:02:29.842+05:30  INFO 6540 --- [studentmgmt] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-09T17:02:29.850+05:30  INFO 6540 --- [studentmgmt] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-12-09T17:02:29.854+05:30  INFO 6540 --- [studentmgmt] [restartedMain] c.t.studentmgmt.studentmgmtApplication   : Started studentmgmtApplication in 0.766 seconds (process running for 1591.077)
+2025-12-09T17:02:29.855+05:30  INFO 6540 --- [studentmgmt] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
