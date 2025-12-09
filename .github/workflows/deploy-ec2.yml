@@ -3,29 +3,25 @@ name: CI/CD - Build & Deploy JAR to EC2
 on:
   push:
     branches:
-      - main  # change to main/master if you want
+      - main 
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2) Set up JDK (adjust version if needed)
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # 3) Build JAR with Maven
       - name: Build with Maven
         run: mvn -B clean package -DskipTests
 
-      # 4) Prepare SSH key file
       - name: Prepare SSH key
         run: |
           echo "$EC2_SSH_KEY" > ec2_key
@@ -33,21 +29,23 @@ jobs:
         env:
           EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
 
-      # 5) Copy new JAR to EC2 with backup of old JAR
       - name: Deploy JAR to EC2 with backup
         run: |
           JAR_FILE=$(ls target/*.jar | head -n 1)
           echo "JAR to deploy: $JAR_FILE"
 
-          # backup existing jar on EC2 (if exists)
-          ssh -o StrictHostKeyChecking=no -i ec2_key ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "if [ -f ${EC2_APP_DIR}/app.jar ]; then mv ${EC2_APP_DIR}/app.jar ${EC2_APP_DIR}/backup/app-$(date +%Y%m%d%H%M%S).jar; fi" 
+          # Ensure directory exists + backup folder exists
+          ssh -o StrictHostKeyChecking=no -i ec2_key ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "mkdir -p ${EC2_APP_DIR}/backup"
 
-          # copy new jar as app.jar
+          # Backup existing app.jar
+          ssh -o StrictHostKeyChecking=no -i ec2_key ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "if [ -f ${EC2_APP_DIR}/app.jar ]; then mv ${EC2_APP_DIR}/app.jar ${EC2_APP_DIR}/backup/app-$(date +%Y%m%d%H%M%S).jar; fi"
+
+          # Copy new jar
           scp -o StrictHostKeyChecking=no -i ec2_key "$JAR_FILE" ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_APP_DIR }}/app.jar
+
         env:
           EC2_APP_DIR: ${{ secrets.EC2_APP_DIR }}
 
-      # 6) Restart Spring Boot service on EC2
       - name: Restart service on EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i ec2_key ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "sudo systemctl daemon-reload && sudo systemctl restart ${{ secrets.EC2_SERVICE_NAME }} && sudo systemctl status ${{ secrets.EC2_SERVICE_NAME }} --no-pager"
