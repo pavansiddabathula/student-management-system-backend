@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.client.RestTemplate;
 
 import com.techcode.studentmgmt.secuirty.CustomAccessDeniedHandler;
 import com.techcode.studentmgmt.secuirty.CustomAuthenticationEntryPoint;
@@ -40,7 +41,9 @@ public class SecurityConfig {
                 "/api/admin/create",
                 "/api/auth/forgot-password",
                 "/api/auth/verify-otp",
-                "/api/auth/set-password"
+                "/api/auth/set-password",
+                "/test/**",
+                "/actuator/**"
             ).permitAll()
             .requestMatchers("/api/admin/**").hasRole("ADMIN")
             .requestMatchers("/api/students/**").hasAnyRole("STUDENT", "ADMIN")
@@ -53,7 +56,7 @@ public class SecurityConfig {
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
-}
+   }
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -63,6 +66,10 @@ public class SecurityConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(8);
+	}
+	@Bean
+	public RestTemplate restTemplate() {
+	    return new RestTemplate();
 	}
 
 }

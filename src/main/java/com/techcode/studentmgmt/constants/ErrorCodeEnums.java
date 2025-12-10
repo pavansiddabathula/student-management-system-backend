@@ -41,7 +41,8 @@ public enum ErrorCodeEnums {
 	PASSWORDS_DO_NOT_MATCH("E009", "New password and confirm password do not match.", HttpStatus.BAD_REQUEST),
 
 	WEAK_PASSWORD("E010", "Password must meet required security conditions.", HttpStatus.BAD_REQUEST),
-	OTP_NOT_VERIFIED("E011", "OTP not verified for identifier '%s'.", HttpStatus.BAD_REQUEST);
+	OTP_NOT_VERIFIED("E011", "OTP not verified for identifier '%s'.", HttpStatus.BAD_REQUEST),
+	SERVICE_UNAVAILABLE("E503", "Service is currently unavailable. Please try again later.", HttpStatus.SERVICE_UNAVAILABLE);
 
 
 

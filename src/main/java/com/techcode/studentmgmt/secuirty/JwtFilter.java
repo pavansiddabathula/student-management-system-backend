@@ -39,7 +39,8 @@ public class JwtFilter extends OncePerRequestFilter {
         if (
             path.startsWith("/api/auth") ||
             path.equals("/api/students/create") ||
-            path.equals("/admin/create")
+            path.equals("/admin/create")||
+            path.startsWith("/actuator/")
         ) {
             filterChain.doFilter(request, response);
             return;
