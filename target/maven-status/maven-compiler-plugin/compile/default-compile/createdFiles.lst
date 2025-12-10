@@ -65,3 +65,4 @@ com\techcode\studentmgmt\utils\EmailUtil.class
 com\techcode\studentmgmt\secuirty\CustomAuthenticationEntryPoint.class
 com\techcode\studentmgmt\service\OtpService.class
 com\techcode\studentmgmt\utils\PasswordGeneratorUtil.class
+com\techcode\studentmgmt\controller\CircuitTestController.class
