@@ -115,5 +115,11 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(ErrorCodeEnums.INTERNAL_SERVER_ERROR.getStatus()).body(response);
 
 	}
+	
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Internal exception handled: " + ex.getMessage());
+    }
 
 }
