@@ -1,5 +1,7 @@
 package com.techcode.studentmgmt.config;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +30,7 @@ public class SecurityConfig {
 	private final CustomAccessDeniedHandler customAccessDeniedHandler;
 	private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
-	@Bean
+	/*@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 	    http
@@ -56,7 +58,28 @@ public class SecurityConfig {
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
-   }
+   }*/
+
+
+	    @Bean
+	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+	        http
+	            .csrf(csrf -> csrf.disable())
+	            .cors(cors -> cors.disable())
+	            .authorizeHttpRequests(auth -> auth
+	                .anyRequest().permitAll()
+	            )
+	            .sessionManagement(session -> session.disable())
+	            .securityContext(context -> context.disable())
+	            .httpBasic(httpBasic -> httpBasic.disable())
+	            .formLogin(form -> form.disable());
+
+	        return http.build();
+	    }
+
+
+
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -71,5 +94,10 @@ public class SecurityConfig {
 	public RestTemplate restTemplate() {
 	    return new RestTemplate();
 	}
+	
+	@Bean
+	public AtomicInteger atomicIndex() {
+	    return new AtomicInteger(1);
+	 }
 
 }

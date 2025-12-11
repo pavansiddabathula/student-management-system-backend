@@ -41,8 +41,18 @@ public enum ErrorCodeEnums {
 	PASSWORDS_DO_NOT_MATCH("E009", "New password and confirm password do not match.", HttpStatus.BAD_REQUEST),
 
 	WEAK_PASSWORD("E010", "Password must meet required security conditions.", HttpStatus.BAD_REQUEST),
+	
 	OTP_NOT_VERIFIED("E011", "OTP not verified for identifier '%s'.", HttpStatus.BAD_REQUEST),
-	SERVICE_UNAVAILABLE("E503", "Service is currently unavailable. Please try again later.", HttpStatus.SERVICE_UNAVAILABLE);
+	
+	SERVICE_UNAVAILABLE("E503", "Service is currently unavailable. Please try again later.", HttpStatus.SERVICE_UNAVAILABLE),
+
+    JOB_NOT_FOUND("E003", "Job with id '%s' not found.", HttpStatus.NOT_FOUND),
+
+    DUPLICATE_JOB("E004", "A similar job already exists.", HttpStatus.BAD_REQUEST),
+
+    DUPLICATE_APPLICATION("E005", "You have already applied for this job.", HttpStatus.BAD_REQUEST),
+
+    APPLICATION_NOT_FOUND("E006", "Application not found for id '%s'.", HttpStatus.NOT_FOUND);
 
 
 

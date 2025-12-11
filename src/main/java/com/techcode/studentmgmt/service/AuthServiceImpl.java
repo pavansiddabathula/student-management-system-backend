@@ -244,14 +244,14 @@ public class AuthServiceImpl implements AuthService {
 				.data(data).timestamp(LocalDateTime.now()).build());
 	}
 
-	private ResponseEntity<?> success(String message, Object data) {
+	/*private ResponseEntity<?> success(String message, Object data) {
 		return success(message, data, HttpStatus.OK);
 	}
 
 	private ResponseEntity<?> success(String message, HttpStatus status) {
 		return success(message, null, status);
 	}
-	
+	*/
 	public void validateAdminLogin(AdminLoginRequest request) {
 
 	    Map<String, String> errors = new LinkedHashMap<>();
