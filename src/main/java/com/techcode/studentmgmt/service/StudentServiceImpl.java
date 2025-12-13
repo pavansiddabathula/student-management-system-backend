@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
@@ -61,23 +62,23 @@ public class StudentServiceImpl implements StudentService {
 
         StudentResponse response = StudentMapper.toResponse(saved);
 
-        /*emailUtil.sendPasswordMail(
+        emailUtil.sendPasswordMail(
                 saved.getEmail(),
                 saved.getFirstName() + " " + saved.getLastName(),
                 saved.getRollNumber(),
                 tempPassword,
                 "STUDENT"
-        );*/
+        );
         
-        emailExecutor.execute(() -> {
+        emailExecutor.execute(() ->{ 
             emailUtil.sendPasswordMail(
                 saved.getEmail(),
                 saved.getFirstName() + " " + saved.getLastName(),
                 saved.getRollNumber(),
                 tempPassword,
                 "STUDENT"
-            );
-        });
+            );}
+        );
 
         return success(
                 SuccessMessageConstants.STUDENT_REGISTER_SUCCESS.format(response.getRollNumber(),response.getEmail()),
@@ -96,8 +97,10 @@ public class StudentServiceImpl implements StudentService {
         List<StudentResponse> students = studentRepository.findAll()
                 .stream()
                 .map(StudentMapper::toResponse)
-                .collect(Collectors.toList());
-        log.info("Fetching all student records {}" ,students);
+                .toList(); 
+
+        log.info("Total students fetched = {}", students.size());
+
         if (students.isEmpty()) {
             return success(SuccessMessageConstants.STUDENTS_EMPTY.getMessage(), students);
         }
@@ -107,6 +110,7 @@ public class StudentServiceImpl implements StudentService {
                 students
         );
     }
+
 
     // Get by roll
     @Override
@@ -125,20 +129,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     // Get by name
-    /*
+   
     @Override
-    public ResponseEntity<?> getStudentByName(String fullName) {
+    public ResponseEntity<?> getStudentByName(String firstName) {
 
-        log.info("Fetching student by name {}", fullName);
+        log.info("Fetching student by name {}", firstName);
 
-        StudentInfo student = studentRepository.findByfullName(fullName)
-                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOY_FOUND_BYNAME, fullName));
+        StudentInfo student = studentRepository.findByfirstName(firstName)
+                .orElseThrow(() -> new BusinessException(ErrorCodeEnums.STUDENT_NOY_FOUND_BYNAME, firstName));
 
         return success(
-                SuccessMessageConstants.STUDENT_FETCH_SUCCESS.format(fullName),
+                SuccessMessageConstants.STUDENT_FETCH_SUCCESS.format(firstName),
                 StudentMapper.toResponse(student)
         );
-    }*/
+    }
 
     // Delete by roll
     @Override
@@ -286,7 +290,7 @@ public class StudentServiceImpl implements StudentService {
         	
            throw new ValidationException(errors);
         	
-        	//throw new RuntimeException();
+     
             
         }
     }

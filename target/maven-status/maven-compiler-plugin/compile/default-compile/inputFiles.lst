@@ -40,7 +40,6 @@ F:\Spring-Workspace\college-placements-portal\src\main\java\com\techcode\student
 F:\Spring-Workspace\college-placements-portal\src\main\java\com\techcode\studentmgmt\entity\JobInfo.java
 F:\Spring-Workspace\college-placements-portal\src\main\java\com\techcode\studentmgmt\entity\StudentInfo.java
 F:\Spring-Workspace\college-placements-portal\src\main\java\com\techcode\studentmgmt\exceptions\BusinessException.java
-F:\Spring-Workspace\college-placements-portal\src\main\java\com\techcode\studentmgmt\exceptions\DatabaseException.java
 F:\Spring-Workspace\college-placements-portal\src\main\java\com\techcode\studentmgmt\exceptions\GlobalExceptionHandler.java
 F:\Spring-Workspace\college-placements-portal\src\main\java\com\techcode\studentmgmt\exceptions\ValidationException.java
 F:\Spring-Workspace\college-placements-portal\src\main\java\com\techcode\studentmgmt\modelmappers\AdminMapper.java

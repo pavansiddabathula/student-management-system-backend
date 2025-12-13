@@ -9,6 +9,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -72,7 +73,7 @@ public class SecurityConfig {
 	            )
 	            .sessionManagement(session -> session.disable())
 	            .securityContext(context -> context.disable())
-	            .httpBasic(httpBasic -> httpBasic.disable())
+	            .httpBasic(AbstractHttpConfigurer::disable)
 	            .formLogin(form -> form.disable());
 
 	        return http.build();

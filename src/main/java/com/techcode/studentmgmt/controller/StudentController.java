@@ -49,13 +49,13 @@ public class StudentController {
     }
 
     // Get student by full name (Only ADMIN)
-    /*
-    @GetMapping("/username/{fullName}")
+   
+    @GetMapping("/username/{firstName}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> getStudentByUsername(@PathVariable String fullName) {
+    public ResponseEntity<?> getStudentByUsername(@PathVariable String firstName) {
         log.info("StudentController::getStudentByUsername called");
-        return studentService.getStudentByName(fullName);
-    }*/
+        return studentService.getStudentByName(firstName);
+    }
 
     // Get student by roll number
     @GetMapping("/roll/{rollNumber}")
@@ -109,10 +109,5 @@ public class StudentController {
     }
     
     
-    @GetMapping("/alll")
-    public void mailtesting() {
-        log.info("StudentController::getAllStudents called");
-        //emailUtil.sendPasswordMail( "jayaramsiddabathula@gmail.com","Sulaga gopi kishore ","ADM004","q*c*%XM9s3","ADMIN");
-        emailUtil.sendPasswordChangeAlert("pavansiddabathula@gmail.com","Saikumar", "21481A05K6", "STUDENT");
-    }
+
 }
