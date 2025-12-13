@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techcode.studentmgmt.dto.requestdto.StudentPasswordResetRequest;
 import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
 import com.techcode.studentmgmt.service.StudentService;
-import com.techcode.studentmgmt.utils.EmailUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentController {
 
     private final StudentService studentService;
-    private final EmailUtil emailUtil;
   
     
     // Create a new student

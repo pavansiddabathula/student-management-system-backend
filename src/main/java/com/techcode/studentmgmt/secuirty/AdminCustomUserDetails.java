@@ -14,7 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AdminCustomUserDetails implements UserDetails {
 
-    private final AdminInfo admin;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final AdminInfo admin;
 
     public AdminCustomUserDetails(AdminInfo admin) {
         this.admin = admin;
