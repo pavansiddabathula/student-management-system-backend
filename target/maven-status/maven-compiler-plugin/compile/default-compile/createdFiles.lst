@@ -12,6 +12,7 @@ com\techcode\studentmgmt\controller\StudentController.class
 com\techcode\studentmgmt\dto\requestdto\AdminLoginRequest.class
 com\techcode\studentmgmt\secuirty\JwtUtil.class
 com\techcode\studentmgmt\secuirty\StudentCustomUserDetails.class
+com\techcode\studentmgmt\config\RequestIdFilter.class
 com\techcode\studentmgmt\service\JobService.class
 com\techcode\studentmgmt\dto\responsedto\AdminResponse.class
 com\techcode\studentmgmt\dto\requestdto\OtpVerifyRequest.class

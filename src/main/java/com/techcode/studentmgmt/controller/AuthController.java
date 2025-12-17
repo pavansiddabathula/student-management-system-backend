@@ -28,7 +28,7 @@ public class AuthController {
     
     /** Admin login endpoint */
     @PostMapping("/admin/login")
-    @CircuitBreaker(name = "studentService", fallbackMethod = "fallbackResponse")
+   
     public ResponseEntity<?> adminLogin(@RequestBody AdminLoginRequest request) {
         log.info("Admin login attempt: {}", request.getAdminid());
         return authService.adminLogin(request);

@@ -1,0 +1,58 @@
+[] [INFO ] 2025-12-17 19:32:35
+                com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [INFO ] 2025-12-17 19:32:35
+                com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:32:36
+                org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:32:36
+                org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:32:36
+                org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:32:36
+                org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:32:36
+                org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:36
+                org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:32:36
+                org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:32:36
+                org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:32:36
+                org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 479 ms
+[] [INFO ] 2025-12-17 19:32:36
+                com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:32:36
+                com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@ed5a3cb
+[] [INFO ] 2025-12-17 19:32:36
+                com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [WARN ] 2025-12-17 19:32:37
+                org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:32:37
+                org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:32:37
+                org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:32:38
+                org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:32:38
+                org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:38
+                org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:32:38
+                com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 2.657 seconds (process running for 1065.963)
+[] [INFO ] 2025-12-17 19:32:38
+                org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[] [INFO ] 2025-12-17 19:32:58
+                org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (1 addition, 1 deletion, 0 modifications)
+[] [INFO ] 2025-12-17 19:32:58
+                org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:32:58
+                org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:58
+                org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:32:58
+                org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:58
+                com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:32:58
+                com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.

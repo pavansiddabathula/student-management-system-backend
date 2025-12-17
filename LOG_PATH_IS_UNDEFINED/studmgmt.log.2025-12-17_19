@@ -1,0 +1,878 @@
+[] [INFO ] 2025-12-17 19:14:36.891
+                [main] [studmgmt] com.techcode.studentmgmt.studentmgmtApplicationTests - Starting studentmgmtApplicationTests using Java 17.0.12 with PID 18392 (started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [INFO ] 2025-12-17 19:14:36.892
+                [main] [studmgmt] com.techcode.studentmgmt.studentmgmtApplicationTests - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:14:38.576
+                [main] [studmgmt] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:14:38.665
+                [main] [studmgmt] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:14:39.039
+                [main] [studmgmt] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=830a963a-e567-302a-ae1a-ae6084db45e9
+[] [INFO ] 2025-12-17 19:14:41.135
+                [main] [studmgmt] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:14:41.304
+                [main] [studmgmt] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@76219fe
+[] [INFO ] 2025-12-17 19:14:41.307
+                [main] [studmgmt] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [INFO ] 2025-12-17 19:14:43.720
+                [main] [studmgmt] org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[] [WARN ] 2025-12-17 19:14:46.440
+                [main] [studmgmt] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:14:46.585
+                [main] [studmgmt] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:14:47.790
+                [main] [studmgmt] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:14:48.957
+                [main] [studmgmt] com.techcode.studentmgmt.studentmgmtApplicationTests - Started studentmgmtApplicationTests in 12.55 seconds (process running for 13.737)
+[] [INFO ] 2025-12-17 19:14:49.498
+                [SpringApplicationShutdownHook] [studmgmt] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:14:49.507
+                [SpringApplicationShutdownHook] [studmgmt] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
+[] [INFO ] 2025-12-17 19:14:53.562
+                [restartedMain] [studmgmt] com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [INFO ] 2025-12-17 19:14:53.564
+                [restartedMain] [studmgmt] com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:14:53.612
+                [restartedMain] [studmgmt] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[] [INFO ] 2025-12-17 19:14:53.612
+                [restartedMain] [studmgmt] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[] [INFO ] 2025-12-17 19:14:54.613
+                [restartedMain] [studmgmt] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:14:54.679
+                [restartedMain] [studmgmt] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:14:54.913
+                [restartedMain] [studmgmt] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:14:55.628
+                [restartedMain] [studmgmt] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:14:55.636
+                [restartedMain] [studmgmt] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:14:55.637
+                [restartedMain] [studmgmt] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:14:55.638
+                [restartedMain] [studmgmt] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:14:55.704
+                [restartedMain] [studmgmt] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:14:55.705
+                [restartedMain] [studmgmt] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2091 ms
+[] [INFO ] 2025-12-17 19:14:56.280
+                [restartedMain] [studmgmt] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:14:56.399
+                [restartedMain] [studmgmt] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@1feb34d8
+[] [INFO ] 2025-12-17 19:14:56.400
+                [restartedMain] [studmgmt] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [INFO ] 2025-12-17 19:14:57.507
+                [restartedMain] [studmgmt] org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[] [WARN ] 2025-12-17 19:14:58.547
+                [restartedMain] [studmgmt] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:14:58.632
+                [restartedMain] [studmgmt] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:14:59.314
+                [restartedMain] [studmgmt] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:15:00.148
+                [restartedMain] [studmgmt] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:15:00.290
+                [restartedMain] [studmgmt] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:15:00.303
+                [restartedMain] [studmgmt] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:15:00.361
+                [restartedMain] [studmgmt] com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 7.336 seconds (process running for 7.791)
+[] [INFO ] 2025-12-17 19:15:40.142
+                [http-nio-8080-exec-1] [studmgmt] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[] [INFO ] 2025-12-17 19:15:40.143
+                [http-nio-8080-exec-1] [studmgmt] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[] [INFO ] 2025-12-17 19:15:40.148
+                [http-nio-8080-exec-1] [studmgmt] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+[] [ERROR] 2025-12-17 19:15:40.309
+                [http-nio-8080-exec-1] [studmgmt] com.techcode.studentmgmt.secuirty.JwtFilter - ? JWT expired
+[] [ERROR] 2025-12-17 19:15:40.380
+                [http-nio-8080-exec-1] [studmgmt] com.techcode.studentmgmt.secuirty.CustomAuthenticationEntryPoint - ? Authentication failed: Full authentication is required to access this resource
+[c9cdf435-16e3-4686-bc8b-a38e2d84e5c1] [WARN ] 2025-12-17 19:16:00.978
+                [http-nio-8080-exec-3] [studmgmt] io.github.resilience4j.spring6.fallback.FallbackExecutor - No fallback method match found
+java.lang.NoSuchMethodException: class org.springframework.http.ResponseEntity class com.techcode.studentmgmt.controller.AuthController.fallbackResponse(class com.techcode.studentmgmt.dto.requestdto.AdminLoginRequest,class java.lang.Throwable)
+	at io.github.resilience4j.spring6.fallback.FallbackMethod.create(FallbackMethod.java:97)
+	at io.github.resilience4j.spring6.fallback.FallbackExecutor.execute(FallbackExecutor.java:31)
+	at io.github.resilience4j.spring6.circuitbreaker.configure.CircuitBreakerAspect.circuitBreakerAroundAdvice(CircuitBreakerAspect.java:109)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:642)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:632)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:173)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at com.techcode.studentmgmt.controller.AuthController$$SpringCGLIB$$0.adminLogin(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at com.techcode.studentmgmt.config.RequestIdFilter.doFilter(RequestIdFilter.java:40)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at com.techcode.studentmgmt.config.ApiTimingFilter.doFilter(ApiTimingFilter.java:26)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at com.techcode.studentmgmt.secuirty.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+[c9cdf435-16e3-4686-bc8b-a38e2d84e5c1] [INFO ] 2025-12-17 19:16:00.984
+                [http-nio-8080-exec-3] [studmgmt] com.techcode.studentmgmt.controller.AuthController - Admin login attempt: ADM001
+[c9cdf435-16e3-4686-bc8b-a38e2d84e5c1] [INFO ] 2025-12-17 19:16:00.984
+                [http-nio-8080-exec-3] [studmgmt] com.techcode.studentmgmt.service.AuthServiceImpl - Admin login attempt for ID: ADM001
+[c9cdf435-16e3-4686-bc8b-a38e2d84e5c1] [ERROR] 2025-12-17 19:16:01.345
+                [http-nio-8080-exec-3] [studmgmt] com.techcode.studentmgmt.service.AuthServiceImpl - Invalid password for admin ID: ADM001
+[c9cdf435-16e3-4686-bc8b-a38e2d84e5c1] [WARN ] 2025-12-17 19:16:01.354
+                [http-nio-8080-exec-3] [studmgmt] com.techcode.studentmgmt.exceptions.GlobalExceptionHandler - Business exception caught: INVALID_ADMIN_PASSWORD
+[c9cdf435-16e3-4686-bc8b-a38e2d84e5c1] [WARN ] 2025-12-17 19:16:01.384
+                [http-nio-8080-exec-3] [studmgmt] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolved [com.techcode.studentmgmt.exceptions.BusinessException: Invalid password for admin ID 'ADM001'.]
+[] [INFO ] 2025-12-17 19:16:01.385
+                [http-nio-8080-exec-3] [studmgmt] com.techcode.studentmgmt.config.ApiTimingFilter - API Time :: [POST /api/auth/admin/login] took 495 ms
+[] [INFO ] 2025-12-17 19:20:38.288
+                [File Watcher] [studmgmt] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[] [INFO ] 2025-12-17 19:20:38.296
+                [Thread-6] [studmgmt] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:20:38.297
+                [tomcat-shutdown] [studmgmt] org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:20:38.377
+                [tomcat-shutdown] [studmgmt] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:20:38.378
+                [Thread-6] [studmgmt] org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:20:38.387
+                [Thread-6] [studmgmt] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:20:38.393
+                [Thread-6] [studmgmt] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
+[] [INFO ] 2025-12-17 19:20:52.052
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [DEBUG] 2025-12-17 19:20:52.052
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+[] [INFO ] 2025-12-17 19:20:52.052
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:20:52.290
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:20:52.306
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:20:52.344
+                [restartedMain] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:20:52.516
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:20:52.516
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:20:52.516
+                [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:20:52.516
+                [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:20:52.533
+                [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:20:52.534
+                [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 481 ms
+[] [INFO ] 2025-12-17 19:20:52.732
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:20:52.739
+                [restartedMain] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@6157bca6
+[] [INFO ] 2025-12-17 19:20:52.739
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [DEBUG] 2025-12-17 19:20:52.990
+                [restartedMain] com.techcode.studentmgmt.secuirty.JwtFilter - Filter 'jwtFilter' configured for use
+[] [WARN ] 2025-12-17 19:20:53.351
+                [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:20:53.407
+                [restartedMain] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:20:53.852
+                [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:20:54.366
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:20:54.458
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:20:54.459
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:20:54.509
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 2.521 seconds (process running for 361.94)
+[] [INFO ] 2025-12-17 19:20:54.511
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[] [INFO ] 2025-12-17 19:21:07.862
+                [http-nio-8080-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[] [INFO ] 2025-12-17 19:21:07.862
+                [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[] [INFO ] 2025-12-17 19:21:07.865
+                [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+[aa46adfe-bc34-44f1-86d9-0aed141e5511] [WARN ] 2025-12-17 19:21:07.879
+                [http-nio-8080-exec-2] io.github.resilience4j.spring6.fallback.FallbackExecutor - No fallback method match found
+java.lang.NoSuchMethodException: class org.springframework.http.ResponseEntity class com.techcode.studentmgmt.controller.AuthController.fallbackResponse(class com.techcode.studentmgmt.dto.requestdto.AdminLoginRequest,class java.lang.Throwable)
+	at io.github.resilience4j.spring6.fallback.FallbackMethod.create(FallbackMethod.java:97)
+	at io.github.resilience4j.spring6.fallback.FallbackExecutor.execute(FallbackExecutor.java:31)
+	at io.github.resilience4j.spring6.circuitbreaker.configure.CircuitBreakerAspect.circuitBreakerAroundAdvice(CircuitBreakerAspect.java:109)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:642)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:632)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:173)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at com.techcode.studentmgmt.controller.AuthController$$SpringCGLIB$$0.adminLogin(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at com.techcode.studentmgmt.config.RequestIdFilter.doFilter(RequestIdFilter.java:40)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at com.techcode.studentmgmt.config.ApiTimingFilter.doFilter(ApiTimingFilter.java:26)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340)
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at com.techcode.studentmgmt.secuirty.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+[aa46adfe-bc34-44f1-86d9-0aed141e5511] [INFO ] 2025-12-17 19:21:07.881
+                [http-nio-8080-exec-2] com.techcode.studentmgmt.controller.AuthController - Admin login attempt: ADM001
+[aa46adfe-bc34-44f1-86d9-0aed141e5511] [INFO ] 2025-12-17 19:21:07.881
+                [http-nio-8080-exec-2] com.techcode.studentmgmt.service.AuthServiceImpl - Admin login attempt for ID: ADM001
+[aa46adfe-bc34-44f1-86d9-0aed141e5511] [ERROR] 2025-12-17 19:21:08.074
+                [http-nio-8080-exec-2] com.techcode.studentmgmt.service.AuthServiceImpl - Invalid password for admin ID: ADM001
+[aa46adfe-bc34-44f1-86d9-0aed141e5511] [WARN ] 2025-12-17 19:21:08.076
+                [http-nio-8080-exec-2] com.techcode.studentmgmt.exceptions.GlobalExceptionHandler - Business exception caught: INVALID_ADMIN_PASSWORD
+[aa46adfe-bc34-44f1-86d9-0aed141e5511] [WARN ] 2025-12-17 19:21:08.089
+                [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolved [com.techcode.studentmgmt.exceptions.BusinessException: Invalid password for admin ID 'ADM001'.]
+[] [INFO ] 2025-12-17 19:21:08.091
+                [http-nio-8080-exec-2] com.techcode.studentmgmt.config.ApiTimingFilter - API Time :: [POST /api/auth/admin/login] took 220 ms
+[] [INFO ] 2025-12-17 19:25:49.100
+                [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[] [INFO ] 2025-12-17 19:25:49.103
+                [Thread-15] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:25:49.104
+                [tomcat-shutdown] org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:25:49.183
+                [tomcat-shutdown] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:25:49.184
+                [Thread-15] org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:25:49.187
+                [Thread-15] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:25:49.191
+                [Thread-15] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
+[] [INFO ] 2025-12-17 19:25:49.320
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [DEBUG] 2025-12-17 19:25:49.320
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+[] [INFO ] 2025-12-17 19:25:49.320
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:25:49.565
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:25:49.593
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 25 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:25:49.639
+                [restartedMain] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:25:49.823
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:25:49.824
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:25:49.824
+                [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:25:49.824
+                [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:25:49.846
+                [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:25:49.846
+                [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 525 ms
+[] [INFO ] 2025-12-17 19:25:50.031
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:25:50.036
+                [restartedMain] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b3f0382
+[] [INFO ] 2025-12-17 19:25:50.036
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [DEBUG] 2025-12-17 19:25:50.281
+                [restartedMain] com.techcode.studentmgmt.secuirty.JwtFilter - Filter 'jwtFilter' configured for use
+[] [WARN ] 2025-12-17 19:25:50.668
+                [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:25:50.733
+                [restartedMain] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:25:51.141
+                [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:25:51.652
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:25:51.741
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:25:51.744
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:25:51.792
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 2.537 seconds (process running for 659.223)
+[] [INFO ] 2025-12-17 19:25:51.794
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[] [INFO ] 2025-12-17 19:29:45.382
+                [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+[] [INFO ] 2025-12-17 19:29:45.383
+                [Thread-21] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:29:45.384
+                [tomcat-shutdown] org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:29:45.466
+                [tomcat-shutdown] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:29:45.466
+                [Thread-21] org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:29:45.470
+                [Thread-21] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:29:45.473
+                [Thread-21] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
+[] [INFO ] 2025-12-17 19:29:45.590
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [DEBUG] 2025-12-17 19:29:45.590
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+[] [INFO ] 2025-12-17 19:29:45.590
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:29:45.849
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:29:45.870
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:29:45.917
+                [restartedMain] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:29:46.103
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:29:46.104
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:29:46.104
+                [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:29:46.104
+                [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:29:46.124
+                [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:29:46.125
+                [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 534 ms
+[] [INFO ] 2025-12-17 19:29:46.345
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:29:46.353
+                [restartedMain] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@13e99603
+[] [INFO ] 2025-12-17 19:29:46.353
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [DEBUG] 2025-12-17 19:29:46.602
+                [restartedMain] com.techcode.studentmgmt.secuirty.JwtFilter - Filter 'jwtFilter' configured for use
+[] [WARN ] 2025-12-17 19:29:47.038
+                [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:29:47.096
+                [restartedMain] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:29:47.599
+                [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:29:48.240
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:29:48.360
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:29:48.363
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:29:48.421
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 2.899 seconds (process running for 895.853)
+[] [INFO ] 2025-12-17 19:29:48.425
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[] [INFO ] 2025-12-17 19:30:15.253
+                [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+[] [INFO ] 2025-12-17 19:30:15.255
+                [Thread-27] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:30:15.255
+                [tomcat-shutdown] org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:30:15.339
+                [tomcat-shutdown] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:30:15.339
+                [Thread-27] org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:30:15.343
+                [Thread-27] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:30:15.344
+                [Thread-27] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
+[] [INFO ] 2025-12-17 19:30:15.465
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [DEBUG] 2025-12-17 19:30:15.465
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+[] [INFO ] 2025-12-17 19:30:15.465
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:30:15.721
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:30:15.740
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:30:15.786
+                [restartedMain] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:30:15.982
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:30:15.982
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:30:15.982
+                [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:30:15.982
+                [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:30:16.000
+                [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:30:16.000
+                [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 534 ms
+[] [INFO ] 2025-12-17 19:30:16.250
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:30:16.258
+                [restartedMain] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@453fa25f
+[] [INFO ] 2025-12-17 19:30:16.258
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [DEBUG] 2025-12-17 19:30:16.542
+                [restartedMain] com.techcode.studentmgmt.secuirty.JwtFilter - Filter 'jwtFilter' configured for use
+[] [WARN ] 2025-12-17 19:30:17.013
+                [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:30:17.081
+                [restartedMain] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:30:17.593
+                [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:30:18.260
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:30:18.377
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:30:18.381
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:30:18.435
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 3.037 seconds (process running for 925.866)
+[] [INFO ] 2025-12-17 19:30:18.437
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[] [INFO ] 2025-12-17 19:30:35.134
+                [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+[] [INFO ] 2025-12-17 19:30:35.137
+                [Thread-33] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:30:35.138
+                [tomcat-shutdown] org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:30:35.213
+                [tomcat-shutdown] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:30:35.214
+                [Thread-33] org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:30:35.217
+                [Thread-33] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:30:35.219
+                [Thread-33] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
+[] [INFO ] 2025-12-17 19:30:35.342
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [DEBUG] 2025-12-17 19:30:35.342
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+[] [INFO ] 2025-12-17 19:30:35.342
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:30:35.579
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:30:35.597
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:30:35.640
+                [restartedMain] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:30:35.817
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:30:35.818
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:30:35.818
+                [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:30:35.818
+                [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:30:35.840
+                [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:30:35.840
+                [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 497 ms
+[] [INFO ] 2025-12-17 19:30:36.044
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:30:36.048
+                [restartedMain] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@37e1508f
+[] [INFO ] 2025-12-17 19:30:36.048
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [DEBUG] 2025-12-17 19:30:36.298
+                [restartedMain] com.techcode.studentmgmt.secuirty.JwtFilter - Filter 'jwtFilter' configured for use
+[] [WARN ] 2025-12-17 19:30:36.730
+                [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:30:36.819
+                [restartedMain] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:30:38.054
+                [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:30:39.536
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:30:39.775
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:30:39.780
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:30:39.900
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 4.62 seconds (process running for 947.33)
+[] [INFO ] 2025-12-17 19:30:39.903
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[] [INFO ] 2025-12-17 19:32:04.090
+                [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[] [INFO ] 2025-12-17 19:32:04.095
+                [Thread-39] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:32:04.097
+                [tomcat-shutdown] org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:04.293
+                [tomcat-shutdown] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:32:04.294
+                [Thread-39] org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:04.301
+                [Thread-39] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:32:04.304
+                [Thread-39] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
+[] [INFO ] 2025-12-17 19:32:04.578
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [DEBUG] 2025-12-17 19:32:04.578
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+[] [INFO ] 2025-12-17 19:32:04.579
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:32:05.283
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:32:05.327
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:32:05.439
+                [restartedMain] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:32:05.870
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:32:05.871
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:05.872
+                [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:32:05.872
+                [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:32:05.919
+                [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:32:05.919
+                [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1338 ms
+[] [INFO ] 2025-12-17 19:32:06.413
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:32:06.419
+                [restartedMain] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@7309637e
+[] [INFO ] 2025-12-17 19:32:06.420
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [DEBUG] 2025-12-17 19:32:07.018
+                [restartedMain] com.techcode.studentmgmt.secuirty.JwtFilter - Filter 'jwtFilter' configured for use
+[] [WARN ] 2025-12-17 19:32:07.886
+                [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:32:08.032
+                [restartedMain] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:32:08.910
+                [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:32:09.567
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:32:09.669
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:09.672
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:32:09.727
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 5.308 seconds (process running for 1037.158)
+[] [INFO ] 2025-12-17 19:32:09.733
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[] [INFO ] 2025-12-17 19:32:16.155
+                [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[] [INFO ] 2025-12-17 19:32:16.159
+                [Thread-45] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:32:16.160
+                [tomcat-shutdown] org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:16.374
+                [tomcat-shutdown] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:32:16.374
+                [Thread-45] org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:16.381
+                [Thread-45] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:32:16.384
+                [Thread-45] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
+[] [INFO ] 2025-12-17 19:32:16.632
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Starting studentmgmtApplication using Java 17.0.12 with PID 7464 (F:\Spring-Workspace\college-placements-portal\target\classes started by pavansiddabathula in F:\Spring-Workspace\college-placements-portal)
+[] [DEBUG] 2025-12-17 19:32:16.632
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+[] [INFO ] 2025-12-17 19:32:16.632
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - The following 1 profile is active: "local"
+[] [INFO ] 2025-12-17 19:32:17.313
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[] [INFO ] 2025-12-17 19:32:17.358
+                [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
+[] [INFO ] 2025-12-17 19:32:17.478
+                [restartedMain] org.springframework.cloud.context.scope.GenericScope - BeanFactory id=9e52753f-6893-37de-a83f-58d7466554bf
+[] [INFO ] 2025-12-17 19:32:17.917
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[] [INFO ] 2025-12-17 19:32:17.919
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:17.919
+                [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[] [INFO ] 2025-12-17 19:32:17.919
+                [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+[] [INFO ] 2025-12-17 19:32:17.966
+                [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[] [INFO ] 2025-12-17 19:32:17.967
+                [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1334 ms
+[] [INFO ] 2025-12-17 19:32:18.503
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Starting...
+[] [INFO ] 2025-12-17 19:32:18.509
+                [restartedMain] com.zaxxer.hikari.pool.HikariPool - TechCodeHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@1086da4d
+[] [INFO ] 2025-12-17 19:32:18.509
+                [restartedMain] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Start completed.
+[] [DEBUG] 2025-12-17 19:32:19.061
+                [restartedMain] com.techcode.studentmgmt.secuirty.JwtFilter - Filter 'jwtFilter' configured for use
+[] [WARN ] 2025-12-17 19:32:20.030
+                [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[] [INFO ] 2025-12-17 19:32:20.164
+                [restartedMain] org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[] [INFO ] 2025-12-17 19:32:21.312
+                [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 26 endpoints beneath base path '/actuator'
+[] [INFO ] 2025-12-17 19:32:21.974
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[] [INFO ] 2025-12-17 19:32:22.090
+                [restartedMain] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:22.092
+                [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[] [INFO ] 2025-12-17 19:32:22.142
+                [restartedMain] com.techcode.studentmgmt.studentmgmtApplication - Started studentmgmtApplication in 5.661 seconds (process running for 1049.573)
+[] [INFO ] 2025-12-17 19:32:22.144
+                [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[] [INFO ] 2025-12-17 19:32:35.690
+                [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[] [INFO ] 2025-12-17 19:32:35.694
+                [Thread-51] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[] [INFO ] 2025-12-17 19:32:35.694
+                [tomcat-shutdown] org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:35.800
+                [tomcat-shutdown] org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+[] [INFO ] 2025-12-17 19:32:35.800
+                [Thread-51] org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+[] [INFO ] 2025-12-17 19:32:35.806
+                [Thread-51] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown initiated...
+[] [INFO ] 2025-12-17 19:32:35.809
+                [Thread-51] com.zaxxer.hikari.HikariDataSource - TechCodeHikariPool - Shutdown completed.
