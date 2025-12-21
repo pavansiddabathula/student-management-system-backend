@@ -52,10 +52,20 @@ public enum ErrorCodeEnums {
 
     DUPLICATE_APPLICATION("E005", "You have already applied for this job.", HttpStatus.BAD_REQUEST),
 
-    APPLICATION_NOT_FOUND("E006", "Application not found for id '%s'.", HttpStatus.NOT_FOUND);
+    APPLICATION_NOT_FOUND("E006", "Application not found for id '%s'.", HttpStatus.NOT_FOUND),
 
+	TRAINING_NOT_FOUND("E101", "Training with code '%s' not found.", HttpStatus.NOT_FOUND),
 
+	DUPLICATE_TRAINING("E102", "Training with name '%s' already exists.", HttpStatus.BAD_REQUEST),
 
+	INVALID_TRAINING_DATES("E103", "End date must be after start date.", HttpStatus.BAD_REQUEST),
+
+	INVALID_TRAINING_PRICE("E104", "Training price cannot be negative.", HttpStatus.BAD_REQUEST),
+
+	DUPLICATE_TRAINING_REGISTRATION("E105","Student '%s' is already registered for training '%s'.",HttpStatus.BAD_REQUEST),
+
+	TRAINING_REGISTRATION_NOT_FOUND("E106", "No registrations found for training '%s'.", HttpStatus.NOT_FOUND);
+	
     private final String code;
     private final String message;
     private final HttpStatus status;
@@ -72,3 +82,4 @@ public enum ErrorCodeEnums {
 
 
 }
+

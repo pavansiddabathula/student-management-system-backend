@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Data
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SuccessResponse {
     private String status;          // SUCCESS / FAILURE
     private String message;  
@@ -17,5 +18,6 @@ public class SuccessResponse {
     private LocalDateTime timestamp;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Object data;            // Actual payload (StudentResponse / list)
+    private Object data;  
+   // e.g., URLs for next steps or related actions
 }
