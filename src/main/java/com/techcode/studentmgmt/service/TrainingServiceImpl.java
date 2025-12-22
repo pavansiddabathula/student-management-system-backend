@@ -367,6 +367,8 @@ public class TrainingServiceImpl implements TrainingService {
         // Call PayPal create order API (your existing integration)
         Map<String, Object> paypalResponse =
                 paypalClient.createOrder(paypalRequest);
+        
+        
 
         String approvalUrl = (String) paypalResponse.get("approvalUrl");
 
