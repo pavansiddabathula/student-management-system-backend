@@ -87,7 +87,7 @@ public class AuthServiceImpl implements AuthService {
 
 		log.info("Student login successful for roll: {}", request.getRollNumber());
 		return ResponseEntity.ok(generateStudentToken(student));
-		//return success(null,generateStudentToken(student),HttpStatus.CREATED);
+		
 	}
 
 	// Generate Admin JWT
@@ -242,14 +242,6 @@ public class AuthServiceImpl implements AuthService {
 	private ResponseEntity<?> success(String message, Object data, HttpStatus status) {
 		return ResponseEntity.status(status).body(SuccessResponse.builder().status("SUCCESS").message(message)
 				.data(data).timestamp(LocalDateTime.now()).build());
-	}
-
-	private ResponseEntity<?> success(String message, Object data) {
-		return success(message, data, HttpStatus.OK);
-	}
-
-	private ResponseEntity<?> success(String message, HttpStatus status) {
-		return success(message, null, status);
 	}
 	
 	public void validateAdminLogin(AdminLoginRequest request) {

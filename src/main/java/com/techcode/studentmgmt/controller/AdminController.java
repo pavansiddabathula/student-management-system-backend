@@ -76,6 +76,7 @@ public class AdminController {
         return adminService.deleteAdminById(adminId);
     }
 
+    
     /** Reset admin password */
     @PostMapping("/reset-password/{adminId}")
     @PreAuthorize("hasRole('ADMIN')")

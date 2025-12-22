@@ -23,7 +23,12 @@ public enum SuccessMessageConstants {
     OTP_VERIFIED_SUCCESS("OTP verified successfully for %s."),
     PASSWORD_UPDATE_SUCCESS("Password updated successfully for %s."),
 
-    SUCCESS("SUCCESS");
+    SUCCESS("SUCCESS"),
+    TRAINING_REGISTER_SUCCESS("Training registered successfully (Code: %s)."),
+    TRAINING_FETCH_SUCCESS("Training details fetched successfully for code %s."), 
+    TRAINING_UPDATE_SUCCESS("Training details updated successfully for code %s."),
+    TRAINING_CREATE_SUCCESS("Training created successfully with code %s."),
+    TRAINING_REGISTRATION_FETCH_SUCCESS("Total %s training record(s) fetched successfully.");
 
     private final String message;
 

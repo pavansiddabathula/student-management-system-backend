@@ -162,8 +162,6 @@ public class JobServiceImpl implements JobService {
 
         return success("Applications fetched successfully", responses);
     }
-
-
     // ---------------------------------------------------------
     // APPLY FOR JOB
     // ---------------------------------------------------------

@@ -4,9 +4,6 @@ import com.techcode.studentmgmt.dto.requestdto.StudentRequest;
 import com.techcode.studentmgmt.dto.responsedto.StudentResponse;
 import com.techcode.studentmgmt.entity.StudentInfo;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class StudentMapper {
 
     // Convert Request DTO → Entity

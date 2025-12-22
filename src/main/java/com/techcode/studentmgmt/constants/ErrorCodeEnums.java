@@ -41,11 +41,31 @@ public enum ErrorCodeEnums {
 	PASSWORDS_DO_NOT_MATCH("E009", "New password and confirm password do not match.", HttpStatus.BAD_REQUEST),
 
 	WEAK_PASSWORD("E010", "Password must meet required security conditions.", HttpStatus.BAD_REQUEST),
+	
 	OTP_NOT_VERIFIED("E011", "OTP not verified for identifier '%s'.", HttpStatus.BAD_REQUEST),
-	SERVICE_UNAVAILABLE("E503", "Service is currently unavailable. Please try again later.", HttpStatus.SERVICE_UNAVAILABLE);
+	
+	SERVICE_UNAVAILABLE("E503", "Service is currently unavailable. Please try again later.", HttpStatus.SERVICE_UNAVAILABLE),
 
+    JOB_NOT_FOUND("E003", "Job with id '%s' not found.", HttpStatus.NOT_FOUND),
 
+    DUPLICATE_JOB("E004", "A similar job already exists.", HttpStatus.BAD_REQUEST),
 
+    DUPLICATE_APPLICATION("E005", "You have already applied for this job.", HttpStatus.BAD_REQUEST),
+
+    APPLICATION_NOT_FOUND("E006", "Application not found for id '%s'.", HttpStatus.NOT_FOUND),
+
+	TRAINING_NOT_FOUND("E101", "Training with code '%s' not found.", HttpStatus.NOT_FOUND),
+
+	DUPLICATE_TRAINING("E102", "Training with name '%s' already exists.", HttpStatus.BAD_REQUEST),
+
+	INVALID_TRAINING_DATES("E103", "End date must be after start date.", HttpStatus.BAD_REQUEST),
+
+	INVALID_TRAINING_PRICE("E104", "Training price cannot be negative.", HttpStatus.BAD_REQUEST),
+
+	DUPLICATE_TRAINING_REGISTRATION("E105","Student '%s' is already registered for training '%s'.",HttpStatus.BAD_REQUEST),
+
+	TRAINING_REGISTRATION_NOT_FOUND("E106", "No registrations found for training '%s'.", HttpStatus.NOT_FOUND);
+	
     private final String code;
     private final String message;
     private final HttpStatus status;
@@ -62,3 +82,4 @@ public enum ErrorCodeEnums {
 
 
 }
+
