@@ -1,8 +1,6 @@
 package com.techcode.studentmgmt.service;
 
 import java.math.BigDecimal;
-
-
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,10 +9,13 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.techcode.studentmgmt.constants.ErrorCodeEnums;
 import com.techcode.studentmgmt.constants.SuccessMessageConstants;
 import com.techcode.studentmgmt.dto.requestdto.CreateTrainingRequest;
+import com.techcode.studentmgmt.dto.requestdto.PayPalOrderRequest;
+import com.techcode.studentmgmt.dto.responsedto.PayPalOrderResponse;
 import com.techcode.studentmgmt.dto.responsedto.SuccessResponse;
 import com.techcode.studentmgmt.entity.StudentInfo;
 import com.techcode.studentmgmt.entity.Training;
@@ -32,6 +33,8 @@ import com.techcode.studentmgmt.repository.TrainingRepository;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -40,7 +43,11 @@ public class TrainingServiceImpl implements TrainingService {
     private final TrainingRepository trainingRepository;
     private final StudentRepository studentRepository;
     private final TrainingRegistrationRepository registrationRepository;
+    
     private final Validator validator;
+    
+    private final RestTemplate restTemplate;
+    
 
     // ================= CREATE TRAINING =================
     @Override
@@ -323,18 +330,30 @@ public class TrainingServiceImpl implements TrainingService {
         }
     }
     
+    
+
+    // ================= SUCCESS RESPONSE =================
+    private ResponseEntity<?> success(String message, Object data, HttpStatus status) {
+
+        return ResponseEntity.status(status).body(
+                SuccessResponse.builder()
+                        .status("SUCCESS")
+                        .message(message)
+                        .data(data)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
+    }
     @Override
     public ResponseEntity<?> initiatePayment(String trainingCode) {
 
         log.info("initiatePayment | trainingCode={}", trainingCode);
 
         Training training = trainingRepository.findByTrainingCode(trainingCode)
-                .orElseThrow(() ->
-                        new BusinessException(
-                                ErrorCodeEnums.TRAINING_NOT_FOUND,
-                                trainingCode
-                        )
-                );
+                .orElseThrow(() -> new BusinessException(
+                        ErrorCodeEnums.TRAINING_NOT_FOUND,
+                        trainingCode
+                ));
 
         // Free training → no payment needed
         if (training.getPrice().compareTo(BigDecimal.ZERO) == 0) {
@@ -350,53 +369,58 @@ public class TrainingServiceImpl implements TrainingService {
         // Generate transaction reference
         String tnref = "TRN-" + trainingCode + "-" + System.currentTimeMillis();
 
-        // Hardcoded URLs for now (OK for current stage)
+        // Hardcoded URLs for now (acceptable at this stage)
         String returnUrl = "http://localhost:8080/api/payments/paypal/success";
         String cancelUrl = "http://localhost:8080/api/payments/paypal/cancel";
 
-        log.info("Creating PayPal order | tnref={} | amount=1.00 USD", tnref);
-
-        Map<String, Object> paypalRequest = Map.of(
-                "tnref", tnref,
-                "amount", "1.00",
-                "currency", "USD",
-                "returnUrl", returnUrl,
-                "cancelUrl", cancelUrl
+        // Build request object using DB values
+        PayPalOrderRequest paypalRequest = new PayPalOrderRequest(
+                tnref,
+                training.getPrice().toPlainString(),   // DB → String
+                "USD",                                 // or training.getCurrency()
+                returnUrl,
+                cancelUrl
         );
 
-        // Call PayPal create order API (your existing integration)
-        Map<String, Object> paypalResponse =
-                paypalClient.createOrder(paypalRequest);
-        
-        
+        log.info(
+                "Creating PayPal order | tnref={} | amount={} {}",
+                tnref,
+                paypalRequest.getAmount(),
+                paypalRequest.getCurrency()
+        );
 
-        String approvalUrl = (String) paypalResponse.get("approvalUrl");
+        // Call PayPal provider service
+        PayPalOrderResponse paypalResponse =createOrder(paypalRequest);
 
-        log.info("PayPal order created | approvalUrl={}", approvalUrl);
+        log.info(
+                "PayPal order created | orderId={} | status={}",
+                paypalResponse.getOrderId(),
+                paypalResponse.getPaypalStatus()
+        );
 
         return success(
                 "Payment initiated successfully",
                 Map.of(
                         "trainingCode", trainingCode,
-                        "amount", "1.00",
-                        "currency", "USD",
-                        "approvalUrl", approvalUrl
+                        "amount", paypalRequest.getAmount(),
+                        "currency", paypalRequest.getCurrency(),
+                        "approvalUrl", paypalResponse.getRedirectUrl()
                 ),
                 HttpStatus.OK
         );
     }
+    
+    public PayPalOrderResponse createOrder(PayPalOrderRequest request) {
 
-
-    // ================= SUCCESS RESPONSE =================
-    private ResponseEntity<?> success(String message, Object data, HttpStatus status) {
-
-        return ResponseEntity.status(status).body(
-                SuccessResponse.builder()
-                        .status("SUCCESS")
-                        .message(message)
-                        .data(data)
-                        .timestamp(LocalDateTime.now())
-                        .build()
+        return restTemplate.postForObject(
+                "http://localhost:8081/v1/paypal/order",
+                request,
+                PayPalOrderResponse.class
         );
     }
+
+
+
+
+
 }

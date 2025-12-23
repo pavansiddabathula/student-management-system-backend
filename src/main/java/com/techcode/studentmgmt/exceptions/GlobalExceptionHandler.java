@@ -1,7 +1,6 @@
 package com.techcode.studentmgmt.exceptions;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -74,7 +73,8 @@ public class GlobalExceptionHandler {
 	}
 
 	// Handle database-related failures (DB down, wrong queries, connectivity errors)
-	@ExceptionHandler({ CannotCreateTransactionException.class, SQLGrammarException.class,
+	@ExceptionHandler(
+			{ CannotCreateTransactionException.class, SQLGrammarException.class,
 			JDBCConnectionException.class, JpaSystemException.class, DataAccessException.class })
 	public ResponseEntity<?> handleDBErrors(Exception ex) {
 
@@ -117,19 +117,6 @@ public class GlobalExceptionHandler {
 
 	}
 	
-  /*  @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleValidationErrors(MethodArgumentNotValidException ex) {
-
-        Map<String, String> errors = new HashMap<>();
-
-        ex.getBindingResult().getFieldErrors().forEach(error -> {
-            errors.put(error.getField(), error.getDefaultMessage());
-        });
-
-        System.out.println("VALIDATION ERRORS: " + errors);
-
-        return ResponseEntity.badRequest().body(errors);
-    }*/
 	
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
@@ -137,5 +124,20 @@ public class GlobalExceptionHandler {
                 .body("Internal exception handled: " + ex.getMessage());
     }
     
+    @ExceptionHandler(PaypalProviderException.class)
+    public ResponseEntity<?> handlePaypalProviderException(PaypalProviderException ex) {
+    	
+    	log.error("PaypalProviderException caught: {}", ex.getMessage());
+    	
+    	ErrorResponse response = ErrorResponse.builder()
+    			.status("FAILURE")
+    			.errorCode(ErrorCodeEnums.RESOURCE_NOT_FOUND.getCode())
+				.errorMessage(ErrorCodeEnums.RESOURCE_NOT_FOUND.getMessage())
+				.timestamp(LocalDateTime.now()).build();
+
+		return ResponseEntity.status(ex.getHttpStatus()).body(response);
+    							
+    }
+		
 
 }

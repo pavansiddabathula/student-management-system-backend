@@ -64,7 +64,12 @@ public enum ErrorCodeEnums {
 
 	DUPLICATE_TRAINING_REGISTRATION("E105","Student '%s' is already registered for training '%s'.",HttpStatus.BAD_REQUEST),
 
-	TRAINING_REGISTRATION_NOT_FOUND("E106", "No registrations found for training '%s'.", HttpStatus.NOT_FOUND);
+	TRAINING_REGISTRATION_NOT_FOUND("E106", "No registrations found for training '%s'.", HttpStatus.NOT_FOUND),
+	
+	RESOURCE_NOT_FOUND("E999", "The requested resource was not found.", HttpStatus.NOT_FOUND),
+	
+	GENERIC_ERROR("E998", "An unexpected error occurred. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
+	
 	
     private final String code;
     private final String message;
