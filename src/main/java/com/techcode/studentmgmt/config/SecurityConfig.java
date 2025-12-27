@@ -51,6 +51,8 @@ public class SecurityConfig {
                 "/api/auth/verify-otp",
                 "/api/auth/set-password",
                 "/test/**",
+                "/swagger-ui/**",
+                "/v3/api-docs/**",
                 "/actuator/**"
             ).permitAll()
             .requestMatchers("/api/admin/**").hasRole("ADMIN")
